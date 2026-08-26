@@ -1,0 +1,32 @@
+# Environments
+.venv/
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# Test / tool caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Claude Code local settings
+.claude/settings.local.json
+
+# Receipt data (private, potentially large — keep dirs, ignore contents)
+data/input/*
+!data/input/.gitkeep
+data/output/*
+!data/output/.gitkeep
