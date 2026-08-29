@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.py[cod]
+unsloth_compiled_cache/
+.pytest_cache/
+*.log
+data/
+checkpoints/
+reports/*_raw.jsonl
+reports/*_examples.jsonl
