@@ -1,0 +1,7 @@
+# Service layer only. The model stack is pinned in requirements.lock.txt and
+# must not be re-resolved here — unsloth/torch/transformers versions are
+# load-bearing (see the header of requirements.lock.txt).
+fastapi>=0.115
+uvicorn[standard]>=0.32
+python-multipart>=0.0.9
+httpx>=0.27

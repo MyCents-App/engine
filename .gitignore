@@ -8,3 +8,9 @@ data/
 checkpoints/
 reports/*_raw.jsonl
 reports/*_examples.jsonl
+
+# --- secrets / local deployment config -------------------------------------
+# docker/.env holds ENGINE_API_KEY and NGROK_AUTHTOKEN. Never commit it.
+.env
+docker/.env
+.venv-test/

@@ -1,0 +1,51 @@
+# Surya OCR sidecar.
+#
+# Separate image because surya-ocr 0.17.1 pins transformers<5 while unsloth
+# needs 5.5 — the two cannot share an interpreter. This is the same split
+# that ocr_service.py's docstring describes, expressed as containers.
+#
+# BUILD INPUT: the `receipt_ocr` package (the SuryaOCR project) is NOT part of
+# the engine repo. Provide it at build time — see DEPLOY.md §2:
+#
+#   docker build -f docker/Dockerfile.ocr \
+#       --build-context surya=/path/to/SuryaOCR -t mycents-ocr .
+FROM nvidia/cuda:12.8.0-cudnn-runtime-ubuntu22.04
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    PYTHONUNBUFFERED=1 \
+    HF_HOME=/cache/huggingface \
+    SURYA_PROJECT=/srv/surya \
+    # Surya's own defaults (512/36) target ~20GB of VRAM and will OOM a
+    # smaller card. These are the values the SuryaOCR project settled on.
+    RECOGNITION_BATCH_SIZE=96 \
+    DETECTOR_BATCH_SIZE=8
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        python3.11 python3.11-venv python3-pip git curl libgl1 libglib2.0-0 \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN ln -sf /usr/bin/python3.11 /usr/local/bin/python && \
+    ln -sf /usr/bin/python3.11 /usr/local/bin/python3
+
+WORKDIR /srv
+
+# The SuryaOCR project, supplied as a named build context.
+COPY --from=surya . /srv/surya/
+
+RUN python -m pip install --no-cache-dir --upgrade pip && \
+    python -m pip install --no-cache-dir \
+        "surya-ocr==0.17.1" "transformers>=4.56.1,<5" \
+        "pillow-heif>=0.18" "opencv-python-headless>=4.11,<5" \
+        "python-dotenv>=1.0" "requests>=2.31"
+
+COPY ocr_service.py /srv/ocr_service.py
+
+RUN useradd --create-home --uid 1000 ocr && \
+    mkdir -p /cache/huggingface && chown -R ocr:ocr /srv /cache
+USER ocr
+
+EXPOSE 8001
+HEALTHCHECK --interval=30s --timeout=5s --start-period=300s --retries=3 \
+    CMD curl -fsS http://127.0.0.1:8001/health || exit 1
+
+CMD ["python", "/srv/ocr_service.py"]

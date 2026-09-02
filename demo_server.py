@@ -1,4 +1,13 @@
-"""Demo server: phone photo -> Surya OCR -> fine-tuned Qwen3.5-2B -> structured JSON.
+"""LOCAL DEVELOPMENT TOOL — not the deployed service.
+
+Serves a phone-facing HTML page for eyeballing the pipeline over LAN. The
+deployed engine is API-only (`app/api.py`) and this file is deliberately not
+built into either container image; see DEPLOY.md.
+
+Kept because it is genuinely useful for a quick manual check on the GPU box.
+For anything programmatic use `POST /v1/extract` instead.
+
+Demo server: phone photo -> Surya OCR -> fine-tuned Qwen3.5-2B -> structured JSON.
 
 Serves a mobile web page on the LAN. Open it on a phone, take a photo of a receipt, and get
 back the extracted merchant / items / prices / total.
