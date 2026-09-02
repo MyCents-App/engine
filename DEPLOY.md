@@ -21,7 +21,7 @@ has no authentication of its own and must stay on the private network.
 
 | | |
 |---|---|
-| **NVIDIA GPU** | Required. The checkpoint is 4-bit quantized via bitsandbytes, which is CUDA-only. See §7 if the target has no GPU. |
+| **NVIDIA GPU** | Required, and confirmed present on the target host. The checkpoint is 4-bit quantized via bitsandbytes, which is CUDA-only. §7 is a contingency note only. |
 | VRAM | ~6 GB is comfortable: ~2 GB for the 4-bit model, ~3.6 GB for Surya on CUDA. Set `OCR_DEVICE=cpu` to trade ~16s/page for that 3.6 GB. |
 | Disk | ~25 GB. The CUDA images are large, plus ~1 GB of Surya weights and the checkpoint. |
 | Software | Docker Engine + Compose v2, and the **NVIDIA Container Toolkit** so `--gpus` works. |
@@ -178,20 +178,28 @@ still returns confident, well-formed JSON missing its last items. The error
 reports the actual token count. Raise `ENGINE_MAX_SEQ_LENGTH` if the GPU has
 headroom, and re-measure VRAM.
 
-## 7. If the target machine has no GPU
+## 7. Serving stack — decided, and the contingency
 
-The 4-bit checkpoint cannot run without CUDA. Options, roughly in order of
-effort:
+**The engine serves the checkpoint through unsloth/transformers on CUDA.**
+That is the stack the model was fine-tuned and evaluated with, using the exact
+prompt in `prompts.py`, so the published accuracy numbers describe what this
+service actually does. The target host has a suitable GPU, so this is the
+path — nothing below is in play today.
 
-1. **Rent a GPU host.** Least work; the compose file is unchanged.
-2. **Full-precision CPU inference** — set `ENGINE_LOAD_IN_4BIT=0` and use a
-   CPU image. Expect tens of seconds per receipt and ~5 GB of RAM.
-3. **Convert the checkpoint to GGUF and serve it with Ollama or
-   llama.cpp.** This is the option worth discussing if CPU-only is the target
-   — but note it is a *different serving stack* to the one the model was
-   trained and evaluated with, so the accuracy numbers would need re-checking
-   against `prompts.py`'s exact prompt. Nothing in this repo does that
-   conversion today.
+**Not Ollama.** Ollama serves GGUF, so using it would mean converting the
+checkpoint and swapping the serving stack underneath a model whose numbers
+were measured on a different one. Every eval figure would need re-checking
+before it could be trusted, and nothing in this repo performs that
+conversion. If Ollama is ever wanted (say, to consolidate with other models
+on the same host), treat it as a project with its own re-evaluation, not a
+deployment tweak.
+
+### Contingency, if the GPU ever becomes unavailable
+
+1. **Another GPU host.** Least work; the compose file is unchanged.
+2. **Full-precision CPU** — `ENGINE_LOAD_IN_4BIT=0` plus a CPU base image.
+   Tens of seconds per receipt, ~5 GB RAM. Usable for a demo, not for use.
+3. **GGUF + llama.cpp/Ollama**, with the re-evaluation caveat above.
 
 ## 8. Operating notes
 
