@@ -32,7 +32,18 @@ WORKDIR /srv
 # The SuryaOCR project, supplied as a named build context.
 COPY --from=surya . /srv/surya/
 
+# Dependencies mirror the SuryaOCR project's pyproject.toml. Two pins there
+# are load-bearing and must not drift:
+#   * surya-ocr 0.17.1 — the last pure-PyTorch release. >=0.20 was rewritten
+#     around a vllm/llama.cpp server.
+#   * transformers <5 — 0.17.1 shipped days before transformers 5.0 and is
+#     not compatible with it (SuryaDecoderConfig has no pad_token_id).
+# The CUDA index is required for a GPU-capable torch build; the default PyPI
+# wheel is CPU-only, which silently makes OCR ~6x slower.
+ARG TORCH_INDEX=https://download.pytorch.org/whl/cu128
 RUN python -m pip install --no-cache-dir --upgrade pip && \
+    python -m pip install --no-cache-dir --extra-index-url ${TORCH_INDEX} \
+        "torch>=2.7,<3" && \
     python -m pip install --no-cache-dir \
         "surya-ocr==0.17.1" "transformers>=4.56.1,<5" \
         "pillow-heif>=0.18" "opencv-python-headless>=4.11,<5" \

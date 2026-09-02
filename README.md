@@ -47,8 +47,9 @@ user-confirmed draft without renaming a single field.
 ## Deploying
 
 See **[`DEPLOY.md`](DEPLOY.md)** — Docker, GPU requirements, ngrok, and the
-two things this repo deliberately does not contain (the SuryaOCR project and
-the model checkpoint).
+two things this branch does not contain: the model checkpoint (too large to
+version) and the SuryaOCR project, which lives on the **`suryaOCR` branch of
+this repo** and is pulled in as a git worktree at build time.
 
 ## Tests
 

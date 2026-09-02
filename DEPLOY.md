@@ -40,8 +40,24 @@ Both are deliberate: they are large, and they change on a different cadence
 than the code.
 
 **a) The SuryaOCR project** (the `receipt_ocr` package). `ocr_service.py`
-imports it. Put it on the host and point `SURYA_PROJECT_PATH` at it. Compose
-passes it to the OCR image as a named build context.
+imports it, but it is not on this branch — it lives on the **`suryaOCR`
+branch of this same repository**. Materialize it beside the checkout with a
+worktree, which keeps it versioned and updatable without a second clone:
+
+```bash
+git fetch origin suryaOCR
+git worktree add ../SuryaOCR suryaOCR
+# then in docker/.env:
+#   SURYA_PROJECT_PATH=/absolute/path/to/SuryaOCR
+```
+
+Compose passes that directory to the OCR image as a named build context, so
+the build stays hermetic — no network fetch, no credentials inside the
+Dockerfile. Update it later with `git -C ../SuryaOCR pull`.
+
+Kept as a separate branch on purpose: the OCR stage pins `transformers<5`
+and has its own `pyproject.toml`, and merging the two dependency sets into
+one branch is exactly the conflict the two-container split exists to avoid.
 
 **b) The fine-tuned checkpoint.** Mounted read-only at `/models`. Set
 `CHECKPOINT_PATH` to the directory *containing* the checkpoint folder:
