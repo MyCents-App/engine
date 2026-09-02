@@ -1,0 +1,55 @@
+[project]
+name = "receipt-ocr"
+version = "0.1.0"
+description = "Surya-OCR based receipt text extraction stage for the expense tracker"
+readme = "README.md"
+authors = [
+    { name = "dennis5727", email = "amedia225522@gmail.com" }
+]
+requires-python = ">=3.11,<3.13"
+dependencies = [
+    # Pinned deliberately: surya-ocr>=0.20 ("Surya 2") was rewritten around a
+    # vllm/llama.cpp server backend which has no supported native-Windows path.
+    # 0.17.1 is the last pure-PyTorch release (FoundationPredictor +
+    # RecognitionPredictor + DetectionPredictor, no server process needed).
+    "surya-ocr==0.17.1",
+    # surya-ocr 0.17.1 only declares transformers>=4.56.1 (no upper bound),
+    # but transformers 5.0 (released days after 0.17.1) is a breaking major
+    # version that surya 0.17.1's model code is not compatible with
+    # (AttributeError: 'SuryaDecoderConfig' object has no attribute
+    # 'pad_token_id'). Pin to the last compatible 4.x line.
+    "transformers>=4.56.1,<5",
+    "torch>=2.7,<3",
+    "pillow-heif>=0.18",
+    "opencv-python-headless>=4.11,<5",
+    "python-dotenv>=1.0",
+    "requests>=2.31",  # transitively required by surya-ocr but not declared by it
+]
+
+[project.scripts]
+receipt-ocr = "receipt_ocr.cli:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.12.3,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.uv]
+# RTX 5070 (Blackwell / sm_120) needs a CUDA 12.8+ wheel build of torch;
+# the default PyPI torch wheel is CPU-only.
+index-strategy = "unsafe-best-match"
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cu128" }]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

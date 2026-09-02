@@ -1,0 +1,44 @@
+# SuryaOCR
+
+Receipt OCR stage for an expense-tracking app. Takes receipt photos (Thai + English,
+phone photos, thermal prints) and produces per-receipt OCR text via Surya OCR, ready
+for a later LLM extraction stage (merchant, items + prices, total).
+
+See [`plan.md`](plan.md) for the design and rationale.
+
+## Setup
+
+```bash
+uv sync
+```
+
+This installs `surya-ocr==0.17.1` (pinned pure-PyTorch release; newer Surya versions
+require a vllm/llama.cpp server that isn't well supported on native Windows)
+
+Verify your GPU is detected:
+
+```bash
+uv run python scripts/check_gpu.py
+```
+
+## Usage
+
+Drop receipt photos into `data/input/`, then run:
+
+```bash
+uv run python scripts/run_ocr.py --input data/input --output data/output
+```
+
+Each receipt gets `data/output/<id>/raw.json` (full per-line detections with boxes and
+confidence) and `data/output/<id>/text.txt` (row-reconstructed text — item names and
+prices kept together on the same line — this is what the extraction stage should read).
+A `data/output/manifest.jsonl` audit log records the status of every processed file.
+
+Tunable settings (batch sizes, image size clamps, thresholds) live in `.env` — see
+`.env.example`.
+
+## Tests
+
+```bash
+uv run pytest
+```

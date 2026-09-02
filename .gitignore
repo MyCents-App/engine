@@ -1,0 +1,48 @@
+# Virtual environments — each project has its own, and they are not shareable
+# anyway (surya-ocr pins transformers<5, unsloth needs 5.5).
+.venv/
+.venv-test/
+
+# Secrets. train/.env holds ENGINE_API_KEY.
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# Tool caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+unsloth_compiled_cache/
+
+# The fine-tuned checkpoint: multi-GB, versioned out of band.
+train/checkpoints/
+
+# Receipt photos and OCR output. Real receipts are personal data — never commit
+# them. The .gitkeep files preserve the directory layout.
+SuryaOCR/data/*
+!SuryaOCR/data/input/
+!SuryaOCR/data/output/
+SuryaOCR/data/input/*
+SuryaOCR/data/output/*
+!SuryaOCR/data/**/.gitkeep
+
+# Eval dumps: the per-example JSONL is large and rebuildable. The summary
+# tables in reports/*.md and *.csv ARE committed — they are the evidence for
+# the accuracy numbers quoted in RECEIPT_API.md.
+train/reports/*_raw.jsonl
+train/reports/*_examples.jsonl
+
+# Editor / OS
+.claude/
+.vscode/
+.idea/
+*.log
+Thumbs.db
+.DS_Store

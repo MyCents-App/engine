@@ -1,0 +1,3888 @@
+[
+  {
+    "name_th": "คิวมินซี ขมิ้นชันสกัด 150 มล. (แพ็ก 6 ขวด)",
+    "name_en": "Qminc turmeric extract drink 150ml (6-pack)",
+    "brand": "คิวมินซี",
+    "category": "Food & Dining",
+    "price_thb": 265,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "เนสกาแฟ 3in1 เบลนด์แอนด์บรู สูตรน้ำตาลน้อย 135 กรัม",
+    "name_en": "Nescafe 3in1 Blend & Brew less-sugar 135g",
+    "brand": "Nescafe",
+    "category": "Food & Dining",
+    "price_thb": 382,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "เนสกาแฟ เรดคัพ ถุง 40 กรัม",
+    "name_en": "Nescafe Red Cup instant coffee bag 40g",
+    "brand": "Nescafe",
+    "category": "Food & Dining",
+    "price_thb": 228,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "เนสกาแฟ เรดคัพ กล่อง 360 กรัม",
+    "name_en": "Nescafe Red Cup instant coffee box 360g",
+    "brand": "Nescafe",
+    "category": "Food & Dining",
+    "price_thb": 289,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "เนสกาแฟ เอสเปรสโซ 170 มล. (แพ็ก 30 กระป๋อง)",
+    "name_en": "Nescafe Espresso canned coffee 170ml (30-pack)",
+    "brand": "Nescafe",
+    "category": "Food & Dining",
+    "price_thb": 419,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "มอคโคน่า ทรีโอ 3in1 เอสเปรสโซ่ 1580 กรัม",
+    "name_en": "Moccona Trio 3in1 Espresso 1580g",
+    "brand": "Moccona",
+    "category": "Food & Dining",
+    "price_thb": 423,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "มอคโคน่า ซีเล็ค กาแฟสำเร็จรูป 70 กรัม (แพ็ก 3 ชิ้น)",
+    "name_en": "Moccona Select instant coffee 70g (3-pack)",
+    "brand": "Moccona",
+    "category": "Food & Dining",
+    "price_thb": 192,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "เบอร์ดี้ โรบัสต้า 170 มล. (ยกลัง 30 กระป๋อง)",
+    "name_en": "Birdy Robusta canned coffee 170ml (case of 30)",
+    "brand": "Birdy",
+    "category": "Food & Dining",
+    "price_thb": 418,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "เบอร์ดี้ แบล็ค สูตรน้ำตาลน้อย 170 มล.",
+    "name_en": "Birdy Black less-sugar canned coffee 170ml",
+    "brand": "Birdy",
+    "category": "Food & Dining",
+    "price_thb": 418,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "โอวัลติน 3in1 ออริจินอล 360 กรัม",
+    "name_en": "Ovaltine 3in1 Original 360g",
+    "brand": "Ovaltine",
+    "category": "Food & Dining",
+    "price_thb": 303,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "ไมโล",
+    "name_en": "Milo malt drink",
+    "brand": "ไมโล",
+    "category": "Food & Dining",
+    "price_thb": null,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "น้ำดื่มสิงห์ 1500 มล. (แพ็ก 6 ขวด)",
+    "name_en": "Singha drinking water 1500ml (6-pack)",
+    "brand": "สิงห์",
+    "category": "Food & Dining",
+    "price_thb": 99,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "น้ำดื่มสิงห์ 600 มล. (แพ็ก 12 ขวด)",
+    "name_en": "Singha drinking water 600ml (12-pack)",
+    "brand": "สิงห์",
+    "category": "Food & Dining",
+    "price_thb": 128,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "โซดาสิงห์ 325 มล. (แพ็ก 24 ขวด)",
+    "name_en": "Singha soda 325ml (24-pack)",
+    "brand": "สิงห์",
+    "category": "Food & Dining",
+    "price_thb": 195,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "น้ำดื่มเซเว่นซีเล็ค 600 มล. (แพ็ก 12 ขวด)",
+    "name_en": "7-Select drinking water 600ml (12-pack)",
+    "brand": "เซเว่นซีเล็ค",
+    "category": "Food & Dining",
+    "price_thb": 116,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "น้ำดื่มคริสตัล 600 มล. (แพ็ก 12 ขวด)",
+    "name_en": "Crystal drinking water 600ml (12-pack)",
+    "brand": "คริสตัล",
+    "category": "Food & Dining",
+    "price_thb": 118,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "น้ำดื่มเนสท์เล่เพียวไลฟ์ 600 มล. (แพ็ก 12 ขวด)",
+    "name_en": "Nestle Pure Life drinking water 600ml (12-pack)",
+    "brand": "Nestle",
+    "category": "Food & Dining",
+    "price_thb": 128,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "น้ำแร่ออลสปริง 600 มล. แพ็ก 12 ขวด",
+    "name_en": "AllSpring mineral water 600ml (12-pack)",
+    "brand": "ออลสปริง",
+    "category": "Food & Dining",
+    "price_thb": 103,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "น้ำแร่เพอร์ร่า 1500 มล. (แพ็ก 6 ขวด)",
+    "name_en": "Purra mineral water 1500ml (6-pack)",
+    "brand": "Purra",
+    "category": "Food & Dining",
+    "price_thb": 175,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "คาราบาวแดง 150 มล. (แพ็ก 10 ขวด)",
+    "name_en": "Carabao Red energy drink 150ml (10-pack)",
+    "brand": "คาราบาว",
+    "category": "Food & Dining",
+    "price_thb": 179,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "สปอนเซอร์ ออริจินัล 250 มล. (ยกลัง 24 ขวด)",
+    "name_en": "Sponsor Original sports drink 250ml (case of 24)",
+    "brand": "สปอนเซอร์",
+    "category": "Food & Dining",
+    "price_thb": 256,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "เรดบูล",
+    "name_en": "Red Bull energy drink",
+    "brand": "เรดบูล",
+    "category": "Food & Dining",
+    "price_thb": null,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "อิชิตันกรีนที น้ำผึ้งมะนาว 280 มล. (แพ็ก 6 ขวด)",
+    "name_en": "Ichitan Green Tea honey-lemon 280ml (6-pack)",
+    "brand": "Ichitan",
+    "category": "Food & Dining",
+    "price_thb": 104,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "อิชิตันกรีนที องุ่นเคียวโฮ 280 มล. (แพ็ก 6 ขวด)",
+    "name_en": "Ichitan Green Tea Kyoho grape 280ml (6-pack)",
+    "brand": "Ichitan",
+    "category": "Food & Dining",
+    "price_thb": 104,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "เซียโล่ ลิ้นจี่ 600 มล. (แพ็ก 12 ขวด)",
+    "name_en": "Cielo lychee drink 600ml (12-pack)",
+    "brand": "CIELO",
+    "category": "Food & Dining",
+    "price_thb": 159,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "เซียโล่ แอปเปิ้ล 600 มล. (แพ็ก 12 ขวด)",
+    "name_en": "Cielo apple drink 600ml (12-pack)",
+    "brand": "CIELO",
+    "category": "Food & Dining",
+    "price_thb": 159,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "เป๊ปซี่ 1.95 ลิตร (แพ็ก 6 ขวด)",
+    "name_en": "Pepsi 1.95L (6-pack)",
+    "brand": "Pepsi",
+    "category": "Food & Dining",
+    "price_thb": 231,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "บิวติดริ้งคอลลาสกิน 360 มล. (ยกลัง 24 ขวด)",
+    "name_en": "Beauti Drink Colla Skin 360ml (case of 24)",
+    "brand": "Sappe",
+    "category": "Food & Dining",
+    "price_thb": 369,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "โฟร์โมสต์ โอเมก้า 369 นมยูเอชที รสจืด 180 มล.",
+    "name_en": "Foremost Omega 369 UHT plain milk 180ml",
+    "brand": "Foremost",
+    "category": "Food & Dining",
+    "price_thb": 349,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "ไทย-เดนมาร์ค นมUHT รสจืด 180 มล. (ยกลัง 36 กล่อง)",
+    "name_en": "Thai-Denmark UHT plain milk 180ml (case of 36)",
+    "brand": "ไทย-เดนมาร์ค",
+    "category": "Food & Dining",
+    "price_thb": 371,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "ดีน่า นมถั่วเหลืองUHT ไฮโปรตีน 230 มล.",
+    "name_en": "DNA soy milk UHT hi-protein 230ml",
+    "brand": "DNA",
+    "category": "Food & Dining",
+    "price_thb": 432,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "คาร์เนชั่น ครีมเทียมข้นหวาน 2 กิโลกรัม",
+    "name_en": "Carnation sweetened creamer 2kg",
+    "brand": "คาร์เนชั่น",
+    "category": "Food & Dining",
+    "price_thb": 129,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "มิตรผล น้ำตาลทรายขาวบริสุทธิ์ 1 กิโลกรัม",
+    "name_en": "Mitr Phol refined white sugar 1kg",
+    "brand": "มิตรผล",
+    "category": "Food & Dining",
+    "price_thb": 675,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "ษฎา น้ำตาลทรายขาวบริสุทธิ์ 1 กิโลกรัม",
+    "name_en": "Sada refined white sugar 1kg",
+    "brand": "ษฎา",
+    "category": "Food & Dining",
+    "price_thb": 54,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "แสนดี ข้าวขาวหอมมะลิ 100% 5 กิโลกรัม",
+    "name_en": "Saen Dee jasmine white rice 100% 5kg",
+    "brand": "แสนดี",
+    "category": "Food & Dining",
+    "price_thb": 195,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "ฉัตร ข้าวหอมมะลิใหม่ 100% 5 กิโลกรัม",
+    "name_en": "Chatra new-crop jasmine rice 100% 5kg",
+    "brand": "ฉัตร",
+    "category": "Food & Dining",
+    "price_thb": 245,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "กุ๊ก น้ำมันถั่วเหลือง 1 ลิตร",
+    "name_en": "Cook soybean oil 1L",
+    "brand": "กุ๊ก",
+    "category": "Food & Dining",
+    "price_thb": 104,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "โอก้า น้ำมันปาล์ม 1 ลิตร",
+    "name_en": "Oka palm oil 1L",
+    "brand": "โอก้า",
+    "category": "Food & Dining",
+    "price_thb": 98,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "อายิโนะโมะโต๊ะ ผงชูรส 1 กิโลกรัม",
+    "name_en": "Ajinomoto MSG seasoning 1kg",
+    "brand": "อายิโนะโมะโต๊ะ",
+    "category": "Food & Dining",
+    "price_thb": 226,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "รสดี ซุปผงรสหมู 800 กรัม",
+    "name_en": "Rosdee pork stock seasoning powder 800g",
+    "brand": "รสดี",
+    "category": "Food & Dining",
+    "price_thb": 98,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "ทิพรส น้ำปลาแท้ 700 มล.",
+    "name_en": "Tipparos fish sauce 700ml",
+    "brand": "ทิพรส",
+    "category": "Food & Dining",
+    "price_thb": 63,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "เด็กสมบูรณ์ ซีอิ๊วขาวฉลากแดง 700 มล.",
+    "name_en": "Dek Som Boon light soy sauce (red label) 700ml",
+    "brand": "เด็กสมบูรณ์",
+    "category": "Food & Dining",
+    "price_thb": 50,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "เด็กสมบูรณ์ ซีอิ๊วดำฉลากส้ม 940 กรัม",
+    "name_en": "Dek Som Boon black soy sauce (orange label) 940g",
+    "brand": "เด็กสมบูรณ์",
+    "category": "Food & Dining",
+    "price_thb": 58,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "แม่ครัว ซอสหอยนางรม 600 มล.",
+    "name_en": "Maekrua oyster sauce 600ml",
+    "brand": "แม่ครัว",
+    "category": "Food & Dining",
+    "price_thb": 106,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "ภูเขาทอง ซอสปรุงรสฝาเขียว 1 ลิตร",
+    "name_en": "Golden Mountain seasoning sauce (green cap) 1L",
+    "brand": "ภูเขาทอง",
+    "category": "Food & Dining",
+    "price_thb": 112,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "เฮลซ์บลูบอย น้ำหวานเข้มข้นกลิ่นสละ 710 มล.",
+    "name_en": "Hale's Blue Boy salak syrup 710ml",
+    "brand": "เฮลซ์บลูบอย",
+    "category": "Food & Dining",
+    "price_thb": 138,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "มาม่า รสต้มยำกุ้ง 55 กรัม แพ็ก 10 ซอง",
+    "name_en": "Mama tom yum kung instant noodles 55g (10-pack)",
+    "brand": "มาม่า",
+    "category": "Food & Dining",
+    "price_thb": 67,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "มาม่าออเรียนทัลคิตเชน รสผัดไข่เค็ม 85 กรัม (แพ็ก 4 ซอง)",
+    "name_en": "Mama Oriental Kitchen salted-egg stir-fry 85g (4-pack)",
+    "brand": "มาม่า",
+    "category": "Food & Dining",
+    "price_thb": 58,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "ยำยำช้างน้อย รสข้าวโพด 120 กรัม",
+    "name_en": "Yum Yum Jumbo corn flavor instant noodles 120g",
+    "brand": "ยำยำ",
+    "category": "Food & Dining",
+    "price_thb": 49,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "นิสชินซอง รสไก่เผ็ดเกาหลี 60 กรัม แพ็ก 5 ซอง",
+    "name_en": "Nissin Cup spicy Korean chicken 60g (5-pack)",
+    "brand": "นิสชิน",
+    "category": "Food & Dining",
+    "price_thb": 45,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "มังกรคู่บิ๊กคัพ วุ้นเส้นก๋วยเตี๋ยวเรือน้ำตก 75กรัม",
+    "name_en": "Double Dragon Big Cup boat-noodle glass noodles 75g",
+    "brand": "มังกรคู่",
+    "category": "Food & Dining",
+    "price_thb": 175,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "เคลล็อกส์ คอร์นเฟลกส์ 500 กรัม",
+    "name_en": "Kellogg's Corn Flakes 500g",
+    "brand": "เคลล็อกส์",
+    "category": "Food & Dining",
+    "price_thb": 145,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "ทาโร ปลาสวรรค์รสเข้มข้น 20 กรัม",
+    "name_en": "Taro fish snack rich flavor 20g",
+    "brand": "ทาโร",
+    "category": "Food & Dining",
+    "price_thb": 90,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "เลย์คลาสสิค รสมันฝรั่งแท้ 46 กรัม",
+    "name_en": "Lay's Classic original potato chips 46g",
+    "brand": "เลย์",
+    "category": "Food & Dining",
+    "price_thb": 102,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "เลย์คลาสสิค รสโนริสาหร่าย 46 กรัม",
+    "name_en": "Lay's Classic nori seaweed 46g",
+    "brand": "เลย์",
+    "category": "Food & Dining",
+    "price_thb": 126,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "เลย์สแตคส์ รสมันฝรั่งออริจินัล 42 กรัม (แพ็ก 6 กระป๋อง)",
+    "name_en": "Lay's Stax original 42g (6-pack)",
+    "brand": "เลย์",
+    "category": "Food & Dining",
+    "price_thb": 96,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "โดริโทส รสนาโชชีส 50 กรัม",
+    "name_en": "Doritos nacho cheese 50g",
+    "brand": "โดริโทส",
+    "category": "Food & Dining",
+    "price_thb": 114,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "ชีโตส รสอเมริกันชีส 64 กรัม",
+    "name_en": "Cheetos American cheese 64g",
+    "brand": "ชีโตส",
+    "category": "Food & Dining",
+    "price_thb": 114,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "ซันไบทส์ รสออริจินอล 50 กรัม",
+    "name_en": "Sunbites original 50g",
+    "brand": "ซันไบทส์",
+    "category": "Food & Dining",
+    "price_thb": 90,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "พริงเกิลส์ รสซาวครีมและหัวหอม 42 กรัม",
+    "name_en": "Pringles sour cream & onion 42g",
+    "brand": "พริงเกิลส์",
+    "category": "Food & Dining",
+    "price_thb": 160,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "ทวิสตี้ ทไวซ์ดาร์คช็อกโกแลต 57 กรัม",
+    "name_en": "Twistko twice dark chocolate 57g",
+    "brand": "ทวิสตี้",
+    "category": "Food & Dining",
+    "price_thb": 114,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "เถ้าแก่น้อย สาหร่ายอบ รสออริจินัล 4 กรัม (แพ็ก 6 ชิ้น)",
+    "name_en": "Tao Kae Noi roasted seaweed original 4g (6-pack)",
+    "brand": "เถ้าแก่น้อย",
+    "category": "Food & Dining",
+    "price_thb": 112,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "ฮานามิ รสดั้งเดิม 52 กรัม",
+    "name_en": "Hanami original prawn crackers 52g",
+    "brand": "ฮานามิ",
+    "category": "Food & Dining",
+    "price_thb": 70,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "ตะวัน รสกุ้งกรอบ 67 กรัม",
+    "name_en": "Tawan crispy prawn snack 67g",
+    "brand": "ตะวัน",
+    "category": "Food & Dining",
+    "price_thb": 240,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "ยูโร่ คัสตาร์ดเค้ก 144 กรัม (กล่อง 6 ชิ้น)",
+    "name_en": "Euro custard cake 144g (box of 6)",
+    "brand": "ยูโร่",
+    "category": "Food & Dining",
+    "price_thb": 79,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "เบงเบง เวเฟอร์รสช็อกโกแลต 20 กรัม (แพ็ก 12 ชิ้น)",
+    "name_en": "Beng Beng chocolate wafer 20g (12-pack)",
+    "brand": "เบงเบง",
+    "category": "Food & Dining",
+    "price_thb": 54,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "กูลิโกะ แอลฟี่รสช็อกโกแลต 31 กรัม",
+    "name_en": "Glico Alfie chocolate 31g",
+    "brand": "กูลิโกะ",
+    "category": "Food & Dining",
+    "price_thb": 109,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "โกริโกะ สาหร่ายแซนวิชรสออริจินอล 30 กรัม (แพ็ก 3 ชิ้น)",
+    "name_en": "Gorico seaweed sandwich snack original 30g (3-pack)",
+    "brand": "โกริโกะ",
+    "category": "Food & Dining",
+    "price_thb": 112,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "ฮอลล์ เอ็กซ์เอส ลูกอมชูการ์ฟรี วอเตอร์เมลอน 12 กรัม",
+    "name_en": "Halls XS sugar-free candy watermelon 12g",
+    "brand": "ฮอลล์",
+    "category": "Food & Dining",
+    "price_thb": 174,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "ปีโป้ เยลลี่รวมรสผลไม้ 587.5 กรัม",
+    "name_en": "Pipo mixed-fruit jelly 587.5g",
+    "brand": "ปีโป้",
+    "category": "Food & Dining",
+    "price_thb": 68,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "เจเล่ชิววี่ คามุคามุ ชาดำสตรอว์เบอรี่ 150 ก.",
+    "name_en": "Jele Chewy Kamu Kamu black-tea strawberry 150g",
+    "brand": "Jele",
+    "category": "Food & Dining",
+    "price_thb": 79,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "เลอแปง ขนมปังแซนด์วิช 480 กรัม (แพ็ก 3 ชิ้น)",
+    "name_en": "Le Pan sandwich bread 480g (3-pack)",
+    "brand": "เลอแปง",
+    "category": "Food & Dining",
+    "price_thb": 115,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "นมสดพาสฯเมจิ ไฮโปรตีน 350 มล. ช็อกโกแลต",
+    "name_en": "Meiji hi-protein pasteurized milk chocolate 350ml",
+    "brand": "เมจิ",
+    "category": "Food & Dining",
+    "price_thb": 125,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "นมเปรี้ยวบีทาเก้นพร่อง ขวด 300 มล. (แพ็ก 6 ขวด)",
+    "name_en": "Betagen low-fat drinking yogurt 300ml (6-pack)",
+    "brand": "บีทาเก้น",
+    "category": "Food & Dining",
+    "price_thb": 118,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "นมเปรี้ยวดัชมิลล์ 100 มล. ผลไม้รวม แพ็ก 6",
+    "name_en": "Dutch Mill mixed-fruit yogurt drink 100ml (6-pack)",
+    "brand": "Dutchmill",
+    "category": "Food & Dining",
+    "price_thb": 46,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "ดัชชี่ โยเกิร์ต โพรไบโอติก ผสมสตรอเบอร์รี 125 กรัม (แพ็ก 4 ชิ้น)",
+    "name_en": "Dutchie probiotic yogurt strawberry 125g (4-pack)",
+    "brand": "ดัชชี่",
+    "category": "Food & Dining",
+    "price_thb": 52,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "โยเกิร์ต รสออริจินัล (ตราเมจิ) 90 กรัม แพ็ก 4",
+    "name_en": "Meiji original yogurt 90g (4-pack)",
+    "brand": "เมจิ",
+    "category": "Food & Dining",
+    "price_thb": 39,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "ซีพี ไข่ขาวเหลวพาสเจอร์ไรซ์ 430 มล.",
+    "name_en": "CP pasteurized liquid egg white 430ml",
+    "brand": "ซีพี",
+    "category": "Food & Dining",
+    "price_thb": 80,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "ซีพี โบโลน่าพริก 135 กรัม",
+    "name_en": "CP chili bologna 135g",
+    "brand": "ซีพี",
+    "category": "Food & Dining",
+    "price_thb": 36,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "ซูเปอร์เชฟ ไส้กรอกค็อกเทลไก่ 280 กรัม",
+    "name_en": "Super Chef chicken cocktail sausage 280g",
+    "brand": "ซูเปอร์เชฟ",
+    "category": "Food & Dining",
+    "price_thb": 49,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "อีซี่โก ปลาแซลมอนย่างพร้อมซอสเทอริยากิแช่แข็ง",
+    "name_en": "EzyGo grilled salmon with teriyaki sauce (frozen)",
+    "brand": "อีซี่โก",
+    "category": "Food & Dining",
+    "price_thb": 205,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "ข้าวขาหมูคากิและไข่พะโล้ (ตราซีพี) 340 กรัม",
+    "name_en": "CP braised pork leg rice with egg 340g",
+    "brand": "ซีพี",
+    "category": "Food & Dining",
+    "price_thb": 59,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "อกไก่นุ่มกระเทียมพริกไทย ซีพี 80 กรัม",
+    "name_en": "CP tender chicken breast garlic-pepper 80g",
+    "brand": "ซีพี",
+    "category": "Food & Dining",
+    "price_thb": 40,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "เต้าหู้หลอดไข่ไก่ ซีพีดีไลท์ (แพ็ก 4 ชิ้น)",
+    "name_en": "CP Delight egg tofu tube (4-pack)",
+    "brand": "ซีพี",
+    "category": "Food & Dining",
+    "price_thb": 38,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "มินนะมาเมะ ถั่วแระญี่ปุ่นแช่แข็ง 320 กรัม",
+    "name_en": "Minna Mame frozen edamame 320g",
+    "brand": "มินนะมาเมะ",
+    "category": "Food & Dining",
+    "price_thb": 45,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "เลดี้เจน เค้กฝอยทองมะพร้าวอ่อน 0.5 ปอนด์",
+    "name_en": "Lady Jane foi thong young-coconut cake 0.5 lb",
+    "brand": "เลดี้เจน",
+    "category": "Food & Dining",
+    "price_thb": 199,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "ขนมทองหยอด 500 กรัม",
+    "name_en": "Thong Yod (Thai golden-drop dessert) 500g",
+    "brand": "",
+    "category": "Food & Dining",
+    "price_thb": 99,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "The Nature สารสกัดจากเมล็ดองุ่น 1,000 มก. 30 เม็ด",
+    "name_en": "The Nature grape-seed extract 1000mg, 30 tablets",
+    "brand": "The Nature",
+    "category": "Health & Wellness",
+    "price_thb": 199,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "Biocap ซิงค์ 30 แคปซูล",
+    "name_en": "Biocap Zinc, 30 capsules",
+    "brand": "Biocap",
+    "category": "Health & Wellness",
+    "price_thb": 149,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "Biocap วิตามินบีรวม 30 แคปซูล",
+    "name_en": "Biocap Vitamin B complex, 30 capsules",
+    "brand": "Biocap",
+    "category": "Health & Wellness",
+    "price_thb": 149,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "ดร.พงศ์ ทริปเปิล ซี1000 วิตามินซี 1000 มก. 60 เม็ด",
+    "name_en": "Dr.Pong Triple C1000 vitamin C 1000mg, 60 tablets",
+    "brand": "ดร.พงศ์",
+    "category": "Health & Wellness",
+    "price_thb": 315,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "บีไวส์ ไบโอ ซี 1000 มก. 15 เม็ด",
+    "name_en": "B-Wise Bio C 1000mg, 15 tablets",
+    "brand": "บีไวส์",
+    "category": "Health & Wellness",
+    "price_thb": 139,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "DHC วิตามิน ซี 30 วัน 60 แคปซูล",
+    "name_en": "DHC Vitamin C 30-day, 60 capsules",
+    "brand": "DHC",
+    "category": "Health & Wellness",
+    "price_thb": 149,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "VISTRA แซลมอน ฟิชออย 20 แคปซูล แพ็กคู่",
+    "name_en": "Vistra Salmon Fish Oil, 20 capsules (twin pack)",
+    "brand": "VISTRA",
+    "category": "Health & Wellness",
+    "price_thb": 129,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "Nuui หนุย คอลลาเจน ไตรเปปไทด์ 10,000 มก. 6 ซอง",
+    "name_en": "Nuui collagen tripeptide 10000mg, 6 sachets",
+    "brand": "Nuui",
+    "category": "Health & Wellness",
+    "price_thb": 159,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "Brand's ซุปไก่สกัดผสมวิตามินบีคอมเพล็กซ์และธาตุเหล็ก 60 เม็ด",
+    "name_en": "Brand's chicken essence with B-complex & iron, 60 tablets",
+    "brand": "Brand's",
+    "category": "Health & Wellness",
+    "price_thb": 349,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "แบรนด์โกลด์ ซุปไก่สกัด แมกนีเซียม 70 มล. แพ็ก 12 ขวด",
+    "name_en": "Brand's Gold chicken essence + magnesium 70ml (12-pack)",
+    "brand": "Brand's",
+    "category": "Health & Wellness",
+    "price_thb": 579,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "สก๊อตรังนกแท้ หวานน้อย ออริจินัล 150 มล. แพ็ก 6 ขวด",
+    "name_en": "Scotch genuine bird's nest less-sweet 150ml (6-pack)",
+    "brand": "Scotch",
+    "category": "Health & Wellness",
+    "price_thb": 435,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "เอนชัวร์ วานิลลา 60.6 กรัม (แพ็ก 6)",
+    "name_en": "Ensure vanilla 60.6g (6-pack)",
+    "brand": "เอนชัวร์",
+    "category": "Health & Wellness",
+    "price_thb": 575,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "นมผงเอนชัวร์ โกลด์ กลิ่นวานิลลา 380 กรัม",
+    "name_en": "Ensure Gold vanilla powder 380g",
+    "brand": "เอนชัวร์",
+    "category": "Health & Wellness",
+    "price_thb": 539,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "Posh Medica ซี ไฟเบอร์ ส้มเขียวหวาน 18 กรัม 6 ซอง",
+    "name_en": "Posh Medica C Fiber tangerine 18g, 6 sachets",
+    "brand": "Posh Medica",
+    "category": "Health & Wellness",
+    "price_thb": 222,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "เซอร์เทนตี้ ผ้าอ้อมผู้ใหญ่ แบบเทป XL-XXL 19 ชิ้น",
+    "name_en": "Certainty adult tape diapers XL-XXL, 19 pcs",
+    "brand": "เซอร์เทนตี้",
+    "category": "Health & Wellness",
+    "price_thb": 445,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "ไลฟ์รี่ กางเกงซึมซับสบาย ยกลัง 3 ห่อ (M-XL)",
+    "name_en": "Lifree absorbent pants, case of 3 packs (M-XL)",
+    "brand": "ไลฟ์รี่",
+    "category": "Health & Wellness",
+    "price_thb": 809,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "บิโอเร ยูวี อะควาริช วอเตอร์รี่ เอสเซนส์ ซันสกรีน SPF50+ 15 มล.",
+    "name_en": "Biore UV Aqua Rich Watery Essence sunscreen SPF50+ 15ml",
+    "brand": "บิโอเร",
+    "category": "Health & Wellness",
+    "price_thb": 129,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "เซตาฟิล เดย์ลี่ เฟเชียล คลีนเซอร์ 236 มล.",
+    "name_en": "Cetaphil Daily Facial Cleanser 236ml",
+    "brand": "เซตาฟิล",
+    "category": "Health & Wellness",
+    "price_thb": 379,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "Clear Nose เซรั่มกันแดด UV Sun Serum SPF50+ 28 มล.",
+    "name_en": "Clear Nose UV Sun Serum SPF50+ 28ml",
+    "brand": "Clear Nose",
+    "category": "Health & Wellness",
+    "price_thb": 196,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "เซราวี อินวิซิเบิ้ล ไฮเดรติ้ง ซันสกรีน 75 มล.",
+    "name_en": "CeraVe Invisible Hydrating Sunscreen 75ml",
+    "brand": "เซราวี",
+    "category": "Health & Wellness",
+    "price_thb": 499,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "นีเวียคลีนซิ่งไมเซล่าวอเตอร์แอคเน่แคร์ 125 มล.",
+    "name_en": "Nivea Cleansing Micellar Water acne care 125ml",
+    "brand": "นีเวีย",
+    "category": "Health & Wellness",
+    "price_thb": 109,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "พอนด์ส โฟมล้างหน้า ไบรท์ มิราเคิล 50 กรัม (แพ็ก 3 ชิ้น)",
+    "name_en": "Pond's Bright Miracle face wash foam 50g (3-pack)",
+    "brand": "พอนด์ส",
+    "category": "Health & Wellness",
+    "price_thb": 207,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "ซิสเท็มม่า ยาสีฟัน อัลตร้า แคร์&โพรเทค ไอซี่มิ้นต์ 80 กรัม (แพ็ก 6 ชิ้น)",
+    "name_en": "Systema Ultra Care & Protect Icy Mint toothpaste 80g (6-pack)",
+    "brand": "ซิสเท็มม่า",
+    "category": "Health & Wellness",
+    "price_thb": 162,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "คอลเกต ยาสีฟัน รสยอดนิยม 100 กรัม (แพ็ก 6 ชิ้น)",
+    "name_en": "Colgate Great Regular Flavor toothpaste 100g (6-pack)",
+    "brand": "คอลเกต",
+    "category": "Health & Wellness",
+    "price_thb": 177,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "คอลเกต น้ำยาบ้วนปากพลักซ์ เปปเปอร์มินต์ 250 มล.",
+    "name_en": "Colgate Plax Peppermint mouthwash 250ml",
+    "brand": "คอลเกต",
+    "category": "Health & Wellness",
+    "price_thb": 87,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "แพนทีน แชมพู แฮร์ฟอลคอนโทรล 380 มล.",
+    "name_en": "Pantene Hair Fall Control shampoo 380ml",
+    "brand": "แพนทีน",
+    "category": "Health & Wellness",
+    "price_thb": 189,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "ซันซิล แชมพู เฮลธีเออร์ & ลอง 325 มล. แพ็กคู่",
+    "name_en": "Sunsilk Healthier & Long shampoo 325ml (twin pack)",
+    "brand": "ซันซิล",
+    "category": "Health & Wellness",
+    "price_thb": 169,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "เฮดแอนด์โชว์เดอร์ แชมพู คูลเมนทอล 190 มล. (แพ็ก 3 ชิ้น)",
+    "name_en": "Head & Shoulders Cool Menthol shampoo 190ml (3-pack)",
+    "brand": "เฮดแอนด์โชว์เดอร์",
+    "category": "Health & Wellness",
+    "price_thb": 255,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "โชกุบุสซึ ครีมอาบน้ำ ชมพู 400 มล.",
+    "name_en": "Shokubutsu shower cream (pink) 400ml",
+    "brand": "โชกุบุสซึ",
+    "category": "Health & Wellness",
+    "price_thb": 125,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "อาเซปโซ บอดี้ วอช ไฮจินิค เฟรช 450 มล.",
+    "name_en": "Asepso Hygienic Fresh body wash 450ml",
+    "brand": "อาเซปโซ",
+    "category": "Health & Wellness",
+    "price_thb": 195,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "เบนเนท สบู่วิตามินซีแอนด์อี ส้ม 130 กรัม (แพ็ก 4 ก้อน)",
+    "name_en": "Bennett vitamin C&E soap orange 130g (4-bar)",
+    "brand": "เบนเนท",
+    "category": "Health & Wellness",
+    "price_thb": 195,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "ทเวลฟ์พลัส โรลออน ดับเบิ้ลไวท์ ซากุระ 20 มล. (แพ็ก 3 ชิ้น)",
+    "name_en": "Twelve Plus Double White Sakura roll-on 20ml (3-pack)",
+    "brand": "ทเวลฟ์พลัส",
+    "category": "Health & Wellness",
+    "price_thb": 140,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "12Plus แป้งเย็นเอ็กซ์ตร้าคูลชมพู 140 กรัม (แพ็ก 3 ชิ้น)",
+    "name_en": "12Plus Extra Cool powder pink 140g (3-pack)",
+    "brand": "ทเวลฟ์พลัส",
+    "category": "Health & Wellness",
+    "price_thb": 180,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "วาสลีน โลชัน เฮลธี ไบร์ทยูวี 300 มล. (แพ็กคู่)",
+    "name_en": "Vaseline Healthy Bright UV lotion 300ml (twin pack)",
+    "brand": "วาสลีน",
+    "category": "Health & Wellness",
+    "price_thb": 199,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "ซิตร้า โลชั่น AHA ทานาคา ยูวี 320 มล.",
+    "name_en": "Citra AHA Tanaka UV lotion 320ml",
+    "brand": "ซิตร้า",
+    "category": "Health & Wellness",
+    "price_thb": 165,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "เบบี้มายด์ น้ำยาล้างจุดซ่อนเร้น เทนเดอร์ทัช 150 มล.",
+    "name_en": "Babi Mild feminine wash Tender Touch 150ml",
+    "brand": "เบบี้มายด์",
+    "category": "Health & Wellness",
+    "price_thb": 155,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "บรีส เอกเซล น้ำยาซักผ้า กลิ่น เฮฟเวน บลอสซั่ม 550 มล.",
+    "name_en": "Breeze Excel liquid detergent Heaven Blossom 550ml",
+    "brand": "บรีส",
+    "category": "Groceries",
+    "price_thb": 79,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "บรีสเอกเซล ผงซักฟอก แอคทีฟเฟรช 1,800 กรัม",
+    "name_en": "Breeze Excel powder detergent Active Fresh 1800g",
+    "brand": "บรีส",
+    "category": "Groceries",
+    "price_thb": 185,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "โอโม พลัส น้ำยาซักผ้า พิงค์ ฟลอรัล คิส 1200 มล.",
+    "name_en": "Omo Plus liquid detergent Pink Floral Kiss 1200ml",
+    "brand": "โอโม",
+    "category": "Groceries",
+    "price_thb": 119,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "ไฟน์ไลน์พลัส น้ำยาซักผ้า ซักกลางคืน 1250 มล.",
+    "name_en": "Fineline Plus night-wash liquid detergent 1250ml",
+    "brand": "ไฟน์ไลน์",
+    "category": "Groceries",
+    "price_thb": 179,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "แอทแทค น้ำยาซักผ้า เลดี้ อิลิแกนท์ สูตรน้ำ 600 มล.",
+    "name_en": "Attack Lady Elegant liquid detergent 600ml",
+    "brand": "แอทแทค",
+    "category": "Groceries",
+    "price_thb": 95,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "คอมฟอร์ท น้ำยาปรับผ้านุ่ม อัลตร้าฟ้า 1,050 มล.",
+    "name_en": "Comfort fabric softener Ultra Blue 1050ml",
+    "brand": "คอมฟอร์ท",
+    "category": "Groceries",
+    "price_thb": 99,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "ดาวน์นี่ น้ำยาปรับผ้านุ่ม แพชชัน 300 มล.",
+    "name_en": "Downy fabric softener Passion 300ml",
+    "brand": "ดาวน์นี่",
+    "category": "Groceries",
+    "price_thb": 93,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "ไฮยีน น้ำยาปรับผ้านุ่ม สีแดง 1800 มล.",
+    "name_en": "Hygiene fabric softener (red) 1800ml",
+    "brand": "ไฮยีน",
+    "category": "Groceries",
+    "price_thb": 90,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "โอโม น้ำยาล้างจาน 400 มล.",
+    "name_en": "Omo dishwashing liquid 400ml",
+    "brand": "โอโม",
+    "category": "Groceries",
+    "price_thb": 53,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "ซันไลต์ เลมอน แกลลอน 3200 มล.",
+    "name_en": "Sunlight lemon dishwashing liquid 3200ml",
+    "brand": "ซันไลต์",
+    "category": "Groceries",
+    "price_thb": 179,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "โทมิ น้ำยาล้างห้องน้ำ สีม่วง 850 มล. (แพ็ก 3 ชิ้น)",
+    "name_en": "Tomi toilet cleaner (purple) 850ml (3-pack)",
+    "brand": "โทมิ",
+    "category": "Groceries",
+    "price_thb": 139,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "วิกซอลสมาร์ท ม่วง 900 มล. (แพ็ก 3 ชิ้น)",
+    "name_en": "Vixol Smart (purple) toilet cleaner 900ml (3-pack)",
+    "brand": "วิกซอล",
+    "category": "Groceries",
+    "price_thb": 111,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "เกลด เซ็นท์เต็ดเจลหอมปรับอากาศ กลิ่นโอเชี่ยน 180 กรัม",
+    "name_en": "Glade scented gel air freshener Ocean 180g",
+    "brand": "เกลด",
+    "category": "Groceries",
+    "price_thb": 89,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "อาท เหยื่อดักแมลงวัน 39 กรัม (แพ็ก 3 ชิ้น)",
+    "name_en": "ARS fly-bait trap 39g (3-pack)",
+    "brand": "อาท",
+    "category": "Groceries",
+    "price_thb": 199,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "คลีเน็กซ์ กระดาษเช็ดหน้าซอฟบ๊อกซ์ (แพ็ก 2 ห่อ)",
+    "name_en": "Kleenex facial tissue soft box (2-pack)",
+    "brand": "คลีเน็กซ์",
+    "category": "Groceries",
+    "price_thb": 147,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "สก๊อตต์ทาวเวล แบบแผ่น 84 แผ่น (1 แพ็ก/3 ห่อ)",
+    "name_en": "Scott paper towel 84 sheets (pack of 3 rolls)",
+    "brand": "สก๊อตต์",
+    "category": "Groceries",
+    "price_thb": 89,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "SMARTHOME หม้อทอดไร้น้ำมัน 5.5 ลิตร รุ่น MV-1406",
+    "name_en": "Smarthome air fryer 5.5L model MV-1406",
+    "brand": "SMARTHOME",
+    "category": "Shopping",
+    "price_thb": 779,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "SMARTHOME กาต้มน้ำไฟฟ้า 1.8 ลิตร รุ่น CA-2024",
+    "name_en": "Smarthome electric kettle 1.8L model CA-2024",
+    "brand": "SMARTHOME",
+    "category": "Shopping",
+    "price_thb": 199,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "My Home หม้อหุงข้าว 1.8 ลิตร รุ่น A706T-MH",
+    "name_en": "My Home rice cooker 1.8L model A706T-MH",
+    "brand": "My Home",
+    "category": "Shopping",
+    "price_thb": 399,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "SAMSUNG ไมโครเวฟ 20L รุ่น MS20A3010ALST",
+    "name_en": "Samsung microwave 20L model MS20A3010ALST",
+    "brand": "SAMSUNG",
+    "category": "Shopping",
+    "price_thb": 1850,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "ACONATIC ตู้เย็น 2 ประตู รุ่น AN FR220 ขนาด 7.8Q",
+    "name_en": "Aconatic 2-door refrigerator 7.8 cu.ft model AN-FR220",
+    "brand": "ACONATIC",
+    "category": "Shopping",
+    "price_thb": 4990,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "SMARTHOME เครื่องปั่นอเนกประสงค์ รุ่น BD-1510",
+    "name_en": "Smarthome multi-purpose blender model BD-1510",
+    "brand": "SMARTHOME",
+    "category": "Shopping",
+    "price_thb": 386,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "SMARTHOME เตาแก๊สสแตนเลส SM-GA2H-03",
+    "name_en": "Smarthome stainless gas stove SM-GA2H-03",
+    "brand": "SMARTHOME",
+    "category": "Shopping",
+    "price_thb": 569,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "TIN TIN กระทะเทฟล่อนก้นลึก ขนาด 18cm. รุ่น B00023",
+    "name_en": "Tin Tin deep non-stick pan 18cm model B00023",
+    "brand": "TIN TIN",
+    "category": "Shopping",
+    "price_thb": 169,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "Sunday Story แก้วน้ำเก็บความเย็นพาสเทล",
+    "name_en": "Sunday Story pastel insulated tumbler",
+    "brand": "Sunday Story",
+    "category": "Shopping",
+    "price_thb": 199,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "Zebra ช้อน-ส้อมลายหยดน้ำ",
+    "name_en": "Zebra spoon & fork water-drop pattern",
+    "brand": "Zebra",
+    "category": "Shopping",
+    "price_thb": 159,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "Seagull กรรไกรอเนกประสงค์ รุ่น คอมฟี่",
+    "name_en": "Seagull multi-purpose scissors Comfy",
+    "brand": "Seagull",
+    "category": "Shopping",
+    "price_thb": 119,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "กระดาษรองหม้อทอด 20 CM. (90 ชิ้นแถมฟรี 40 ชิ้น)",
+    "name_en": "Air-fryer liner paper 20cm (90 + 40 free)",
+    "brand": "",
+    "category": "Shopping",
+    "price_thb": 99,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "กระเช้าแบรนด์สำเร็จรูปแบบที่ 3 (New look)",
+    "name_en": "Brand's ready gift basket type 3 (New look)",
+    "brand": "Brand's",
+    "category": "Shopping",
+    "price_thb": 489,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "เจริญบุญ ชุดตักบาตรอาหารแห้ง",
+    "name_en": "Charoen Boon dry-food alms set",
+    "brand": "เจริญบุญ",
+    "category": "Shopping",
+    "price_thb": 45,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "ธรรมมงคล เทียนพรรษา ขนาด 5X50 แกะสลักลาย (คู่)",
+    "name_en": "Thammongkol Buddhist Lent candle 5x50 carved (pair)",
+    "brand": "ธรรมมงคล",
+    "category": "Shopping",
+    "price_thb": 359,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "บุญรักษา ธูปหอมไร้ควัน 10 นิ้ว",
+    "name_en": "Boonraksa smokeless incense 10 inch",
+    "brand": "บุญรักษา",
+    "category": "Shopping",
+    "price_thb": 45,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "พระยานาค ไม้ขีดไฟกลักใหญ่ 180 ก้าน (แพ็ก 10 กล่อง)",
+    "name_en": "Phaya Nak large matchbox 180 sticks (10-box)",
+    "brand": "พระยานาค",
+    "category": "Shopping",
+    "price_thb": 85,
+    "source": "7-eleven-allonline"
+  },
+  {
+    "name_th": "ยูเชฟ ซาร์ดีนในซอสมะเขือเทศ 145 ก. x 10",
+    "name_en": "U-CHEF Sardines In Tomato Sauce 145 g x 10",
+    "brand": "U-CHEF",
+    "category": "Food & Dining",
+    "price_thb": 109,
+    "source": "makro-pro",
+    "product_id": "7275731583171",
+    "url": "https://www.makro.pro/en/p/gf1dub1-7275731583171",
+    "makro_leaf_category": "dry-grocery/canned-packaged-food/canned-fish"
+  },
+  {
+    "name_th": "เบญจรงค์ ข้าวขาว 35% 5 กก.",
+    "name_en": "BENJARONG White Rice 35% 5 kg",
+    "brand": "BENJARONG",
+    "category": "Food & Dining",
+    "price_thb": 103,
+    "source": "makro-pro",
+    "product_id": "7512753701059",
+    "url": "https://www.makro.pro/en/p/2mgoxhm-7512753701059",
+    "makro_leaf_category": "dry-grocery/grains-rice-cereal/white-rice"
+  },
+  {
+    "name_th": "เอโร่ ไข่ไก่ เบอร์ 2 มีฝา 30 ฟอง",
+    "name_en": "ARO Chicken Egg no.2 with Cover 30 pcs",
+    "brand": "ARO",
+    "category": "Food & Dining",
+    "price_thb": 152,
+    "source": "makro-pro",
+    "product_id": "6974563680451",
+    "url": "https://www.makro.pro/en/p/_zafaxx-6974563680451",
+    "makro_leaf_category": "dry-grocery/eggs/chicken-egg"
+  },
+  {
+    "name_th": "มิตรผล น้ําตาลทรายขาวบริสุทธิ์ 1 กก. x 5",
+    "name_en": "MITR PHOL Pure Refined Sugar 1 kg x 5",
+    "brand": "MITR PHOL",
+    "category": "Food & Dining",
+    "price_thb": 135,
+    "source": "makro-pro",
+    "product_id": "6761204875459",
+    "url": "https://www.makro.pro/en/p/mb5rr9t-6761204875459",
+    "makro_leaf_category": "dry-grocery/sweet-condiment/sugar"
+  },
+  {
+    "name_th": "ดีมอลต์ นมมอลต์ รสช็อกโกแลต 90 มล. x 48",
+    "name_en": "DMALT Chocolate Malt 90 ml x 48",
+    "brand": "DMALT",
+    "category": "Food & Dining",
+    "price_thb": 199,
+    "source": "makro-pro",
+    "product_id": "7248011002051",
+    "url": "https://www.makro.pro/en/p/ysdh39q-7248011002051",
+    "makro_leaf_category": "beverages/milk/uht-milk"
+  },
+  {
+    "name_th": "คริสตัล น้ําดื่ม 1.5 ล. x 6",
+    "name_en": "CRYSTAL Drinking Water 1.5 l x 6",
+    "brand": "CRYSTAL",
+    "category": "Food & Dining",
+    "price_thb": 49,
+    "source": "makro-pro",
+    "product_id": "6814746017987",
+    "url": "https://www.makro.pro/en/p/f39w5ot-6814746017987",
+    "makro_leaf_category": "beverages/drinking-water"
+  },
+  {
+    "name_th": "โค้ก เครื่องดื่มน้ําอัดลม รสออริจินัล 330 มล. x 24",
+    "name_en": "COKE Soft Drink Original 330 ml x 24",
+    "brand": "COKE",
+    "category": "Food & Dining",
+    "price_thb": 273,
+    "source": "makro-pro",
+    "product_id": "6761214345411",
+    "url": "https://www.makro.pro/en/p/_zn0xa3-6761214345411",
+    "makro_leaf_category": "beverages/soda"
+  },
+  {
+    "name_th": "เนสกาแฟ เรดคัพ กาแฟสําเร็จรูป 2 ก. 108 ซอง",
+    "name_en": "NESCAFE Red Cup Instant Coffee 2 g 108 sachets",
+    "brand": "NESCAFE",
+    "category": "Food & Dining",
+    "price_thb": 264,
+    "source": "makro-pro",
+    "product_id": "7325004136643",
+    "url": "https://www.makro.pro/en/p/bulaqgq-7325004136643",
+    "makro_leaf_category": "beverages/ready-to-drink-instant-coffee"
+  },
+  {
+    "name_th": "ดอยคํา น้ํามะเขือเทศ 100% สูตรโซเดียมต่ํา 200มลx4",
+    "name_en": "DOI KHAM 100% Tomato Juice Low Sodium 200mlx4",
+    "brand": "DOI KHAM",
+    "category": "Food & Dining",
+    "price_thb": 80,
+    "source": "makro-pro",
+    "product_id": "7078686359747",
+    "url": "https://www.makro.pro/en/p/6es_8d2-7078686359747",
+    "makro_leaf_category": "beverages/juice"
+  },
+  {
+    "name_th": "คาราบาว เครื่องดื่มชูกําลัง 150 มล. x 10",
+    "name_en": "CARABAO Energy Drink 150 ml x 10",
+    "brand": "CARABAO",
+    "category": "Food & Dining",
+    "price_thb": 87,
+    "source": "makro-pro",
+    "product_id": "6761205498051",
+    "url": "https://www.makro.pro/en/p/7rnhu8z-6761205498051",
+    "makro_leaf_category": "beverages/sports-energy-drinks"
+  },
+  {
+    "name_th": "เลย์ ร็อค ขนม มันฝรั่งแท้ทอดกรอบ รสบาร์บีคิว 48 ก. x 6",
+    "name_en": "LAY'S Rock Potato Chips Snack BBQ 48 g x 6",
+    "brand": "LAY'S",
+    "category": "Food & Dining",
+    "price_thb": 103,
+    "source": "makro-pro",
+    "product_id": "6761212674243",
+    "url": "https://www.makro.pro/en/p/88_ld9m-6761212674243",
+    "makro_leaf_category": "snacks-confectionery/snacks/chips"
+  },
+  {
+    "name_th": "พีอาร์ ข้าวเกรียบ รสกุ้งสไปซี่ 80 ก. x 3",
+    "name_en": "PR Rice Cracker Shrimp Spicy 80 g x 3",
+    "brand": "PR",
+    "category": "Food & Dining",
+    "price_thb": 49,
+    "source": "makro-pro",
+    "product_id": "7350226649283",
+    "url": "https://www.makro.pro/en/p/c1gqaat-7350226649283",
+    "makro_leaf_category": "snacks-confectionery/snacks/chips"
+  },
+  {
+    "name_th": "โรลเลอร์ โคสเตอร์ มันฝรั่งทอดกรอบรูปวง รสต้นตํารับ 12 ก. x 12",
+    "name_en": "ROLLER COASTER Potato Ring Extrude Original 12 g x 12",
+    "brand": "ROLLER COASTER",
+    "category": "Food & Dining",
+    "price_thb": 48,
+    "source": "makro-pro",
+    "product_id": "7078758383811",
+    "url": "https://www.makro.pro/en/p/pivaiu-7078758383811",
+    "makro_leaf_category": "snacks-confectionery/snacks/chips"
+  },
+  {
+    "name_th": "พีอาร์ ข้าวเกรียบรสสาหร่าย 80 ก. x 3",
+    "name_en": "PR Crispy Snack Seaweed 80 g x 3",
+    "brand": "PR",
+    "category": "Food & Dining",
+    "price_thb": 49,
+    "source": "makro-pro",
+    "product_id": "530050033340878",
+    "url": "https://www.makro.pro/en/p/tAB1fXY-530050033340878",
+    "makro_leaf_category": "snacks-confectionery/snacks/wafer-cookies-crackers"
+  },
+  {
+    "name_th": "โกช็อคโก้ โรลทวิน 24 ก. x 12",
+    "name_en": "GO CHOCO Rollz Twin 24 g x 12",
+    "brand": "GO CHOCO",
+    "category": "Food & Dining",
+    "price_thb": 48,
+    "source": "makro-pro",
+    "product_id": "7115266097347",
+    "url": "https://www.makro.pro/en/p/umhbsfj-7115266097347",
+    "makro_leaf_category": "snacks-confectionery/snacks/wafer-cookies-crackers"
+  },
+  {
+    "name_th": "ดิวเบอร์รี่ คุกกี้สอดไส้ครีมและแยม กลิ่นสตรอเบอร์รี่ 27 ก. 12 ชิ้น",
+    "name_en": "DEWBERRY Cookies Strawberry 27 g 12 pcs",
+    "brand": "DEWBERRY",
+    "category": "Food & Dining",
+    "price_thb": 50,
+    "source": "makro-pro",
+    "product_id": "7115270586563",
+    "url": "https://www.makro.pro/en/p/qi8uupj-7115270586563",
+    "makro_leaf_category": "snacks-confectionery/snacks/wafer-cookies-crackers"
+  },
+  {
+    "name_th": "ฟันโอ คุกกี้แซนวิชรสช็อกโกแลต สอดไส้ครีมคุกกี้แอนด์ครีม 40.5 ก. 12 ชิ้น",
+    "name_en": "FUN-O Sandwich Chocolate Cookies Filled with Cookie and Cream Flavored Cream 40.5 g 12 pcs",
+    "brand": "FUN-O",
+    "category": "Food & Dining",
+    "price_thb": 47,
+    "source": "makro-pro",
+    "product_id": "7115268915395",
+    "url": "https://www.makro.pro/en/p/aqgxdks-7115268915395",
+    "makro_leaf_category": "snacks-confectionery/snacks/wafer-cookies-crackers"
+  },
+  {
+    "name_th": "เบงเบง เวเฟอร์สอดไส้เคลือบช็อกโกแลต 20 ก. x 12",
+    "name_en": "BENG BENG Wafer Chocolate 20 g x 12",
+    "brand": "BENG BENG",
+    "category": "Food & Dining",
+    "price_thb": 48,
+    "source": "makro-pro",
+    "product_id": "6761187508419",
+    "url": "https://www.makro.pro/en/p/rh13dxo-6761187508419",
+    "makro_leaf_category": "snacks-confectionery/snacks/wafer-cookies-crackers"
+  },
+  {
+    "name_th": "ฟันโอ คุกกี้แซนวิช สอดไส้ครีมช็อกโกแลต 40.5 ก. 12 ชิ้น",
+    "name_en": "FUN-O Sandwich Cookies Filled with Chocolate Cream 40.5 g 12 pcs",
+    "brand": "FUN-O",
+    "category": "Food & Dining",
+    "price_thb": 47,
+    "source": "makro-pro",
+    "product_id": "7115269243075",
+    "url": "https://www.makro.pro/en/p/hbo5ee9-7115269243075",
+    "makro_leaf_category": "snacks-confectionery/snacks/wafer-cookies-crackers"
+  },
+  {
+    "name_th": "ทิวลี่ ทวิน จัมโบ้ เวเฟอร์สอดไส้ครีมเคลือบช็อกโกแลต 35 ก. x 12",
+    "name_en": "TIVOLI Twin Jumbo Wafer Chocolate 35 g x 12",
+    "brand": "TIVOLI",
+    "category": "Food & Dining",
+    "price_thb": 47,
+    "source": "makro-pro",
+    "product_id": "7078758777027",
+    "url": "https://www.makro.pro/en/p/pasyy-_-7078758777027",
+    "makro_leaf_category": "snacks-confectionery/snacks/wafer-cookies-crackers"
+  },
+  {
+    "name_th": "เบงเบง เวเฟอร์สอดไส้เคลือบช็อกโกแลต 20 ก. x 24",
+    "name_en": "BENG BENG Wafer Chocolate 20 g  x 24",
+    "brand": "BENG BENG",
+    "category": "Food & Dining",
+    "price_thb": 92,
+    "source": "makro-pro",
+    "product_id": "6761187770563",
+    "url": "https://www.makro.pro/en/p/6c5qcsb-6761187770563",
+    "makro_leaf_category": "snacks-confectionery/snacks/wafer-cookies-crackers"
+  },
+  {
+    "name_th": "ซูโม่ มินิคุกกี้ไส้ครีม 28 ก. x 12",
+    "name_en": "SUMO Mini Cookies & Cream 28 g x 12",
+    "brand": "SUMO",
+    "category": "Food & Dining",
+    "price_thb": 42,
+    "source": "makro-pro",
+    "product_id": "7115270029507",
+    "url": "https://www.makro.pro/en/p/srp5byi-7115270029507",
+    "makro_leaf_category": "snacks-confectionery/snacks/wafer-cookies-crackers"
+  },
+  {
+    "name_th": "โอรีโอ คุกกี้ครีมช็อกโกแลต 26.25 ก. x 12",
+    "name_en": "OREO Cookies Choco 26.25 g x 12",
+    "brand": "OREO",
+    "category": "Food & Dining",
+    "price_thb": 48,
+    "source": "makro-pro",
+    "product_id": "7115269865667",
+    "url": "https://www.makro.pro/en/p/-dpx8c4-7115269865667",
+    "makro_leaf_category": "snacks-confectionery/snacks/wafer-cookies-crackers"
+  },
+  {
+    "name_th": "ป๊อกกี้ บิสกิตแท่งรสช็อกโกแลต 10 ก. x 12",
+    "name_en": "POCKY Chocolate 10 g x 12",
+    "brand": "POCKY",
+    "category": "Food & Dining",
+    "price_thb": 48,
+    "source": "makro-pro",
+    "product_id": "6974709727427",
+    "url": "https://www.makro.pro/en/p/tugqhra-6974709727427",
+    "makro_leaf_category": "snacks-confectionery/snacks/wafer-cookies-crackers"
+  },
+  {
+    "name_th": "ทิวลี่ ทวิน เวเฟอร์สอดไส้ครีมเคลือบช็อกโกแลต 10 ก. x 24",
+    "name_en": "TIVOLI Twin Wafer Chocolate 10 g x 24",
+    "brand": "TIVOLI",
+    "category": "Food & Dining",
+    "price_thb": 39,
+    "source": "makro-pro",
+    "product_id": "7078681936067",
+    "url": "https://www.makro.pro/en/p/lmwlzbb-7078681936067",
+    "makro_leaf_category": "snacks-confectionery/snacks/wafer-cookies-crackers"
+  },
+  {
+    "name_th": "มอลคิสท์ แครกเกอร์ รสช็อกโกแลต 36 ก. 12 ชิ้น",
+    "name_en": "MALKIST Cracker Chocolate 36 g x 12",
+    "brand": "MALKIST",
+    "category": "Food & Dining",
+    "price_thb": 48,
+    "source": "makro-pro",
+    "product_id": "7325020750019",
+    "url": "https://www.makro.pro/en/p/o86r9s7-7325020750019",
+    "makro_leaf_category": "snacks-confectionery/snacks/wafer-cookies-crackers"
+  },
+  {
+    "name_th": "มอลคิสท์ แครกเกอร์ รสออริจินัล 14 ก. 24 ชิ้น",
+    "name_en": "MALKIST Cracker 14 g x 24",
+    "brand": "MALKIST",
+    "category": "Food & Dining",
+    "price_thb": 40,
+    "source": "makro-pro",
+    "product_id": "6974709137603",
+    "url": "https://www.makro.pro/en/p/91df-54-6974709137603",
+    "makro_leaf_category": "snacks-confectionery/snacks/wafer-cookies-crackers"
+  },
+  {
+    "name_th": "ฟันโอ คุกกี้แซนวิช รสช็อกโกแลต สอดไส้ครีมช็อกโกแลต 40.5 ก. 12 ชิ้น",
+    "name_en": "FUN-O Choco Cream Chocolate 40.5 g 12 pcs",
+    "brand": "FUN-O",
+    "category": "Food & Dining",
+    "price_thb": 47,
+    "source": "makro-pro",
+    "product_id": "7115269112003",
+    "url": "https://www.makro.pro/en/p/sur12nf-7115269112003",
+    "makro_leaf_category": "snacks-confectionery/snacks/wafer-cookies-crackers"
+  },
+  {
+    "name_th": "รีบิสโก้  ช็อกโก มูโช มิลค์ ช็อกโกแลต 25 ก. x 10",
+    "name_en": "REBISCO Choco Mucho Milk Chocolate 25 g x 10",
+    "brand": "CHOCO MUCHO",
+    "category": "Food & Dining",
+    "price_thb": 47,
+    "source": "makro-pro",
+    "product_id": "114772909912761",
+    "url": "https://www.makro.pro/en/p/3iiD_5n-114772909912761",
+    "makro_leaf_category": "snacks-confectionery/snacks/wafer-cookies-crackers"
+  },
+  {
+    "name_th": "โอรีโอ คุกกี้แซนวิชช็อกโกแลตสอดไส้ครีม กลิ่นสตรอเบอรี่ 26.25 ก. 12 ชิ้น",
+    "name_en": "OREO Sandwich Cookies with Strawberry Filling 26.25 g 12 pcs",
+    "brand": "OREO",
+    "category": "Food & Dining",
+    "price_thb": 48,
+    "source": "makro-pro",
+    "product_id": "7115268817091",
+    "url": "https://www.makro.pro/en/p/eybblf_-7115268817091",
+    "makro_leaf_category": "snacks-confectionery/snacks/wafer-cookies-crackers"
+  },
+  {
+    "name_th": "ฟันโอ คุกกี้ช็อกโแลตชิพส์ 25 ก. x 12",
+    "name_en": "FUN-O Chocolate Chip Cookies 25 g x 12",
+    "brand": "FUN-O",
+    "category": "Food & Dining",
+    "price_thb": 50,
+    "source": "makro-pro",
+    "product_id": "7325005807811",
+    "url": "https://www.makro.pro/en/p/mkq7ejw-7325005807811",
+    "makro_leaf_category": "snacks-confectionery/snacks/wafer-cookies-crackers"
+  },
+  {
+    "name_th": "ดิวเบอร์รี่ คุกกี้สอดไส้ครีมและแยม กลิ่นบลูเบอร์รี่ 27 ก. 12 ชิ้น",
+    "name_en": "DEWBERRY Cookies Blueberry 27 g 12 pcs",
+    "brand": "DEWBERRY",
+    "category": "Food & Dining",
+    "price_thb": 50,
+    "source": "makro-pro",
+    "product_id": "7115270357187",
+    "url": "https://www.makro.pro/en/p/5zpe8ms-7115270357187",
+    "makro_leaf_category": "snacks-confectionery/snacks/wafer-cookies-crackers"
+  },
+  {
+    "name_th": "ชาช่า เมล็ดทานตะวัน รสมะพร้าว 72 ก. x 6",
+    "name_en": "CHACHA Sunflower Seeds Coconut Flavor 72 g x 6",
+    "brand": "CHACHA",
+    "category": "Food & Dining",
+    "price_thb": 92,
+    "source": "makro-pro",
+    "product_id": "7248022831299",
+    "url": "https://www.makro.pro/en/p/3f1umdw-7248022831299",
+    "makro_leaf_category": "snacks-confectionery/snacks/nuts-seeds-fruits-snacks"
+  },
+  {
+    "name_th": "โก๋แก่ บีน ถั่วมิกซ์โรยเกลือ 20 ก. x 12",
+    "name_en": "KOHKAE Mixed Nut Salt 20 g x 12",
+    "brand": "KOHKAE",
+    "category": "Food & Dining",
+    "price_thb": 47,
+    "source": "makro-pro",
+    "product_id": "7115266752707",
+    "url": "https://www.makro.pro/en/p/8dkz644-7115266752707",
+    "makro_leaf_category": "snacks-confectionery/snacks/nuts-seeds-fruits-snacks"
+  },
+  {
+    "name_th": "โก๋แก่ ถั่วปากอ้าอบเกลือ 85 ก. x 3",
+    "name_en": "KOHKAE Salted Broad Beans 85 g x 3",
+    "brand": "KOHKAE",
+    "category": "Food & Dining",
+    "price_thb": 47,
+    "source": "makro-pro",
+    "product_id": "7115263639747",
+    "url": "https://www.makro.pro/en/p/r6s9jks-7115263639747",
+    "makro_leaf_category": "snacks-confectionery/snacks/nuts-seeds-fruits-snacks"
+  },
+  {
+    "name_th": "โก๋แก่ ถั่วลันเตา วาซาบิ 20 ก. x 12",
+    "name_en": "KOHKAE Greenbean Wasabi 20 g x 12",
+    "brand": "KOHKAE",
+    "category": "Food & Dining",
+    "price_thb": 48,
+    "source": "makro-pro",
+    "product_id": "7115264262339",
+    "url": "https://www.makro.pro/en/p/crholbn-7115264262339",
+    "makro_leaf_category": "snacks-confectionery/snacks/nuts-seeds-fruits-snacks"
+  },
+  {
+    "name_th": "โก๋แก่ ถั่วลันเตาโรยเกลือ 20 ก. x 12",
+    "name_en": "KOHKAE Green Peas With Salt 20 g x 12",
+    "brand": "KOHKAE",
+    "category": "Food & Dining",
+    "price_thb": 48,
+    "source": "makro-pro",
+    "product_id": "7248024142019",
+    "url": "https://www.makro.pro/en/p/zop2j9h-7248024142019",
+    "makro_leaf_category": "snacks-confectionery/snacks/nuts-seeds-fruits-snacks"
+  },
+  {
+    "name_th": "โก๋แก่ ถั่ว เคลือบรสวาซาบิ 75 ก. x 3",
+    "name_en": "KOHKAE Peanut Wasabi 75 g x 3",
+    "brand": "KOHKAE",
+    "category": "Food & Dining",
+    "price_thb": 47,
+    "source": "makro-pro",
+    "product_id": "7115262755011",
+    "url": "https://www.makro.pro/en/p/5ylqesw-7115262755011",
+    "makro_leaf_category": "snacks-confectionery/snacks/nuts-seeds-fruits-snacks"
+  },
+  {
+    "name_th": "โก๋แก่ ถั่วลิสงฝักอบกรอบ 100 ก. x 3",
+    "name_en": "KHOKAE PEANUT 95G.X3",
+    "brand": "KOHKAE",
+    "category": "Food & Dining",
+    "price_thb": 47,
+    "source": "makro-pro",
+    "product_id": "7115263180995",
+    "url": "https://www.makro.pro/en/p/o6ksrer-7115263180995",
+    "makro_leaf_category": "snacks-confectionery/snacks/nuts-seeds-fruits-snacks"
+  },
+  {
+    "name_th": "สแน็คแจ๊ค ริง ถั่วลันเตาอบกรอบ รสดั้งเดิม 12 ก. x 12",
+    "name_en": "SNACK JACK Ring Green Pea Snack Original 12 g x 12",
+    "brand": "SNACK JACK",
+    "category": "Food & Dining",
+    "price_thb": 48,
+    "source": "makro-pro",
+    "product_id": "793711505615695",
+    "url": "https://www.makro.pro/en/p/1ZUoOQnp-793711505615695",
+    "makro_leaf_category": "snacks-confectionery/snacks/nuts-seeds-fruits-snacks"
+  },
+  {
+    "name_th": "เถ้าแก่น้อย บิ๊กชีท สาหร่ายทอดแผ่น รสคลาสสิค 3.2 ก. x 12",
+    "name_en": "TAOKAENOI Big Sheet Seaweed Classic 3.2 g x 12",
+    "brand": "TAOKAENOI",
+    "category": "Food & Dining",
+    "price_thb": 49,
+    "source": "makro-pro",
+    "product_id": "6761213067459",
+    "url": "https://www.makro.pro/en/p/lla0vm9-6761213067459",
+    "makro_leaf_category": "snacks-confectionery/snacks/other-snacks"
+  },
+  {
+    "name_th": "สแน็คแจ๊ค ถั่วลันเตาอบกรอบ รสต้นตํารับ 15 ก. x 12",
+    "name_en": "SNACK JACK Green Pea Snack Original 15 g x 12",
+    "brand": "SNACK JACK",
+    "category": "Food & Dining",
+    "price_thb": 49,
+    "source": "makro-pro",
+    "product_id": "6761213427907",
+    "url": "https://www.makro.pro/en/p/poqeybs-6761213427907",
+    "makro_leaf_category": "snacks-confectionery/snacks/other-snacks"
+  },
+  {
+    "name_th": "ปลาดุกเป็น กก.ละ",
+    "name_en": "Live Catfish per kg",
+    "brand": "MAKRO",
+    "category": "Food & Dining",
+    "price_thb": 70,
+    "source": "makro-pro",
+    "product_id": "883017964269425",
+    "url": "https://www.makro.pro/en/p/xEjzlzg-883017964269425",
+    "makro_leaf_category": "fish-seafood/fish/fresh"
+  },
+  {
+    "name_th": "ปลาฟยอร์ดเทร้าสด ยกตัวแล่ไม่ลอกหนัง (5-6 กก./ตัว)",
+    "name_en": "Fresh Fjord Trout Filleting Service 1 pc (Approx. 5-6 kg/pc)",
+    "brand": "",
+    "category": "Food & Dining",
+    "price_thb": 2334,
+    "source": "makro-pro",
+    "product_id": "624789753424969",
+    "url": "https://www.makro.pro/en/p/hCERY5s-624789753424969",
+    "makro_leaf_category": "fish-seafood/fish/fresh"
+  },
+  {
+    "name_th": "ปลาสวาย กลาง 1 ตัว (1.5-2.4 กก.)",
+    "name_en": "Striped Catfish M 1 pc (1.5 - 2.4 kg/pc)",
+    "brand": "",
+    "category": "Food & Dining",
+    "price_thb": 93,
+    "source": "makro-pro",
+    "product_id": "236779358865604",
+    "url": "https://www.makro.pro/en/p/8FoTNfK-236779358865604",
+    "makro_leaf_category": "fish-seafood/fish/fresh"
+  },
+  {
+    "name_th": "ไข่ปลาอินทรี กก.ละ",
+    "name_en": "King Mackerel Roe",
+    "brand": "MAKRO",
+    "category": "Food & Dining",
+    "price_thb": 89,
+    "source": "makro-pro",
+    "product_id": "312911420027003",
+    "url": "https://www.makro.pro/en/p/1m1q6yv-312911420027003",
+    "makro_leaf_category": "fish-seafood/fish/fresh"
+  },
+  {
+    "name_th": "ซีพี สามชั้นหมูตัดเส้นแช่เย็น 1 กก.",
+    "name_en": "CP Chilled Pork Belly Cut 1 kg",
+    "brand": "CP",
+    "category": "Food & Dining",
+    "price_thb": 198,
+    "source": "makro-pro",
+    "product_id": "7492546625731",
+    "url": "https://www.makro.pro/en/p/5rqbzdo-7492546625731",
+    "makro_leaf_category": "meat/pork/chilled"
+  },
+  {
+    "name_th": "ซีพี สันคอหมูสดสไลซ์ 1 กก.",
+    "name_en": "CP Pork Collar Sliced 1 kg",
+    "brand": "CP",
+    "category": "Food & Dining",
+    "price_thb": 200,
+    "source": "makro-pro",
+    "product_id": "7492546199747",
+    "url": "https://www.makro.pro/en/p/73en3ge-7492546199747",
+    "makro_leaf_category": "meat/pork/chilled"
+  },
+  {
+    "name_th": "ซีพี สันคอตัดชิ้นแช่เย็น 1 กก.",
+    "name_en": "CP Chilled Pork Collar Cut 1 kg",
+    "brand": "CP",
+    "category": "Food & Dining",
+    "price_thb": 193,
+    "source": "makro-pro",
+    "product_id": "7492546166979",
+    "url": "https://www.makro.pro/en/p/jyh0yzr-7492546166979",
+    "makro_leaf_category": "meat/pork/chilled"
+  },
+  {
+    "name_th": "ซีพี หัวไหล่ตัดชิ้นแช่เย็น 1 กก.",
+    "name_en": "CP Chilled Pork Shoulder Cut 1 kg",
+    "brand": "CP",
+    "category": "Food & Dining",
+    "price_thb": 133,
+    "source": "makro-pro",
+    "product_id": "7492546658499",
+    "url": "https://www.makro.pro/en/p/t6cyvlq-7492546658499",
+    "makro_leaf_category": "meat/pork/chilled"
+  },
+  {
+    "name_th": "อกไก่เนื้อล้วนติดหนัง 1 กก.",
+    "name_en": "Chicken Boneless Breast Skin-On 1 kg",
+    "brand": "MAKRO",
+    "category": "Food & Dining",
+    "price_thb": 86,
+    "source": "makro-pro",
+    "product_id": "7606382067907",
+    "url": "https://www.makro.pro/en/p/py0fb4h-7606382067907",
+    "makro_leaf_category": "meat/poultry/chilled"
+  },
+  {
+    "name_th": "น่องติดสะโพกไก่ 1 กก.",
+    "name_en": "Chicken Bone In Leg 1 kg",
+    "brand": "MAKRO",
+    "category": "Food & Dining",
+    "price_thb": 98,
+    "source": "makro-pro",
+    "product_id": "775090870054429",
+    "url": "https://www.makro.pro/en/p/brJTHNO-775090870054429",
+    "makro_leaf_category": "meat/poultry/chilled"
+  },
+  {
+    "name_th": "โครงไก่ 1 กก.",
+    "name_en": "Chicken Bone 1 kg",
+    "brand": "MAKRO",
+    "category": "Food & Dining",
+    "price_thb": 26,
+    "source": "makro-pro",
+    "product_id": "7606381215939",
+    "url": "https://www.makro.pro/en/p/-z-bk8j-7606381215939",
+    "makro_leaf_category": "meat/poultry/chilled"
+  },
+  {
+    "name_th": "ปีกบนไก่ 1 กก.",
+    "name_en": "Chicken Wing Stick 1 kg",
+    "brand": "MAKRO",
+    "category": "Food & Dining",
+    "price_thb": 96,
+    "source": "makro-pro",
+    "product_id": "7606381445315",
+    "url": "https://www.makro.pro/en/p/zvwi8km-7606381445315",
+    "makro_leaf_category": "meat/poultry/chilled"
+  },
+  {
+    "name_th": "สะโพกไก่ติดกระดูก 1 กก.",
+    "name_en": "Chicken Thigh 1 kg",
+    "brand": "",
+    "category": "Food & Dining",
+    "price_thb": 52,
+    "source": "makro-pro",
+    "product_id": "7606381641923",
+    "url": "https://www.makro.pro/en/p/8e2czhh-7606381641923",
+    "makro_leaf_category": "meat/poultry/chilled"
+  },
+  {
+    "name_th": "อกไก่บด 1 กก.",
+    "name_en": "Chicken Boneless Breast Mince 1 kg",
+    "brand": "MAKRO",
+    "category": "Food & Dining",
+    "price_thb": 93,
+    "source": "makro-pro",
+    "product_id": "7606381740227",
+    "url": "https://www.makro.pro/en/p/ffulv-m-7606381740227",
+    "makro_leaf_category": "meat/poultry/chilled"
+  },
+  {
+    "name_th": "ขอบกระด้งวัว กก.ละ",
+    "name_en": "Beef Tripe kg",
+    "brand": "MAKRO",
+    "category": "Food & Dining",
+    "price_thb": 93,
+    "source": "makro-pro",
+    "product_id": "911859293732458",
+    "url": "https://www.makro.pro/en/p/BRkcBey-911859293732458",
+    "makro_leaf_category": "meat/beef/chilled"
+  },
+  {
+    "name_th": "เอ็นแก้ววัว กก.ละ",
+    "name_en": "Beef Silver Tendon kg",
+    "brand": "",
+    "category": "Food & Dining",
+    "price_thb": 130,
+    "source": "makro-pro",
+    "product_id": "983174061844841",
+    "url": "https://www.makro.pro/en/p/5O-7kuG-983174061844841",
+    "makro_leaf_category": "meat/beef/chilled"
+  },
+  {
+    "name_th": "เสือร้องไห้วัวออสเตรเลีย ประมาณ 4 กก.",
+    "name_en": "Australian Beef Brisket Point End approx. 4 kg",
+    "brand": "MAKRO",
+    "category": "Food & Dining",
+    "price_thb": 1480,
+    "source": "makro-pro",
+    "product_id": "405262993452251",
+    "url": "https://www.makro.pro/en/p/RrxRf2u-405262993452251",
+    "makro_leaf_category": "meat/beef/chilled"
+  },
+  {
+    "name_th": "แตงโมซอนญ่า 1 ลูก (3 กก./ลูก)",
+    "name_en": "Sonya Water Melon (3 kg/pc)",
+    "brand": "MAKRO",
+    "category": "Food & Dining",
+    "price_thb": 87,
+    "source": "makro-pro",
+    "product_id": "724042185838557",
+    "url": "https://www.makro.pro/en/p/XV3YH7F-724042185838557",
+    "makro_leaf_category": "fruit-vegetables/fruit/local-fruit"
+  },
+  {
+    "name_th": "แคนตาลูปซันเลดี้ 1 ลูก (1 กก./ลูก)",
+    "name_en": "Sunlady Cantaloupe 1 Kg/pc",
+    "brand": "MAKRO",
+    "category": "Food & Dining",
+    "price_thb": 55,
+    "source": "makro-pro",
+    "product_id": "744823429316792",
+    "url": "https://www.makro.pro/en/p/VwVgmvK-744823429316792",
+    "makro_leaf_category": "fruit-vegetables/fruit/local-fruit"
+  },
+  {
+    "name_th": "แตงโมกินรี จัมโบ้ 1 ลูก (4 กก./ลูก)",
+    "name_en": "SELECTED Jumbo Kinnare Water Melon",
+    "brand": "SELECTED",
+    "category": "Food & Dining",
+    "price_thb": 140,
+    "source": "makro-pro",
+    "product_id": "551312627531523",
+    "url": "https://www.makro.pro/en/p/NHA48Uj-551312627531523",
+    "makro_leaf_category": "fruit-vegetables/fruit/local-fruit"
+  },
+  {
+    "name_th": "มะพร้าวอ่อนน้ําหอม 1 ลูก",
+    "name_en": "Young Coconut 1 pc",
+    "brand": "MAKRO",
+    "category": "Food & Dining",
+    "price_thb": 32,
+    "source": "makro-pro",
+    "product_id": "7078706249923",
+    "url": "https://www.makro.pro/en/p/mm1jtrn-7078706249923",
+    "makro_leaf_category": "fruit-vegetables/fruit/local-fruit"
+  },
+  {
+    "name_th": "กล้วยหอม เกรด A 1 หวี",
+    "name_en": "Hom Banana Grade A 1 bunch",
+    "brand": "MAKRO",
+    "category": "Food & Dining",
+    "price_thb": 149,
+    "source": "makro-pro",
+    "product_id": "7416140234947",
+    "url": "https://www.makro.pro/en/p/2podwtp-7416140234947",
+    "makro_leaf_category": "fruit-vegetables/fruit/local-fruit"
+  },
+   {
+    "name_th": "บลูเบอร์รี่ 500 ก.",
+    "name_en": "Blueberry 500 g",
+    "brand": "MAKRO",
+    "category": "Food & Dining",
+    "price_thb": 279,
+    "source": "makro-pro",
+    "product_id": "7275693015235",
+    "url": "https://www.makro.pro/en/p/32ylt0g-7275693015235",
+    "makro_leaf_category": "fruit-vegetables/fruit/imported-fruit"
+  },
+  {
+    "name_th": "องุ่นแดงนอกจีน 1 กก.",
+    "name_en": "Chinese Red Grape 1 kg",
+    "brand": "",
+    "category": "Food & Dining",
+    "price_thb": 75,
+    "source": "makro-pro",
+    "product_id": "127647159087610",
+    "url": "https://www.makro.pro/en/p/KIyDQgm-127647159087610",
+    "makro_leaf_category": "fruit-vegetables/fruit/imported-fruit"
+  },
+   {
+    "name_th": "ลาฟวิ่ง เบิร์ด ดราย เรด 1.5 ล.",
+    "name_en": "LAUGHING BIRD Dry Red 1.5 l",
+    "brand": "LAUGHING BIRD",
+    "category": "Food & Dining",
+    "price_thb": 589,
+    "source": "makro-pro",
+    "product_id": "759223088495433",
+    "url": "https://www.makro.pro/en/p/436oQ5n-759223088495433",
+    "makro_leaf_category": "alcoholic-beverages/champagne-wine"
+  },
+  {
+    "name_th": "สปาย เรด 275 มล. x 6",
+    "name_en": "SPY Red 275 ml x 6",
+    "brand": "SPY",
+    "category": "Food & Dining",
+    "price_thb": 175,
+    "source": "makro-pro",
+    "product_id": "375789050757071",
+    "url": "https://www.makro.pro/en/p/1mIn2q_p-375789050757071",
+    "makro_leaf_category": "alcoholic-beverages/champagne-wine"
+  },
+  {
+    "name_th": "สปาย คลาสสิค 275 มล. x 6",
+    "name_en": "SPY Classic 275 ml x 6",
+    "brand": "SPY",
+    "category": "Food & Dining",
+    "price_thb": 175,
+    "source": "makro-pro",
+    "product_id": "433346396148615",
+    "url": "https://www.makro.pro/en/p/xrWKCHPb-433346396148615",
+    "makro_leaf_category": "alcoholic-beverages/champagne-wine"
+  },
+   {
+    "name_th": "น้ําฆ่าเชื้อโรคอเนกประสงค์ 250 มล.",
+    "name_en": "น้ําฆ่าเชื้อโรคอเนกประสงค์ 250 มล.",
+    "brand": "SPA CLEAN 189",
+    "category": "Groceries",
+    "price_thb": 289,
+    "source": "makro-pro",
+    "product_id": "602942831380169",
+    "url": "https://www.makro.pro/en/p/2P2gWP1-602942831380169",
+    "makro_leaf_category": "household-supplies/all-purpose-cleaners"
+  },
+  {
+    "name_th": "เดตตอล ไฮยีน น้ํายาทําความสะอาด อเนกประสงค์ กลิ่นเฟรชคอตตอนบรีช 500+250 มล.",
+    "name_en": "DETTOL Hygiene Multi-Use Disinfectant Fresh Cotton Breeze 500+250 ml",
+    "brand": "DETTOL",
+    "category": "Groceries",
+    "price_thb": 429,
+    "source": "makro-pro",
+    "product_id": "565637086054847",
+    "url": "https://www.makro.pro/en/p/1xMtTQBx-565637086054847",
+    "makro_leaf_category": "household-supplies/all-purpose-cleaners"
+  },
+  {
+    "name_th": "ไวป์ออลล์ ผลิตภัณฑ์เช็ดทําความสะอาด เอ๊กซ์ 50 25 x 25 ซม. สีขาว 800 แผ่น",
+    "name_en": "WYPALL X50 Cleaning Wiper 25 x 25 cm White 800 Sheets",
+    "brand": "",
+    "category": "Groceries",
+    "price_thb": 1850,
+    "source": "makro-pro",
+    "product_id": "673048642837902",
+    "url": "https://www.makro.pro/en/p/CDHE6Kc-673048642837902",
+    "makro_leaf_category": "household-supplies/all-purpose-cleaners"
+  },
+   {
+    "name_th": "เป็ด โปร น้ํายาล้างห้องน้ํา 300 มล. x 6",
+    "name_en": "DUCK Bathroom Cleaner 300 ml x 6",
+    "brand": "DUCK",
+    "category": "Groceries",
+    "price_thb": 135,
+    "source": "makro-pro",
+    "product_id": "7078777782467",
+    "url": "https://www.makro.pro/en/p/whbi7sq-7078777782467",
+    "makro_leaf_category": "household-supplies/bathroom-cleaners"
+  },
+  {
+    "name_th": "เอนชัวร์ วานิลลา 800 ก. x 2",
+    "name_en": "ENSURE Vanilla 800 g x 2",
+    "brand": "ENSURE",
+    "category": "Health & Wellness",
+    "price_thb": 1759,
+    "source": "makro-pro",
+    "product_id": "359261562616650",
+    "url": "https://www.makro.pro/en/p/g6Qh6YX-359261562616650",
+    "makro_leaf_category": "health-beauty/health-care/adult-food-supplement"
+  },
+  {
+    "name_th": "กลูเซอร์นาเอสอาร์ทริปเปิ้ลแคร850ก",
+    "name_en": "GLUCERNA Sr Triple Care Powder 850 g",
+    "brand": "GLUCERNA",
+    "category": "Health & Wellness",
+    "price_thb": 1123,
+    "source": "makro-pro",
+    "product_id": "7497427321027",
+    "url": "https://www.makro.pro/en/p/p5mk7lm-7497427321027",
+    "makro_leaf_category": "health-beauty/health-care/adult-food-supplement"
+  },
+  {
+    "name_th": "เอนชัวร์ กิ๊ฟแพค อาหารสูตรครบถ้วน กลิ่นวานิลลา 380 ก. x 2",
+    "name_en": "ENSURE Balanced Nutrition Complete Vanilla 380 g x 2",
+    "brand": "ENSURE",
+    "category": "Health & Wellness",
+    "price_thb": 1119,
+    "source": "makro-pro",
+    "product_id": "7497458155715",
+    "url": "https://www.makro.pro/en/p/ty6mv2w-7497458155715",
+    "makro_leaf_category": "health-beauty/health-care/adult-food-supplement"
+  },
+  {
+    "name_th": "พอช เมดิก้า ไฟเบอร์ รสส้มเขียวหวาน 18 ก. x 6",
+    "name_en": "POSH MEDICA Fiber C Tangerine 18 g x 6",
+    "brand": "POSH MEDICA",
+    "category": "Health & Wellness",
+    "price_thb": 156,
+    "source": "makro-pro",
+    "product_id": "958052689930454",
+    "url": "https://www.makro.pro/en/p/Zt8Yw4s-958052689930454",
+    "makro_leaf_category": "health-beauty/health-care/adult-food-supplement"
+  },
+  {
+    "name_th": "โป๊ยเซียน ยาดม x 12",
+    "name_en": "POY-SIAN Inhaler x 12",
+    "brand": "POY-SIAN",
+    "category": "Health & Wellness",
+    "price_thb": 185,
+    "source": "makro-pro",
+    "product_id": "247273011925457",
+    "url": "https://www.makro.pro/en/p/VWKu4vr-247273011925457",
+    "makro_leaf_category": "health-beauty/health-care/first-aid-kits"
+  },
+  {
+    "name_th": "อันเซิน ผ้าเปียก 120 แผ่น X 2",
+    "name_en": "ANSONT BABY WIPES 120 SHEETS X 2",
+    "brand": "ANSONT",
+    "category": "Health & Wellness",
+    "price_thb": 115,
+    "source": "makro-pro",
+    "product_id": "7497572679875",
+    "url": "https://www.makro.pro/en/p/5dg2zjr-7497572679875",
+    "makro_leaf_category": "mom-baby/baby-care/baby-diapers"
+  },
+  {
+    "name_th": "คิ้วท์แอนด์แคร์ ผ้าอ้อมเด็ก คัมฟี่ แพ้นท์ ไซส์ L 13 ชิ้น",
+    "name_en": "CUTE & CARE Baby Diaper Comfy Pants Size L 13 pcs",
+    "brand": "CUTE & CARE",
+    "category": "Health & Wellness",
+    "price_thb": 41,
+    "source": "makro-pro",
+    "product_id": "293336022762755",
+    "url": "https://www.makro.pro/en/p/cznByIxG-293336022762755",
+    "makro_leaf_category": "mom-baby/baby-care/baby-diapers"
+  },
+   {
+    "name_th": "ซาบีน่า เสื้อชั้นใน รหัส SBU24039 ขนาด XL ไร้โครง สีเนื้อ 2 ชิ้น",
+    "name_en": "SABINA Wireless Bra Style No.SBU24039 Size XL Light 2 pcs",
+    "brand": "SABINA",
+    "category": "Shopping",
+    "price_thb": 790,
+    "source": "makro-pro",
+    "product_id": "736106048550403",
+    "url": "https://www.makro.pro/en/p/B34RBEXD-736106048550403",
+    "makro_leaf_category": "lifestyle/clothings/top"
+  },
+  {
+    "name_th": "เอสเอพี เสื้อฮาวาย ไซส์ XL คละสีคละลาย",
+    "name_en": "SAP Hawaii Shirt Size XL Assorted Color",
+    "brand": "SAP",
+    "category": "Shopping",
+    "price_thb": 129,
+    "source": "makro-pro",
+    "product_id": "777546103666317",
+    "url": "https://www.makro.pro/en/p/beBtHI3X-777546103666317",
+    "makro_leaf_category": "lifestyle/clothings/top"
+  },
+   {
+    "name_th": "พานาโซนิค ถ่าน ALKALINE AAA X 2",
+    "name_en": "Panasonic Battery Alkaline AAA x 2",
+    "brand": "PANASONIC",
+    "category": "Shopping",
+    "price_thb": 68,
+    "source": "makro-pro",
+    "product_id": "384148235332035",
+    "url": "https://www.makro.pro/en/p/FY5FCH3-384148235332035",
+    "makro_leaf_category": "office-supplies/batteries/alkaline-and-batteries"
+  },
+  {
+    "name_th": "ถ่านม้าขาว 9V (BOX) ถ่านก้อนเหลี่ยม กล่อง 12 ก้อน",
+    "name_en": "ถ่านม้าขาว 9V (BOX) ถ่านก้อนเหลี่ยม 1 กล่อง (1 กล่อง = 12 ก้อน)",
+    "brand": "",
+    "category": "Shopping",
+    "price_thb": 360,
+    "source": "makro-pro",
+    "product_id": "7515199209667",
+    "url": "https://www.makro.pro/en/p/5k9a9wn-7515199209667",
+    "makro_leaf_category": "office-supplies/batteries/alkaline-and-batteries"
+  },
+  {
+    "name_th": "พานาโซนิค ถ่าน Alkaline AA x 2",
+    "name_en": "Panasonic Battery Alkaline AA x 2",
+    "brand": "",
+    "category": "Shopping",
+    "price_thb": 68,
+    "source": "makro-pro",
+    "product_id": "832525569222201",
+    "url": "https://www.makro.pro/en/p/C6sfgXG-832525569222201",
+    "makro_leaf_category": "office-supplies/batteries/alkaline-and-batteries"
+  },
+  {
+    "name_th": "ถ่านม้าขาว AA (BOX) กล่อง 15 แพ็ค (แพ็ค 4 ก้อน)",
+    "name_en": "ถ่านม้าขาว AA (BOX) 1 กล่อง (1 กล่อง = 15 แพ็ค = 60 ก้อน)",
+    "brand": "",
+    "category": "Shopping",
+    "price_thb": 375,
+    "source": "makro-pro",
+    "product_id": "7514325516483",
+    "url": "https://www.makro.pro/en/p/e7e504d-7514325516483",
+    "makro_leaf_category": "office-supplies/batteries/alkaline-and-batteries"
+  },
+  {
+    "name_th": "ถ่านม้าขาว AAA (BOX) กล่อง 15 แพ็ค (แพ็ค 4 ก้อน)",
+    "name_en": "ถ่านม้าขาว AAA (BOX) 1 กล่อง (1 กล่อง = 15 แพ็ค = 60 ก้อน)",
+    "brand": "",
+    "category": "Shopping",
+    "price_thb": 375,
+    "source": "makro-pro",
+    "product_id": "7514325745859",
+    "url": "https://www.makro.pro/en/p/iqmi4a5-7514325745859",
+    "makro_leaf_category": "office-supplies/batteries/alkaline-and-batteries"
+  },
+   {
+    "name_th": "หยก น้ำมันปาล์ม 1 ล.",
+    "name_en": "",
+    "brand": "หยก",
+    "category": "Food & Dining",
+    "price_thb": 52.0,
+    "barcode": "8850581111044",
+    "source": "bigc",
+    "product_id": "224",
+    "url": "https://www.bigc.co.th/v2/product/yok-palm-olein-1-l.224",
+    "bigc_category": "pantry-and-ingredients"
+  },
+  {
+    "name_th": "กุ๊ก น้ำมันพืช (น้ำมันถั่วเหลือง) 1 ล.",
+    "name_en": "",
+    "brand": "กุ๊ก",
+    "category": "Food & Dining",
+    "price_thb": 66.0,
+    "barcode": "8850180010045",
+    "source": "bigc",
+    "product_id": "226",
+    "url": "https://www.bigc.co.th/v2/product/cook-soybean-oil-1-liter.226",
+    "bigc_category": "pantry-and-ingredients"
+  },
+  {
+    "name_th": "วังขนาย น้ำตาลทรายขาว 1 กก.",
+    "name_en": "",
+    "brand": "วังขนาย",
+    "category": "Food & Dining",
+    "price_thb": 26.0,
+    "barcode": "8850456100326",
+    "source": "bigc",
+    "product_id": "560",
+    "url": "https://www.bigc.co.th/v2/product/wangkanai-sugar-white-color-1-kg.560",
+    "bigc_category": "pantry-and-ingredients"
+  },
+  {
+    "name_th": "มิตรผล น้ำตาลทรายขาวบริสุทธิ์ 1 กก.",
+    "name_en": "",
+    "brand": "มิตรผล",
+    "category": "Food & Dining",
+    "price_thb": null,
+    "barcode": "8850256100106",
+    "source": "bigc",
+    "product_id": "562",
+    "url": "https://www.bigc.co.th/v2/product/mitrphol-sugar-white-color-1-kg.562",
+    "bigc_category": "pantry-and-ingredients"
+  },
+  {
+    "name_th": "ไวไว บะหมี่กึ่งสำเร็จรูป สูตรดั้งเดิม 57 ก. แพ็ค 10",
+    "name_en": "",
+    "brand": "ไวไว",
+    "category": "Food & Dining",
+    "price_thb": 62.0,
+    "barcode": "8850100101211",
+    "source": "bigc",
+    "product_id": "620",
+    "url": "https://www.bigc.co.th/v2/product/wai-wai-instant-noodles-original-57-g-pack-10.620",
+    "bigc_category": "pantry-and-ingredients"
+  },
+  {
+    "name_th": "มาม่า บะหมี่กึ่งสำเร็จรูป รสต้มยำกุ้ง 55 ก. แพ็ค 10",
+    "name_en": "",
+    "brand": "มาม่า",
+    "category": "Food & Dining",
+    "price_thb": null,
+    "barcode": "8850987101205",
+    "source": "bigc",
+    "product_id": "623",
+    "url": "https://www.bigc.co.th/v2/product/mama-instant-noodles-tom-yum-kung-flavor-55-g-pack-10-8850987101205.623",
+    "bigc_category": "pantry-and-ingredients"
+  },
+  {
+    "name_th": "ตราฉัตร ข้าวหอมผสม 5 กก.",
+    "name_en": "",
+    "brand": "ตราฉัตร",
+    "category": "Food & Dining",
+    "price_thb": 159.0,
+    "barcode": "8850187000018",
+    "source": "bigc",
+    "product_id": "690",
+    "url": "https://www.bigc.co.th/v2/product/royal-umbrella-jasmine-rice-70-white-rice-30-5-kg.690",
+    "bigc_category": "pantry-and-ingredients"
+  },
+  {
+    "name_th": "ข้าวเบญจรงค์ ข้าวหอมมะลิ 100% 5 กก.",
+    "name_en": "",
+    "brand": "ข้าวเบญจรงค์",
+    "category": "Food & Dining",
+    "price_thb": 243.0,
+    "barcode": "8851702199989",
+    "source": "bigc",
+    "product_id": "705",
+    "url": "https://www.bigc.co.th/v2/product/banjarong-jasmine-rice-5-gg.705",
+    "bigc_category": "pantry-and-ingredients"
+  },
+  {
+    "name_th": "มรกต น้ำมันปาล์ม 1 ล.",
+    "name_en": "",
+    "brand": "มรกต",
+    "category": "Food & Dining",
+    "price_thb": 52.0,
+    "barcode": "8850154000041",
+    "source": "bigc",
+    "product_id": "706",
+    "url": "https://www.bigc.co.th/v2/product/morakot-palm-olein-1-l.706",
+    "bigc_category": "pantry-and-ingredients"
+  },
+  {
+    "name_th": "องุ่น น้ำมันถั่วเหลือง 1 ล.",
+    "name_en": "",
+    "brand": "องุ่น",
+    "category": "Food & Dining",
+    "price_thb": 66.0,
+    "barcode": "8850210000039",
+    "source": "bigc",
+    "product_id": "711",
+    "url": "https://www.bigc.co.th/v2/product/angoon-brand-100-refined-soybean-oil-1-l.711",
+    "bigc_category": "pantry-and-ingredients"
+  },
+  {
+    "name_th": "แสนดี ข้าวขาวคัดพิเศษ 100% 5 กก.",
+    "name_en": "",
+    "brand": "แสนดี",
+    "category": "Food & Dining",
+    "price_thb": 155.0,
+    "barcode": "8851042220053",
+    "source": "bigc",
+    "product_id": "741",
+    "url": "https://www.bigc.co.th/v2/product/sandee-thai-white-rice-100-5-kg.741",
+    "bigc_category": "pantry-and-ingredients"
+  },
+  {
+    "name_th": "มรกต น้ำมันถั่วเหลือง 1 ล.",
+    "name_en": "",
+    "brand": "มรกต",
+    "category": "Food & Dining",
+    "price_thb": 66.0,
+    "barcode": "8850154051043",
+    "source": "bigc",
+    "product_id": "759",
+    "url": "https://www.bigc.co.th/v2/product/morakot-100-soybean-oil-1-l.759",
+    "bigc_category": "pantry-and-ingredients"
+  },
+  {
+    "name_th": "ทับทิม น้ำมันพืช (น้ำมันปาล์ม) 1 ล.",
+    "name_en": "",
+    "brand": "ทับทิม",
+    "category": "Food & Dining",
+    "price_thb": 50.0,
+    "barcode": "8858776300259",
+    "source": "bigc",
+    "product_id": "766",
+    "url": "https://www.bigc.co.th/v2/product/tubtim-palm-olein-1-l.766",
+    "bigc_category": "pantry-and-ingredients"
+  },
+  {
+    "name_th": "ไวไว บะหมี่กึ่งสำเร็จรูป รสหอยลายผัดฉ่า 60 ก. แพ็ค 10",
+    "name_en": "",
+    "brand": "ไวไว",
+    "category": "Food & Dining",
+    "price_thb": 62.0,
+    "barcode": "8850100005304",
+    "source": "bigc",
+    "product_id": "839",
+    "url": "https://www.bigc.co.th/v2/product/wai-wai-instant-noodles-60-g-pack-10.839",
+    "bigc_category": "pantry-and-ingredients"
+  },
+  {
+    "name_th": "พนมรุ้ง ข้าวขาวหอมมะลิ 100% 5 กก.",
+    "name_en": "",
+    "brand": "พนมรุ้ง",
+    "category": "Food & Dining",
+    "price_thb": 173.0,
+    "barcode": "8854158840009",
+    "source": "bigc",
+    "product_id": "857",
+    "url": "https://www.bigc.co.th/v2/product/phanomrung-jusmin-rice-th-ng-kul-vegetation-5-kgs.857",
+    "bigc_category": "pantry-and-ingredients"
+  },
+  {
+    "name_th": "คนอร์ ซุปรสหมูก้อนกึ่งสำเร็จรูป 120 ก.",
+    "name_en": "",
+    "brand": "คนอร์",
+    "category": "Food & Dining",
+    "price_thb": null,
+    "barcode": "8850144206590",
+    "source": "bigc",
+    "product_id": "1826",
+    "url": "https://www.bigc.co.th/v2/product/knorr-pork-bouillon-cubes-120-g.1826",
+    "bigc_category": "pantry-and-ingredients"
+  },
+  {
+    "name_th": "แม่ครัว ซอสหอยนางรม 600 มล.",
+    "name_en": "",
+    "brand": "แม่ครัว",
+    "category": "Food & Dining",
+    "price_thb": 53.0,
+    "barcode": "8850038400035",
+    "source": "bigc",
+    "product_id": "18138",
+    "url": "https://www.bigc.co.th/v2/product/maekrua-oyster-sauce-600-ml.18138",
+    "bigc_category": "pantry-and-ingredients"
+  },
+  {
+    "name_th": "หยก น้ำมันถั่วเหลืองผ่านกรรมวิธี 1 ล.",
+    "name_en": "",
+    "brand": "หยก",
+    "category": "Food & Dining",
+    "price_thb": 66.0,
+    "barcode": "8850581111709",
+    "source": "bigc",
+    "product_id": "18481",
+    "url": "https://www.bigc.co.th/v2/product/yok-refined-soybean-oil-1-ltr-8850581111709.18481",
+    "bigc_category": "pantry-and-ingredients"
+  },
+  {
+    "name_th": "คิง น้ำมันรำข้าว 100% โอรีซานอล 10,000 ppm 1 ล.",
+    "name_en": "",
+    "brand": "คิง",
+    "category": "Food & Dining",
+    "price_thb": 77.0,
+    "barcode": "8850282111015",
+    "source": "bigc",
+    "product_id": "19597",
+    "url": "https://www.bigc.co.th/v2/product/king-100-rice-oil-size-1-l.19597",
+    "bigc_category": "pantry-and-ingredients"
+  },
+  {
+    "name_th": "คริสตอลลา น้ำตาลทรายขาว 1 กก.",
+    "name_en": "",
+    "brand": "คริสตอลลา",
+    "category": "Food & Dining",
+    "price_thb": 26.0,
+    "barcode": "8857122281174",
+    "source": "bigc",
+    "product_id": "54779",
+    "url": "https://www.bigc.co.th/v2/product/cristalla-original-white-sugar-1-kg.54779",
+    "bigc_category": "pantry-and-ingredients"
+  },
+  {
+    "name_th": "ข้าวเบญจรงค์ ข้าวหอม 100% 5 กก.",
+    "name_en": "",
+    "brand": "ข้าวเบญจรงค์",
+    "category": "Food & Dining",
+    "price_thb": 152.0,
+    "barcode": "8851702196100",
+    "source": "bigc",
+    "product_id": "64111",
+    "url": "https://www.bigc.co.th/v2/product/benjarong-rice-thai-fragrant-rice-100-5-kg.64111",
+    "bigc_category": "pantry-and-ingredients"
+  },
+  {
+    "name_th": "ไทยวงศ์ทอง ข้าวขาวหอมมะลิ 5 กก.",
+    "name_en": "",
+    "brand": "ไทยวงศ์ทอง",
+    "category": "Food & Dining",
+    "price_thb": 235.0,
+    "barcode": "8858868803194",
+    "source": "bigc",
+    "product_id": "85478",
+    "url": "https://www.bigc.co.th/v2/product/thaiwongthong-hom-mali-rice-5-kg.85478",
+    "bigc_category": "pantry-and-ingredients"
+  },
+  {
+    "name_th": "บิ๊กซี แฮปปี้ ไพรซ์ โปร น้ำมันปาล์มโอเลอิน 1 ล.",
+    "name_en": "",
+    "brand": "บิ๊กซี",
+    "category": "Food & Dining",
+    "price_thb": 50.0,
+    "barcode": "8858776301607",
+    "source": "bigc",
+    "product_id": "89842",
+    "url": "https://www.bigc.co.th/v2/product/big-c-happy-price-pro-refined-palm-olein-from-pericarp-1-l.89842",
+    "bigc_category": "pantry-and-ingredients"
+  },
+  {
+    "name_th": "มาม่า บะหมี่กึ่งสำเร็จรูป รสต้มยำกุ้งน้ำข้น 55 ก. แพ็ค 10",
+    "name_en": "",
+    "brand": "มาม่า",
+    "category": "Food & Dining",
+    "price_thb": 65.0,
+    "barcode": "8850987142444",
+    "source": "bigc",
+    "product_id": "91704",
+    "url": "https://www.bigc.co.th/v2/product/mama-instant-noodles-shrimp-creamy-tom-yum-flavor-55g-pack-10.91704",
+    "bigc_category": "pantry-and-ingredients"
+  },
+  {
+    "name_th": "ไทยวงศ์ทอง ข้าวหอมผสม 5 กก.",
+    "name_en": "",
+    "brand": "ไทยวงศ์ทอง",
+    "category": "Food & Dining",
+    "price_thb": 155.0,
+    "barcode": "8858868803576",
+    "source": "bigc",
+    "product_id": "100111",
+    "url": "https://www.bigc.co.th/v2/product/thaiwongthong-mixed-fragrant-rice-5-kg.100111",
+    "bigc_category": "pantry-and-ingredients"
+  },
+  {
+    "name_th": "ไก่แจ้ ข้าวหอมมะลิ 100% 5 กก.",
+    "name_en": "",
+    "brand": "ไก่แจ้",
+    "category": "Food & Dining",
+    "price_thb": null,
+    "barcode": "8858901605181",
+    "source": "bigc",
+    "product_id": "3092936",
+    "url": "https://www.bigc.co.th/v2/product/kaijae-hom-mali-rice-100-5-kg.3092936",
+    "bigc_category": "pantry-and-ingredients"
+  },
+  {
+    "name_th": "ไทยวงศ์ทอง ข้าวขาวคัดพิเศษ 5 กก.",
+    "name_en": "",
+    "brand": "ไทยวงศ์ทอง",
+    "category": "Food & Dining",
+    "price_thb": 100.0,
+    "barcode": "8858868804054",
+    "source": "bigc",
+    "product_id": "5526086",
+    "url": "https://www.bigc.co.th/v2/product/thaiwongthong-sorted-white-rice-5-kg.5526086",
+    "bigc_category": "pantry-and-ingredients"
+  },
+  {
+    "name_th": "ข้าวแสนดี ข้าวหอมมะลิ 100% 5 กก.",
+    "name_en": "",
+    "brand": "ข้าวแสนดี",
+    "category": "Food & Dining",
+    "price_thb": 165.0,
+    "barcode": "8851042001058",
+    "source": "bigc",
+    "product_id": "7431917",
+    "url": "https://www.bigc.co.th/v2/product/sandee-rice-jasmine-rice-100-5-kg.7431917",
+    "bigc_category": "pantry-and-ingredients"
+  },
+  {
+    "name_th": "ไทยวงศ์ทอง ข้าวหอมผสมคุณภาพ 5 กก.",
+    "name_en": "",
+    "brand": "ไทยวงศ์ทอง",
+    "category": "Food & Dining",
+    "price_thb": null,
+    "barcode": "8858868804801",
+    "source": "bigc",
+    "product_id": "11691798",
+    "url": "https://www.bigc.co.th/v2/product/thaiwongthong-fragrant-rice-5-kg.11691798",
+    "bigc_category": "pantry-and-ingredients"
+  },
+  {
+    "name_th": "ปิ่นเงิน ข้าวหอมมะลิแท้ 100% ขนาด 1 กก.",
+    "name_en": "",
+    "brand": "ปิ่นเงิน",
+    "category": "Food & Dining",
+    "price_thb": null,
+    "barcode": "8852943003097",
+    "source": "bigc",
+    "product_id": "13024596",
+    "url": "https://www.bigc.co.th/v2/product/pinnguen-hom-mali-rice-100-1-kg.13024596",
+    "bigc_category": "pantry-and-ingredients"
+  },
+  {
+    "name_th": "เลย์ ร็อค มันฝรั่งแท้ทอดกรอบแผ่นหยัก รสมันฝรั่งแท้ 69 ก.",
+    "name_en": "",
+    "brand": "เลย์",
+    "category": "Food & Dining",
+    "price_thb": null,
+    "barcode": "8850718801121",
+    "source": "bigc",
+    "product_id": "183",
+    "url": "https://www.bigc.co.th/v2/product/lays-rock-ridged-potato-chips-original-flavor-69-g.183",
+    "bigc_category": "snacks-and-desserts"
+  },
+  {
+    "name_th": "คอนเน่ ขนมข้าวโพดกรอบ รสเข้มข้น 12 ก. แพ็ค 12",
+    "name_en": "",
+    "brand": "คอนเน่",
+    "category": "Food & Dining",
+    "price_thb": null,
+    "barcode": "8851727903011",
+    "source": "bigc",
+    "product_id": "187",
+    "url": "https://www.bigc.co.th/v2/product/cornae-crispy-corn-chips-original-flavor-12-g-pack-12.187",
+    "bigc_category": "snacks-and-desserts"
+  },
+  {
+    "name_th": "ทาโร ปลาสวรรค์ รสเข้มข้น 5 ก. x 12 ชิ้น",
+    "name_en": "",
+    "brand": "ทาโร",
+    "category": "Food & Dining",
+    "price_thb": 50.0,
+    "barcode": "8852044150225",
+    "source": "bigc",
+    "product_id": "191",
+    "url": "https://www.bigc.co.th/v2/product/taro-snack-spicy-flavor-5-g-pack-12.191",
+    "bigc_category": "snacks-and-desserts"
+  },
+  {
+    "name_th": "ปาร์ตี้ ขนมอบกรอบเคลือบเนยคาราเมล 12 ก. แพ็ค 12",
+    "name_en": "",
+    "brand": "ปาร์ตี้",
+    "category": "Food & Dining",
+    "price_thb": 50.0,
+    "barcode": "8851004101604",
+    "source": "bigc",
+    "product_id": "196",
+    "url": "https://www.bigc.co.th/v2/product/party-caramel-coated-sweet-potato-snack-12-g-pack-12.196",
+    "bigc_category": "snacks-and-desserts"
+  },
+  {
+    "name_th": "แคมปัส ขนมอบกรอบ เคลือบรสช็อกโกแลต 12 ก. แพ็ค 12",
+    "name_en": "",
+    "brand": "แคมปัส",
+    "category": "Food & Dining",
+    "price_thb": 49.5,
+    "barcode": "8851004203605",
+    "source": "bigc",
+    "product_id": "200",
+    "url": "https://www.bigc.co.th/v2/product/campus-chocolate-coated-yam-chips-12-g-12-pcs.200",
+    "bigc_category": "snacks-and-desserts"
+  },
+  {
+    "name_th": "เบง เบง เวเฟอร์สอดไส้ครีมเคลือบคาราเมลช็อกโกแลตและข้าวพอง 20 ก. แพ็ค 12",
+    "name_en": "",
+    "brand": "เบง",
+    "category": "Food & Dining",
+    "price_thb": 48.0,
+    "barcode": "8850580200060",
+    "source": "bigc",
+    "product_id": "221",
+    "url": "https://www.bigc.co.th/v2/product/beng-beng-wafers-coated-with-caramel-crispy-rice-and-chocolate-20-g-pack-12.221",
+    "bigc_category": "snacks-and-desserts"
+  },
+  {
+    "name_th": "ยูโร่ พัฟเค้กสอดไส้ครีมคัสตาร์ด 204 ก.",
+    "name_en": "",
+    "brand": "ยูโร่",
+    "category": "Food & Dining",
+    "price_thb": 60.0,
+    "barcode": "8850425002927",
+    "source": "bigc",
+    "product_id": "595",
+    "url": "https://www.bigc.co.th/v2/product/euro-custard-cake-204-g.595",
+    "bigc_category": "snacks-and-desserts"
+  },
+  {
+    "name_th": "เลย์ มันฝรั่งแท้ทอดกรอบแผ่นเรียบ รสมันฝรั่งแท้ 13 ก. แพ็ค 12",
+    "name_en": "",
+    "brand": "เลย์",
+    "category": "Food & Dining",
+    "price_thb": 53.0,
+    "barcode": "8850718701155",
+    "source": "bigc",
+    "product_id": "600",
+    "url": "https://www.bigc.co.th/v2/product/lay-s-potato-chip-13-g-pack-12.600",
+    "bigc_category": "snacks-and-desserts"
+  },
+  {
+    "name_th": "เลย์ ร็อค มันฝรั่งแท้ทอดกรอบแผ่นหยัก รสมันฝรั่งแท้ 13 ก. แพ็ค 12",
+    "name_en": "",
+    "brand": "เลย์",
+    "category": "Food & Dining",
+    "price_thb": 53.0,
+    "barcode": "8850718701063",
+    "source": "bigc",
+    "product_id": "603",
+    "url": "https://www.bigc.co.th/v2/product/lay-s-potato-chip-original-13-g-pack-12.603",
+    "bigc_category": "snacks-and-desserts"
+  },
+  {
+    "name_th": "เลย์ มันฝรั่งแท้ทอดกรอบแผ่นเรียบ รสโนริสาหร่าย 12 ก. แพ็ค 12",
+    "name_en": "",
+    "brand": "เลย์",
+    "category": "Food & Dining",
+    "price_thb": 53.0,
+    "barcode": "8850718701872",
+    "source": "bigc",
+    "product_id": "651",
+    "url": "https://www.bigc.co.th/v2/product/lays-potato-chips-nori-seaweed-flavor-12-g-pack-12.651",
+    "bigc_category": "snacks-and-desserts"
+  },
+  {
+    "name_th": "เลย์ มันฝรั่งแท้ทอดกรอบแผ่นเรียบ รสมันฝรั่งแท้ 69 ก.",
+    "name_en": "",
+    "brand": "เลย์",
+    "category": "Food & Dining",
+    "price_thb": null,
+    "barcode": "8850718801213",
+    "source": "bigc",
+    "product_id": "920",
+    "url": "https://www.bigc.co.th/v2/product/lays-classic-potato-chips-original-flavor-69-g.920",
+    "bigc_category": "snacks-and-desserts"
+  },
+  {
+    "name_th": "เลย์ มันฝรั่งแท้ทอดกรอบแผ่นเรียบ รสโนริสาหร่าย 69 ก.",
+    "name_en": "",
+    "brand": "เลย์",
+    "category": "Food & Dining",
+    "price_thb": null,
+    "barcode": "8850718801893",
+    "source": "bigc",
+    "product_id": "924",
+    "url": "https://www.bigc.co.th/v2/product/lays-classic-potato-chips-nori-seaweed-flavor-69-g.924",
+    "bigc_category": "snacks-and-desserts"
+  },
+  {
+    "name_th": "เลย์ ร็อค มันฝรั่งแท้ทอดกรอบแผ่นหยัก กลิ่นเอ็กซ์ตร้าบาร์บีคิว 69 ก.",
+    "name_en": "",
+    "brand": "เลย์",
+    "category": "Food & Dining",
+    "price_thb": null,
+    "barcode": "8850718801138",
+    "source": "bigc",
+    "product_id": "925",
+    "url": "https://www.bigc.co.th/v2/product/lays-rock-ridged-potato-chips-extra-barbeque-flavor-69-g.925",
+    "bigc_category": "snacks-and-desserts"
+  },
+  {
+    "name_th": "สแน็คแจ็ค ขนมถั่วลันเตาอบกรอบ 15 ก. แพ็ค 12",
+    "name_en": "",
+    "brand": "สแน็คแจ็ค",
+    "category": "Food & Dining",
+    "price_thb": 48.0,
+    "barcode": "8852052420105",
+    "source": "bigc",
+    "product_id": "1013",
+    "url": "https://www.bigc.co.th/v2/product/snack-jack-green-pea-snack-15-g-pack-12.1013",
+    "bigc_category": "snacks-and-desserts"
+  },
+  {
+    "name_th": "เทสโต มันฝรั่งแท้ทอดกรอบชนิดแผ่นหยัก รสปูผัดผงกะหรี่ 11 ก. แพ็ค 12",
+    "name_en": "",
+    "brand": "เทสโต",
+    "category": "Food & Dining",
+    "price_thb": 50.0,
+    "barcode": "8851004406600",
+    "source": "bigc",
+    "product_id": "1014",
+    "url": "https://www.bigc.co.th/v2/product/tasto-ridge-cut-potato-chips-crab-curry-flavor-11-g-pack-12.1014",
+    "bigc_category": "snacks-and-desserts"
+  },
+  {
+    "name_th": "เทสโต มันฝรั่งแท้ทอดกรอบชนิดแผ่นเรียบ รสสาหร่ายญี่ปุ่น 11 ก. แพ็ค 12",
+    "name_en": "",
+    "brand": "เทสโต",
+    "category": "Food & Dining",
+    "price_thb": 50.0,
+    "barcode": "8851004417606",
+    "source": "bigc",
+    "product_id": "1024",
+    "url": "https://www.bigc.co.th/v2/product/tasto-potato-chips-japanese-seaweed-flavor-11-g-pack-12.1024",
+    "bigc_category": "snacks-and-desserts"
+  },
+  {
+    "name_th": "แจ็กซ์ มันฝรั่งแท่งทอดกรอบ พร้อมซอสมะเขือเทศ 12 ก. แพ็ค 12",
+    "name_en": "",
+    "brand": "แจ็กซ์",
+    "category": "Food & Dining",
+    "price_thb": 49.0,
+    "barcode": "8851016120693",
+    "source": "bigc",
+    "product_id": "1025",
+    "url": "https://www.bigc.co.th/v2/product/jaxx-potato-chip-tomato-sauce-12-g-pack-12.1025",
+    "bigc_category": "snacks-and-desserts"
+  },
+  {
+    "name_th": "โอรีโอ ดับเบิลสตัฟ คุกกี้แซนวิชรสช็อกโกแลตสอดไส้ครีมกลิ่นวานิลลา 119.1 ก.",
+    "name_en": "",
+    "brand": "โอรีโอ",
+    "category": "Food & Dining",
+    "price_thb": null,
+    "barcode": "4893049130007",
+    "source": "bigc",
+    "product_id": "1376",
+    "url": "https://www.bigc.co.th/v2/product/oreo-double-stuf-119-1-g-4893049130007.1376",
+    "bigc_category": "snacks-and-desserts"
+  },
+  {
+    "name_th": "ตราเสือดาว น้ำเกลือล้างแผลแอลพีซาไลน์ 500 มล.",
+    "name_en": "",
+    "brand": "ตราเสือดาว",
+    "category": "Health & Wellness",
+    "price_thb": null,
+    "barcode": "8853042001724",
+    "source": "bigc",
+    "product_id": "65266",
+    "url": "https://www.bigc.co.th/v2/product/leopard-lpsaline-500-ml.65266",
+    "bigc_category": "pure-pharmacy"
+  },
+  {
+    "name_th": "ไทเกอร์พล๊าส พลาสเตอร์ใสกันน้ำ 10 ชิ้น",
+    "name_en": "",
+    "brand": "ไทเกอร์พล๊าส",
+    "category": "Health & Wellness",
+    "price_thb": null,
+    "barcode": "8850672338176",
+    "source": "bigc",
+    "product_id": "65434",
+    "url": "https://www.bigc.co.th/v2/product/tigerplast-transparent-waterproof-finger-plaster-10-ea.65434",
+    "bigc_category": "pure-pharmacy"
+  },
+  {
+    "name_th": "เซียงเพียว ยาหม่องเหลือง 12 ก.",
+    "name_en": "",
+    "brand": "เซียงเพียว",
+    "category": "Health & Wellness",
+    "price_thb": null,
+    "barcode": "8850109001215",
+    "source": "bigc",
+    "product_id": "66617",
+    "url": "https://www.bigc.co.th/v2/product/siang-pure-yellow-balm-12-g.66617",
+    "bigc_category": "pure-pharmacy"
+  },
+  {
+    "name_th": "เซียงเพียว ยาดม สูตร 2 ขนาด 2 ซีซี",
+    "name_en": "",
+    "brand": "เซียงเพียว",
+    "category": "Health & Wellness",
+    "price_thb": null,
+    "barcode": "8850109011412",
+    "source": "bigc",
+    "product_id": "66620",
+    "url": "https://www.bigc.co.th/v2/product/siang-pure-inhaler-formula-2-size-2-cc.66620",
+    "bigc_category": "pure-pharmacy"
+  },
+  {
+    "name_th": "โยคีในรัศมีวงกลม แป้งสูตรเย็น 60 ก.",
+    "name_en": "",
+    "brand": "โยคีในรัศมีวงกลม",
+    "category": "Health & Wellness",
+    "price_thb": null,
+    "barcode": "8858672900027",
+    "source": "bigc",
+    "product_id": "73465",
+    "url": "https://www.bigc.co.th/v2/product/yoki-radiant-powder-60-g.73465",
+    "bigc_category": "pure-pharmacy"
+  },
+  {
+    "name_th": "โมริฮาน่า มิลค์ แอนด์ คอลลาเจน เฟเชียล สครับ 100 ก.",
+    "name_en": "",
+    "brand": "โมริฮาน่า",
+    "category": "Health & Wellness",
+    "price_thb": 110.0,
+    "barcode": "2000006480002",
+    "source": "bigc",
+    "product_id": "73478",
+    "url": "https://www.bigc.co.th/v2/product/morihana-milk-collagen-facial-scrub-100-g.73478",
+    "bigc_category": "pure-pharmacy"
+  },
+  {
+    "name_th": "มายเซพติค มายบาซิน ซิ้งค์ เม็ดอมผสมซิงค์ รสส้ม 10 ก. 1 ซอง 10 เม็ด",
+    "name_en": "",
+    "brand": "มายเซพติค",
+    "category": "Health & Wellness",
+    "price_thb": null,
+    "barcode": "8852294022013",
+    "source": "bigc",
+    "product_id": "73484",
+    "url": "https://www.bigc.co.th/v2/product/myseptic-mybacin-lozenges-with-zinc-orange-flavor-10-tablets.73484",
+    "bigc_category": "pure-pharmacy"
+  },
+  {
+    "name_th": "เซราวี มอยซ์เจอร์ไรซิ่ง โลชั่น 88 มล.",
+    "name_en": "",
+    "brand": "เซราวี",
+    "category": "Health & Wellness",
+    "price_thb": 290.0,
+    "barcode": "3337875597364",
+    "source": "bigc",
+    "product_id": "83607",
+    "url": "https://www.bigc.co.th/v2/product/cerave-moisturizing-lotion-88-ml.83607",
+    "bigc_category": "pure-pharmacy"
+  },
+  {
+    "name_th": "เทสซีแลป ชุดตรวจโควิด-19 แบบ 2in1",
+    "name_en": "",
+    "brand": "เทสซีแลป",
+    "category": "Health & Wellness",
+    "price_thb": null,
+    "barcode": "8859237202136",
+    "source": "bigc",
+    "product_id": "7348886",
+    "url": "https://www.bigc.co.th/v2/product/testsealabs-atk-2in1-covid-19-set.7348886",
+    "bigc_category": "pure-pharmacy"
+  },
+  {
+    "name_th": "อินเตอร์ฟาร์มา ผลิตภัณฑ์เสริมอาหาร โปรแบค ไบโอแอคทีฟ 2 แคปซูล",
+    "name_en": "",
+    "brand": "อินเตอร์ฟาร์มา",
+    "category": "Health & Wellness",
+    "price_thb": null,
+    "barcode": "8858922702074",
+    "source": "bigc",
+    "product_id": "8140977",
+    "url": "https://www.bigc.co.th/v2/product/interpharma-probac-bioactive-capsule-dietary-supplement-product-2-capsule.8140977",
+    "bigc_category": "pure-pharmacy"
+  },
+  {
+    "name_th": "โปร น้ำยาล้างจาน สูตรพลังมะนาว 400 มล.",
+    "name_en": "",
+    "brand": "โปร",
+    "category": "Groceries",
+    "price_thb": 10.5,
+    "barcode": "8850002024694",
+    "source": "bigc",
+    "product_id": "3660",
+    "url": "https://www.bigc.co.th/v2/product/pro-dish-washing-liquid-lime-400ml.3660",
+    "bigc_category": "household-essentials"
+  },
+  {
+    "name_th": "ซิลค์ จัมโบ้ กระดาษทิชชู x 6 ชิ้น",
+    "name_en": "",
+    "brand": "ซิลค์",
+    "category": "Groceries",
+    "price_thb": 54.0,
+    "barcode": "8850046111060",
+    "source": "bigc",
+    "product_id": "3870",
+    "url": "https://www.bigc.co.th/v2/product/zilk-jumbo-tissue-paper-6-rolls.3870",
+    "bigc_category": "household-essentials"
+  },
+  {
+    "name_th": "ไฮยีน น้ำยาปรับผ้านุ่ม กลิ่นซอฟท์ ไวท์ 500 มล. แพ็ค 3",
+    "name_en": "",
+    "brand": "ไฮยีน",
+    "category": "Groceries",
+    "price_thb": 49.5,
+    "barcode": "8850092260385",
+    "source": "bigc",
+    "product_id": "3976",
+    "url": "https://www.bigc.co.th/v2/product/hygiene-fabric-softener-soft-white-scent-500-ml-pack-3.3976",
+    "bigc_category": "household-essentials"
+  },
+  {
+    "name_th": "ไฮยีน น้ำยาปรับผ้านุ่ม กลิ่นไวโอเล็ต ซอฟท์ 500 มล. แพ็ค 3",
+    "name_en": "",
+    "brand": "ไฮยีน",
+    "category": "Groceries",
+    "price_thb": 49.5,
+    "barcode": "8850092266509",
+    "source": "bigc",
+    "product_id": "3977",
+    "url": "https://www.bigc.co.th/v2/product/hygiene-fabric-softener-violet-soft-scent-500-ml-pack-3.3977",
+    "bigc_category": "household-essentials"
+  },
+  {
+    "name_th": "ไฮยีน น้ำยาปรับผ้านุ่ม กลิ่นพิ้งค์สวีท 500 มล. แพ็ค 3",
+    "name_en": "",
+    "brand": "ไฮยีน",
+    "category": "Groceries",
+    "price_thb": 49.5,
+    "barcode": "8850092262501",
+    "source": "bigc",
+    "product_id": "3978",
+    "url": "https://www.bigc.co.th/v2/product/hygiene-fabric-softener-pink-sweet-scent-500-ml-pack-3.3978",
+    "bigc_category": "household-essentials"
+  },
+  {
+    "name_th": "เปา วินวอช ลิควิด น้ำยาซักผ้า 620 มล.",
+    "name_en": "",
+    "brand": "เปา",
+    "category": "Groceries",
+    "price_thb": null,
+    "barcode": "8850002024823",
+    "source": "bigc",
+    "product_id": "12782",
+    "url": "https://www.bigc.co.th/v2/product/pao-win-wash-liquid-detergent-620-ml.12782",
+    "bigc_category": "household-essentials"
+  },
+  {
+    "name_th": "บรีส เอกเซล น้ำยาซักผ้าสูตรเข้มข้น 1200 มล.",
+    "name_en": "",
+    "brand": "บรีส",
+    "category": "Groceries",
+    "price_thb": null,
+    "barcode": "8851932364959",
+    "source": "bigc",
+    "product_id": "13394",
+    "url": "https://www.bigc.co.th/v2/product/breeze-excel-concentrated-liquid-laundry-detergent-1200-ml.13394",
+    "bigc_category": "household-essentials"
+  },
+  {
+    "name_th": "ซิลค์ จัมโบ้ กระดาษทิชชู่ x 32+8 ชิ้น",
+    "name_en": "",
+    "brand": "ซิลค์",
+    "category": "Groceries",
+    "price_thb": 289.0,
+    "barcode": "8850046339068",
+    "source": "bigc",
+    "product_id": "1503030",
+    "url": "https://www.bigc.co.th/v2/product/zilk-jumbo-tissue-paper-32-8-rolls.1503030",
+    "bigc_category": "household-essentials"
+  },
+  {
+    "name_th": "โปร น้ำยาล้างจาน สูตรทรอปิคอลพาวเวอร์ 400 มล.",
+    "name_en": "",
+    "brand": "โปร",
+    "category": "Groceries",
+    "price_thb": 10.5,
+    "barcode": "8850002034099",
+    "source": "bigc",
+    "product_id": "1697037",
+    "url": "https://www.bigc.co.th/v2/product/pro-dishwashing-liquid-tropical-power-400-ml.1697037",
+    "bigc_category": "household-essentials"
+  },
+  {
+    "name_th": "โปร น้ำยาล้างจาน สูตรเบอร์รี่พาวเวอร์ 400 มล.",
+    "name_en": "",
+    "brand": "โปร",
+    "category": "Groceries",
+    "price_thb": 10.5,
+    "barcode": "8850002032255",
+    "source": "bigc",
+    "product_id": "1697038",
+    "url": "https://www.bigc.co.th/v2/product/pro-dishwashing-liquid-berry-power-400-ml.1697038",
+    "bigc_category": "household-essentials"
+  },
+  {
+    "name_th": "ไฟน์ไลน์ พลัส ผลิตภัณฑ์ซักผ้าชนิดน้ำ กลิ่นซันนี่โกลด์ 1250 มล.",
+    "name_en": "",
+    "brand": "ไฟน์ไลน์",
+    "category": "Groceries",
+    "price_thb": null,
+    "barcode": "8851989034737",
+    "source": "bigc",
+    "product_id": "2155497",
+    "url": "https://www.bigc.co.th/v2/product/fineline-plus-liquid-laundry-detergent-sunny-gold-scent-1250-ml.2155497",
+    "bigc_category": "household-essentials"
+  },
+  {
+    "name_th": "เบสิโค กระทะอะลูมิเนียมเคลือบเซรามิก รุ่น T133AK-0118 ขนาดกระทะ 18 ซม. สีครีม",
+    "name_en": "",
+    "brand": "เบสิโค",
+    "category": "Groceries",
+    "price_thb": 159.0,
+    "barcode": "8852384011811",
+    "source": "bigc",
+    "product_id": "4645345",
+    "url": "https://www.bigc.co.th/v2/product/besico-ceramic-coated-aluminum-pan-model-t133ak-0118-pan-size-18-cm-cream-color.4645345",
+    "bigc_category": "household-essentials"
+  },
+  {
+    "name_th": "ซิลค์ กระดาษทิชชู่อเนกประสงค์แบบแขวน หนาพิเศษ 4 ชั้น 320 แผ่น",
+    "name_en": "",
+    "brand": "ซิลค์",
+    "category": "Groceries",
+    "price_thb": 59.0,
+    "barcode": "8850046340033",
+    "source": "bigc",
+    "product_id": "10482332",
+    "url": "https://www.bigc.co.th/v2/product/zilk-4-ply-hanging-tissue-320-sheets.10482332",
+    "bigc_category": "household-essentials"
+  },
+  {
+    "name_th": "บิ๊กซี แฮปปี้ ไพรซ์ กระดาษชำระชนิด 2 ชั้น แพ็ค 24+6 ม้วน",
+    "name_en": "",
+    "brand": "บิ๊กซี",
+    "category": "Groceries",
+    "price_thb": 94.0,
+    "barcode": "8850046340194",
+    "source": "bigc",
+    "product_id": "11269773",
+    "url": "https://www.bigc.co.th/v2/product/big-c-happy-price-2-ply-soft-roll-tissue-pack-24-6-rolls-8850046340194.11269773",
+    "bigc_category": "household-essentials"
+  },
+  {
+    "name_th": "บิ๊กซี แฮปปี้ ไพรซ์ น้ำยาล้างจาาน กลิ่นมะนาว 400 มล.",
+    "name_en": "",
+    "brand": "บิ๊กซี",
+    "category": "Groceries",
+    "price_thb": null,
+    "barcode": "8858718755772",
+    "source": "bigc",
+    "product_id": "11391801",
+    "url": "https://www.bigc.co.th/v2/product/big-c-happy-price-dishwashing-lemon-scent-400-ml.11391801",
+    "bigc_category": "household-essentials"
+  },
+  {
+    "name_th": "ไฟน์ไลน์ น้ำยาปรับผ้านุ่ม กลิ่นซันไชน์ โกลด์ 1,300 มล.",
+    "name_en": "",
+    "brand": "ไฟน์ไลน์",
+    "category": "Groceries",
+    "price_thb": 89.0,
+    "barcode": "8851989036946",
+    "source": "bigc",
+    "product_id": "11818189",
+    "url": "https://www.bigc.co.th/v2/product/fineline-fabric-softener-sunshine-gold-1-300-ml.11818189",
+    "bigc_category": "household-essentials"
+  },
+  {
+    "name_th": "ไฟน์ไลน์ น้ำยาปรับผ้านุ่ม กลิ่นเจนเทิล ไวท์ 1,300 มล.",
+    "name_en": "",
+    "brand": "ไฟน์ไลน์",
+    "category": "Groceries",
+    "price_thb": 89.0,
+    "barcode": "8851989036274",
+    "source": "bigc",
+    "product_id": "11818190",
+    "url": "https://www.bigc.co.th/v2/product/fineline-fabric-softener-gentle-white-1-300-ml.11818190",
+    "bigc_category": "household-essentials"
+  },
+  {
+    "name_th": "บรีส น้ำยาซักผ้าสูตรเข้มข้น เพียว แฮปปี้ 550 มล.",
+    "name_en": "",
+    "brand": "บรีส",
+    "category": "Groceries",
+    "price_thb": 79.0,
+    "barcode": "8851932494397",
+    "source": "bigc",
+    "product_id": "13247820",
+    "url": "https://www.bigc.co.th/v2/product/breeze-pure-happy-fabric-detergent-550-ml.13247820",
+    "bigc_category": "household-essentials"
+  },{
+    "name_th": "",
+    "name_en": "Vaseline Healthy Bright Superfood Freshlock Peach 480 Ml.",
+    "brand": "VASELINE",
+    "category": "Health & Wellness",
+    "price_thb": 329.0,
+    "source": "watsons-th",
+    "product_code": "295733",
+    "url": "https://www.watsons.co.th/en/vaseline-vaseline-healthy-bright-superfood-freshlock-peach-480-ml./p/BP_295733",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Nivea BodySerum Extra Bright 10Super Vitamins Skin Foods Glow Perfection SPF15 170Ml.",
+    "brand": "NIVEA",
+    "category": "Health & Wellness",
+    "price_thb": 84.0,
+    "source": "watsons-th",
+    "product_code": "296355",
+    "url": "https://www.watsons.co.th/en/nivea-nivea-bodyserum-extra-bright-10super-vitamins-skin-foods-glow-perfection-spf15-170ml./p/BP_296355",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Nivea BodySerum Extra Bright 10Super Vitamins Skin Foods Glow Perfection SPF15 300Ml.",
+    "brand": "NIVEA",
+    "category": "Health & Wellness",
+    "price_thb": 259.0,
+    "source": "watsons-th",
+    "product_code": "296356",
+    "url": "https://www.watsons.co.th/en/nivea-nivea-bodyserum-extra-bright-10super-vitamins-skin-foods-glow-perfection-spf15-300ml./p/BP_296356",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Vaseline Gluta-Hya Serum Burst Lotion Overnight Radiance Repair 170 Ml.",
+    "brand": "VASELINE",
+    "category": "Health & Wellness",
+    "price_thb": 99.0,
+    "source": "watsons-th",
+    "product_code": "297878",
+    "url": "https://www.watsons.co.th/en/vaseline-vaseline-gluta-hya-serum-burst-lotion-overnight-radiance-repair-170-ml./p/BP_297878",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Vaseline Gluta Hya Serum Burst Lotion Dewy Radiance 290 Ml.Twin Pack",
+    "brand": "VASELINE",
+    "category": "Health & Wellness",
+    "price_thb": 289.0,
+    "source": "watsons-th",
+    "product_code": "297884",
+    "url": "https://www.watsons.co.th/en/vaseline-vaseline-gluta-hya-serum-burst-lotion-dewy-radiance-290-ml.twin-pack/p/BP_297884",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Vaseline Healthy Bright Gluta Hya Serum Burst UV Lotion Flawless Glow 300Ml.Twin Pack",
+    "brand": "VASELINE",
+    "category": "Health & Wellness",
+    "price_thb": 289.0,
+    "source": "watsons-th",
+    "product_code": "297885",
+    "url": "https://www.watsons.co.th/en/vaseline-vaseline-healthy-bright-gluta-hya-serum-burst-uv-lotion-flawless-glow-300ml.twin-pack/p/BP_297885",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Nivea Vitamin Body Serum Extra Bright Super C+ 300 Ml.",
+    "brand": "NIVEA",
+    "category": "Health & Wellness",
+    "price_thb": 289.0,
+    "source": "watsons-th",
+    "product_code": "298637",
+    "url": "https://www.watsons.co.th/en/nivea-nivea-vitamin-body-serum-extra-bright-super-c-300-ml./p/BP_298637",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "MizuMi PHA 10 Smooth Body Serum 250 g.",
+    "brand": "MIZUMI",
+    "category": "Health & Wellness",
+    "price_thb": 279.0,
+    "source": "watsons-th",
+    "product_code": "305072",
+    "url": "https://www.watsons.co.th/en/mizumi-mizumi-pha-10-smooth-body-serum-250-g./p/BP_305072",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Citra Bright Baby Blueberry SPF50 PA++++ 170 Ml.",
+    "brand": "CITRA",
+    "category": "Health & Wellness",
+    "price_thb": 189.0,
+    "source": "watsons-th",
+    "product_code": "309582",
+    "url": "https://www.watsons.co.th/en/citra-citra-bright-baby-blueberry-spf50-pa-170-ml./p/BP_309582",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Clear Nose White Body Derma Serum Concentrated 250 Ml.",
+    "brand": "CLEAR NOSE",
+    "category": "Health & Wellness",
+    "price_thb": 294.0,
+    "source": "watsons-th",
+    "product_code": "310427",
+    "url": "https://www.watsons.co.th/en/clear-nose-clear-nose-white-body-derma-serum-concentrated-250-ml./p/BP_310427",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Vaseline Healthy Bright Daily Protection Brightening Serum SPF50+PA++++ 290 Ml.Twin P",
+    "brand": "VASELINE",
+    "category": "Health & Wellness",
+    "price_thb": 329.0,
+    "source": "watsons-th",
+    "product_code": "311819",
+    "url": "https://www.watsons.co.th/en/vaseline-vaseline-healthy-bright-daily-protection-brightening-serum-spf50-pa-290-ml.twin-p/p/BP_311819",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Vaseline Gluta-Hya Serum Burst Lotion Smoothing Perfector 290 Ml.Twin Pack",
+    "brand": "VASELINE",
+    "category": "Health & Wellness",
+    "price_thb": 299.0,
+    "source": "watsons-th",
+    "product_code": "312433",
+    "url": "https://www.watsons.co.th/en/vaseline-vaseline-gluta-hya-serum-burst-lotion-smoothing-perfector-290-ml.twin-pack/p/BP_312433",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Benice Body Serum Glow Perfume Lychee Rose Collagen 170 Ml.",
+    "brand": "BENICE",
+    "category": "Health & Wellness",
+    "price_thb": 185.0,
+    "source": "watsons-th",
+    "product_code": "313567",
+    "url": "https://www.watsons.co.th/en/benice-benice-body-serum-glow-perfume-lychee-rose-collagen-170-ml./p/BP_313567",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Benice Body Serum Glow Perfume Pomelo Poppy Collagen 170 Ml.",
+    "brand": "BENICE",
+    "category": "Health & Wellness",
+    "price_thb": 185.0,
+    "source": "watsons-th",
+    "product_code": "313569",
+    "url": "https://www.watsons.co.th/en/benice-benice-body-serum-glow-perfume-pomelo-poppy-collagen-170-ml./p/BP_313569",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Skinoxy Body Serum Pro B3 AHA Concentrate 275 G.",
+    "brand": "SKINOXY",
+    "category": "Health & Wellness",
+    "price_thb": 189.0,
+    "source": "watsons-th",
+    "product_code": "313571",
+    "url": "https://www.watsons.co.th/en/skinoxy-skinoxy-body-serum-pro-b3-aha-concentrate-275-g./p/BP_313571",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Skinoxy Body Serum Pro AHA BHA Concentrate 275 G.",
+    "brand": "SKINOXY",
+    "category": "Health & Wellness",
+    "price_thb": 189.0,
+    "source": "watsons-th",
+    "product_code": "313572",
+    "url": "https://www.watsons.co.th/en/skinoxy-skinoxy-body-serum-pro-aha-bha-concentrate-275-g./p/BP_313572",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Skinoxy Body Serum Pro Retinol Concentrate 275 G.",
+    "brand": "SKINOXY",
+    "category": "Health & Wellness",
+    "price_thb": 189.0,
+    "source": "watsons-th",
+    "product_code": "314168",
+    "url": "https://www.watsons.co.th/en/skinoxy-skinoxy-body-serum-pro-retinol-concentrate-275-g./p/BP_314168",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Vaseline Healthy Bright Extra Cooling Serum SPF50+ PA++++ 265 Ml.Twin Pack",
+    "brand": "VASELINE",
+    "category": "Health & Wellness",
+    "price_thb": 329.0,
+    "source": "watsons-th",
+    "product_code": "315402",
+    "url": "https://www.watsons.co.th/en/vaseline-vaseline-healthy-bright-extra-cooling-serum-spf50-pa-265-ml.twin-pack/p/BP_315402",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Vaseline Gluta-Hya Serum Burst Lotion Spotless Glow 170 Ml.",
+    "brand": "VASELINE",
+    "category": "Health & Wellness",
+    "price_thb": 99.0,
+    "source": "watsons-th",
+    "product_code": "315420",
+    "url": "https://www.watsons.co.th/en/vaseline-vaseline-gluta-hya-serum-burst-lotion-spotless-glow-170-ml./p/BP_315420",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Vaseline Gluta-Hya Serum Burst Lotion Spotless Glow 300 Ml.",
+    "brand": "VASELINE",
+    "category": "Health & Wellness",
+    "price_thb": 279.0,
+    "source": "watsons-th",
+    "product_code": "315422",
+    "url": "https://www.watsons.co.th/en/vaseline-vaseline-gluta-hya-serum-burst-lotion-spotless-glow-300-ml./p/BP_315422",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Nivea Body Serum Extra Bright 10 Super Vitamins Skin Foods Youth Perfect 300 Ml.",
+    "brand": "NIVEA",
+    "category": "Health & Wellness",
+    "price_thb": 259.0,
+    "source": "watsons-th",
+    "product_code": "317882",
+    "url": "https://www.watsons.co.th/en/nivea-nivea-body-serum-extra-bright-10-super-vitamins-skin-foods-youth-perfect-300-ml./p/BP_317882",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Benice Body Serum Grape Exo Bright SPF 50+ PA++++ 150 Ml.",
+    "brand": "BENICE",
+    "category": "Health & Wellness",
+    "price_thb": 249.0,
+    "source": "watsons-th",
+    "product_code": "319065",
+    "url": "https://www.watsons.co.th/en/benice-benice-body-serum-grape-exo-bright-spf-50-pa-150-ml./p/BP_319065",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Lavojoy Body Serum Let It Glow 30 Ml.",
+    "brand": "LAVOJOY",
+    "category": "Health & Wellness",
+    "price_thb": 89.0,
+    "source": "watsons-th",
+    "product_code": "319370",
+    "url": "https://www.watsons.co.th/en/lavojoy-lavojoy-body-serum-let-it-glow-30-ml./p/BP_319370",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Twelve Plus Perfume Serum Bright Smooth White Flower 180 G.",
+    "brand": "TWELVE PLUS",
+    "category": "Health & Wellness",
+    "price_thb": 238.0,
+    "source": "watsons-th",
+    "product_code": "319874",
+    "url": "https://www.watsons.co.th/en/twelve-plus-twelve-plus-perfume-serum-bright-smooth-white-flower-180-g./p/BP_319874",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Twelve Plus Perfume Serum Bright Smooth Damask Rose 180 G.",
+    "brand": "TWELVE PLUS",
+    "category": "Health & Wellness",
+    "price_thb": 238.0,
+    "source": "watsons-th",
+    "product_code": "319903",
+    "url": "https://www.watsons.co.th/en/twelve-plus-twelve-plus-perfume-serum-bright-smooth-damask-rose-180-g./p/BP_319903",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Twelve Plus Perfume Serum Bright Smooth Cattleya Orchid 180 G.",
+    "brand": "TWELVE PLUS",
+    "category": "Health & Wellness",
+    "price_thb": 238.0,
+    "source": "watsons-th",
+    "product_code": "319907",
+    "url": "https://www.watsons.co.th/en/twelve-plus-twelve-plus-perfume-serum-bright-smooth-cattleya-orchid-180-g./p/BP_319907",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Nivea Vitamin Body Serum Extra Bright Super C+ 300 Ml. Set",
+    "brand": "NIVEA",
+    "category": "Health & Wellness",
+    "price_thb": 179.0,
+    "source": "watsons-th",
+    "product_code": "322625",
+    "url": "https://www.watsons.co.th/en/nivea-nivea-vitamin-body-serum-extra-bright-super-c-300-ml.-set/p/BP_322625",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Nivea Body Serum Extra Bright 10Super Vitamins Skin Foods Glow Perfection 300Ml.Set",
+    "brand": "NIVEA",
+    "category": "Health & Wellness",
+    "price_thb": 179.0,
+    "source": "watsons-th",
+    "product_code": "322626",
+    "url": "https://www.watsons.co.th/en/nivea-nivea-body-serum-extra-bright-10super-vitamins-skin-foods-glow-perfection-300ml.set/p/BP_322626",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Lavojoy Body Serun Tone Up Delicate Rose 00 Silk White SPF50 PA++++ 180 Ml.",
+    "brand": "LAVOJOY",
+    "category": "Health & Wellness",
+    "price_thb": 199.0,
+    "source": "watsons-th",
+    "product_code": "322742",
+    "url": "https://www.watsons.co.th/en/lavojoy-lavojoy-body-serun-tone-up-delicate-rose-00-silk-white-spf50-pa-180-ml./p/BP_322742",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Lavojoy Body Serun Tone Up Delicate Rose 02 Warm Sand SPF50 PA++++ 180 Ml.",
+    "brand": "LAVOJOY",
+    "category": "Health & Wellness",
+    "price_thb": 199.0,
+    "source": "watsons-th",
+    "product_code": "322743",
+    "url": "https://www.watsons.co.th/en/lavojoy-lavojoy-body-serun-tone-up-delicate-rose-02-warm-sand-spf50-pa-180-ml./p/BP_322743",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Nivea Vitamin Body Serum Extra Bright 10Super Vitamins Super C+ 170Ml. Free Bag Blue",
+    "brand": "NIVEA",
+    "category": "Health & Wellness",
+    "price_thb": 359.0,
+    "source": "watsons-th",
+    "product_code": "322921",
+    "url": "https://www.watsons.co.th/en/nivea-nivea-vitamin-body-serum-extra-bright-10super-vitamins-super-c-170ml.-free-bag-blue/p/BP_322921",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Nivea Vitamin Body Serum Extra Bright Super C+ CE 170 Ml. Free Bag Pink",
+    "brand": "NIVEA",
+    "category": "Health & Wellness",
+    "price_thb": 349.0,
+    "source": "watsons-th",
+    "product_code": "322935",
+    "url": "https://www.watsons.co.th/en/nivea-nivea-vitamin-body-serum-extra-bright-super-c-ce-170-ml.-free-bag-pink/p/BP_322935",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Skinoxy Body Serum Pro Resorcinol Concentrate 275 G.",
+    "brand": "SKINOXY",
+    "category": "Health & Wellness",
+    "price_thb": 189.0,
+    "source": "watsons-th",
+    "product_code": "324708",
+    "url": "https://www.watsons.co.th/en/skinoxy-skinoxy-body-serum-pro-resorcinol-concentrate-275-g./p/BP_324708",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Cathy Doll Body Serum Niacin Bright 250 Ml.",
+    "brand": "CATHY DOLL",
+    "category": "Health & Wellness",
+    "price_thb": 229.0,
+    "source": "watsons-th",
+    "product_code": "326850",
+    "url": "https://www.watsons.co.th/en/cathy-doll-cathy-doll-body-serum-niacin-bright-250-ml./p/BP_326850",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Cathy Doll Body Serum Urea Moist 250 Ml.",
+    "brand": "CATHY DOLL",
+    "category": "Health & Wellness",
+    "price_thb": 229.0,
+    "source": "watsons-th",
+    "product_code": "326851",
+    "url": "https://www.watsons.co.th/en/cathy-doll-cathy-doll-body-serum-urea-moist-250-ml./p/BP_326851",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Cathy Doll Body Serum PDRN Glow 250 Ml.",
+    "brand": "CATHY DOLL",
+    "category": "Health & Wellness",
+    "price_thb": 229.0,
+    "source": "watsons-th",
+    "product_code": "326852",
+    "url": "https://www.watsons.co.th/en/cathy-doll-cathy-doll-body-serum-pdrn-glow-250-ml./p/BP_326852",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Pinnara Coconut Oil With Vitamin CE 85 ml.",
+    "brand": "PINNARA",
+    "category": "Health & Wellness",
+    "price_thb": 290.0,
+    "source": "watsons-th",
+    "product_code": "327330",
+    "url": "https://www.watsons.co.th/en/pinnara-pinnara-coconut-oil-with-vitamin-ce-85-ml./p/BP_327330",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Pinnara Coconut Oil Serum Pack 15ml. X3",
+    "brand": "PINNARA",
+    "category": "Health & Wellness",
+    "price_thb": 239.0,
+    "source": "watsons-th",
+    "product_code": "327331",
+    "url": "https://www.watsons.co.th/en/pinnara-pinnara-coconut-oil-serum-pack-15ml.-x3/p/BP_327331",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Benice Miracle Rose Pdrn Anti-Aging Body Serum 150 Ml.",
+    "brand": "BENICE",
+    "category": "Health & Wellness",
+    "price_thb": 349.0,
+    "source": "watsons-th",
+    "product_code": "328993",
+    "url": "https://www.watsons.co.th/en/benice-benice-miracle-rose-pdrn-anti-aging-body-serum-150-ml./p/BP_328993",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Vaseline Gluta-Hya PDRN Serum Burst Lotion 290 Ml.Twin Pack",
+    "brand": "VASELINE",
+    "category": "Health & Wellness",
+    "price_thb": 399.0,
+    "source": "watsons-th",
+    "product_code": "329059",
+    "url": "https://www.watsons.co.th/en/vaseline-vaseline-gluta-hya-pdrn-serum-burst-lotion-290-ml.twin-pack/p/BP_329059",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Vaseline Gluta-Hya PDRN Serum Burst Lotion 170 Ml.",
+    "brand": "VASELINE",
+    "category": "Health & Wellness",
+    "price_thb": 99.0,
+    "source": "watsons-th",
+    "product_code": "329060",
+    "url": "https://www.watsons.co.th/en/vaseline-vaseline-gluta-hya-pdrn-serum-burst-lotion-170-ml./p/BP_329060",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Vaseline Gluta-Hya PDRN Serum Burst Lotion 300 Ml.",
+    "brand": "VASELINE",
+    "category": "Health & Wellness",
+    "price_thb": 144.0,
+    "source": "watsons-th",
+    "product_code": "329061",
+    "url": "https://www.watsons.co.th/en/vaseline-vaseline-gluta-hya-pdrn-serum-burst-lotion-300-ml./p/BP_329061",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Celimax Heart Pink Tone Up Sun Cream SPF50+ PA++++ 40 Ml.",
+    "brand": "CELIMAX",
+    "category": "Health & Wellness",
+    "price_thb": 440.0,
+    "source": "watsons-th",
+    "product_code": "329149",
+    "url": "https://www.watsons.co.th/en/celimax-celimax-heart-pink-tone-up-sun-cream-spf50-pa-40-ml./p/BP_329149",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Celimax The Real Noni Bubble Cleanser 155 Ml.",
+    "brand": "CELIMAX",
+    "category": "Health & Wellness",
+    "price_thb": 399.0,
+    "source": "watsons-th",
+    "product_code": "329152",
+    "url": "https://www.watsons.co.th/en/celimax-celimax-the-real-noni-bubble-cleanser-155-ml./p/BP_329152",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Ongredients Deep Calming Cream 50 Ml.",
+    "brand": "ONGREDIENTS",
+    "category": "Health & Wellness",
+    "price_thb": 1029.0,
+    "source": "watsons-th",
+    "product_code": "329175",
+    "url": "https://www.watsons.co.th/en/ongredients-ongredients-deep-calming-cream-50-ml./p/BP_329175",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Fation Nosca9 Cleansingel 200 Ml.",
+    "brand": "FATION",
+    "category": "Health & Wellness",
+    "price_thb": 520.0,
+    "source": "watsons-th",
+    "product_code": "329202",
+    "url": "https://www.watsons.co.th/en/fation-fation-nosca9-cleansingel-200-ml./p/BP_329202",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "D-nee Body Serum Sweet Aura 170 Ml.",
+    "brand": "D-NEE",
+    "category": "Health & Wellness",
+    "price_thb": 199.0,
+    "source": "watsons-th",
+    "product_code": "329761",
+    "url": "https://www.watsons.co.th/en/d-nee-d-nee-body-serum-sweet-aura-170-ml./p/BP_329761",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Vivite Body Serum White Anti-Aging SPF50+ PA++++ 150 Ml.",
+    "brand": "VIVITE",
+    "category": "Health & Wellness",
+    "price_thb": 169.0,
+    "source": "watsons-th",
+    "product_code": "329762",
+    "url": "https://www.watsons.co.th/en/vivite-vivite-body-serum-white-anti-aging-spf50-pa-150-ml./p/BP_329762",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Benice Body Serum Anti-Cellulite Firm Bounce Collagen 160 Ml.",
+    "brand": "BENICE",
+    "category": "Health & Wellness",
+    "price_thb": 169.0,
+    "source": "watsons-th",
+    "product_code": "329764",
+    "url": "https://www.watsons.co.th/en/benice-benice-body-serum-anti-cellulite-firm-bounce-collagen-160-ml./p/BP_329764",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Vivite Body Serum Super Hya 170 Ml.",
+    "brand": "VIVITE",
+    "category": "Health & Wellness",
+    "price_thb": 159.0,
+    "source": "watsons-th",
+    "product_code": "329765",
+    "url": "https://www.watsons.co.th/en/vivite-vivite-body-serum-super-hya-170-ml./p/BP_329765",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Benice Body Serum Tokyo Ichigo Tone Up 160 Ml.",
+    "brand": "BENICE",
+    "category": "Health & Wellness",
+    "price_thb": 169.0,
+    "source": "watsons-th",
+    "product_code": "329766",
+    "url": "https://www.watsons.co.th/en/benice-benice-body-serum-tokyo-ichigo-tone-up-160-ml./p/BP_329766",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Lavojoy Let It Glow 10 Niacinamide Brightening Serum Gel 180 Ml.",
+    "brand": "LAVOJOY",
+    "category": "Health & Wellness",
+    "price_thb": 299.0,
+    "source": "watsons-th",
+    "product_code": "329783",
+    "url": "https://www.watsons.co.th/en/lavojoy-lavojoy-let-it-glow-10-niacinamide-brightening-serum-gel-180-ml./p/BP_329783",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Cathy Doll Body Serum Cica Aloe Vera Soothing 175 G.",
+    "brand": "CATHY DOLL",
+    "category": "Health & Wellness",
+    "price_thb": 199.0,
+    "source": "watsons-th",
+    "product_code": "330249",
+    "url": "https://www.watsons.co.th/en/cathy-doll-cathy-doll-body-serum-cica-aloe-vera-soothing-175-g./p/BP_330249",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Cathy Doll Body Serum Vit C Aloe Vera Soothing 175 G.",
+    "brand": "CATHY DOLL",
+    "category": "Health & Wellness",
+    "price_thb": 199.0,
+    "source": "watsons-th",
+    "product_code": "330290",
+    "url": "https://www.watsons.co.th/en/cathy-doll-cathy-doll-body-serum-vit-c-aloe-vera-soothing-175-g./p/BP_330290",
+    "watsons_category": "serum"
+  },
+  {
+    "name_th": "",
+    "name_en": "Strepsil Regular HHR 8 Tab",
+    "brand": "STREPSILS",
+    "category": "Health & Wellness",
+    "price_thb": 45.0,
+    "source": "watsons-th",
+    "product_code": "158014",
+    "url": "https://www.watsons.co.th/en/strepsils-strepsil-regular-hhr-8-tab/p/BP_158014",
+    "watsons_category": "vitamins-minerals"
+  },
+  {
+    "name_th": "",
+    "name_en": "Strepsil Honey Lemon HHR 8 Tab",
+    "brand": "STREPSILS",
+    "category": "Health & Wellness",
+    "price_thb": 45.0,
+    "source": "watsons-th",
+    "product_code": "158015",
+    "url": "https://www.watsons.co.th/en/strepsils-strepsil-honey-lemon-hhr-8-tab/p/BP_158015",
+    "watsons_category": "vitamins-minerals"
+  },
+  {
+    "name_th": "",
+    "name_en": "Strepsil Vitamin C-100 HHR 8 Tab",
+    "brand": "STREPSILS",
+    "category": "Health & Wellness",
+    "price_thb": 45.0,
+    "source": "watsons-th",
+    "product_code": "158016",
+    "url": "https://www.watsons.co.th/en/strepsils-strepsil-vitamin-c-100-hhr-8-tab/p/BP_158016",
+    "watsons_category": "vitamins-minerals"
+  },
+  {
+    "name_th": "",
+    "name_en": "Strepsil Cool HHR 8 Tab",
+    "brand": "STREPSILS",
+    "category": "Health & Wellness",
+    "price_thb": 45.0,
+    "source": "watsons-th",
+    "product_code": "158058",
+    "url": "https://www.watsons.co.th/en/strepsils-strepsil-cool-hhr-8-tab/p/BP_158058",
+    "watsons_category": "vitamins-minerals"
+  },
+  {
+    "name_th": "",
+    "name_en": "Vistra B Complex plus Ginseng 30 tab",
+    "brand": "VISTRA",
+    "category": "Health & Wellness",
+    "price_thb": 370.0,
+    "source": "watsons-th",
+    "product_code": "250957",
+    "url": "https://www.watsons.co.th/en/vistra-vistra-b-complex-plus-ginseng-30-tab/p/BP_250957",
+    "watsons_category": "vitamins-minerals"
+  },
+  {
+    "name_th": "",
+    "name_en": "Vistra Salmon Fish Oil 1000mg 20Tab",
+    "brand": "VISTRA",
+    "category": "Health & Wellness",
+    "price_thb": 130.0,
+    "source": "watsons-th",
+    "product_code": "266089",
+    "url": "https://www.watsons.co.th/en/vistra-vistra-salmon-fish-oil-1000mg-20tab/p/BP_266089",
+    "watsons_category": "vitamins-minerals"
+  },
+  {
+    "name_th": "",
+    "name_en": "Vistra Salmon Fish Oil 1000 mg 45 Cap",
+    "brand": "VISTRA",
+    "category": "Health & Wellness",
+    "price_thb": 180.0,
+    "source": "watsons-th",
+    "product_code": "267721",
+    "url": "https://www.watsons.co.th/en/vistra-vistra-salmon-fish-oil-1000-mg-45-cap/p/BP_267721",
+    "watsons_category": "vitamins-minerals"
+  },
+  {
+    "name_th": "",
+    "name_en": "Vistra EveningPrimroseOil 1000 mg 45cap",
+    "brand": "VISTRA",
+    "category": "Health & Wellness",
+    "price_thb": 265.0,
+    "source": "watsons-th",
+    "product_code": "267722",
+    "url": "https://www.watsons.co.th/en/vistra-vistra-eveningprimroseoil-1000-mg-45cap/p/BP_267722",
+    "watsons_category": "vitamins-minerals"
+  },
+  {
+    "name_th": "",
+    "name_en": "Vistra L-Cysteine Plus Biotin 30 Tab",
+    "brand": "VISTRA",
+    "category": "Health & Wellness",
+    "price_thb": 420.0,
+    "source": "watsons-th",
+    "product_code": "267727",
+    "url": "https://www.watsons.co.th/en/vistra-vistra-l-cysteine-plus-biotin-30-tab/p/BP_267727",
+    "watsons_category": "vitamins-minerals"
+  },
+  {
+    "name_th": "",
+    "name_en": "Vistra Bilberry Extract Plus 30 cap",
+    "brand": "VISTRA",
+    "category": "Health & Wellness",
+    "price_thb": 510.0,
+    "source": "watsons-th",
+    "product_code": "267735",
+    "url": "https://www.watsons.co.th/en/vistra-vistra-bilberry-extract-plus-30-cap/p/BP_267735",
+    "watsons_category": "vitamins-minerals"
+  },
+  {
+    "name_th": "",
+    "name_en": "Tigerplast High Heel Buddy 9s",
+    "brand": "TIGERPLAST",
+    "category": "Health & Wellness",
+    "price_thb": 37.0,
+    "source": "watsons-th",
+    "product_code": "261940",
+    "url": "https://www.watsons.co.th/en/tigerplast-tigerplast-high-heel-buddy-9s/p/BP_261940",
+    "watsons_category": "hygienic-mask"
+  },
+  {
+    "name_th": "",
+    "name_en": "Bye Bye Fever Adult 6s",
+    "brand": "BYE BYE FEVER",
+    "category": "Health & Wellness",
+    "price_thb": 119.0,
+    "source": "watsons-th",
+    "product_code": "277653",
+    "url": "https://www.watsons.co.th/en/bye-bye-fever-bye-bye-fever-adult-6s/p/BP_277653",
+    "watsons_category": "hygienic-mask"
+  },
+  {
+    "name_th": "",
+    "name_en": "Bye Bye Fever Supercool 6Pcs",
+    "brand": "BYE BYE FEVER",
+    "category": "Health & Wellness",
+    "price_thb": 109.0,
+    "source": "watsons-th",
+    "product_code": "277654",
+    "url": "https://www.watsons.co.th/en/bye-bye-fever-bye-bye-fever-supercool-6pcs/p/BP_277654",
+    "watsons_category": "hygienic-mask"
+  },
+  {
+    "name_th": "",
+    "name_en": "LinkCare 3D Face Mask 3's (Mix Color) (Limit 4 Pcs / Orders)",
+    "brand": "LINKCARE",
+    "category": "Health & Wellness",
+    "price_thb": 55.0,
+    "source": "watsons-th",
+    "product_code": "289297",
+    "url": "https://www.watsons.co.th/en/linkcare-linkcare-3d-face-mask-3-s-mix-color-limit-4-pcs-orders/p/BP_289297",
+    "watsons_category": "hygienic-mask"
+  },
+  {
+    "name_th": "",
+    "name_en": "LinkCare 3D Face Mask 1's (Mix Color) (Limit 4 Pcs / Orders)",
+    "brand": "LINKCARE",
+    "category": "Health & Wellness",
+    "price_thb": 19.0,
+    "source": "watsons-th",
+    "product_code": "289298",
+    "url": "https://www.watsons.co.th/en/linkcare-linkcare-3d-face-mask-1-s-mix-color-limit-4-pcs-orders/p/BP_289298",
+    "watsons_category": "hygienic-mask"
+  },
+  {
+    "name_th": "",
+    "name_en": "Unicharm 3D Fit Mask Kid White 5'S",
+    "brand": "UNICHARM",
+    "category": "Health & Wellness",
+    "price_thb": 89.0,
+    "source": "watsons-th",
+    "product_code": "289859",
+    "url": "https://www.watsons.co.th/en/unicharm-unicharm-3d-fit-mask-kid-white-5-s/p/BP_289859",
+    "watsons_category": "hygienic-mask"
+  }
+]
