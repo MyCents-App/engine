@@ -1,0 +1,53 @@
+# Extraction service: fine-tuned Qwen3.5-2B (QLoRA, 4-bit) + FastAPI.
+#
+# CUDA base image. The checkpoint is 4-bit quantized through bitsandbytes,
+# which is a CUDA library — there is no CPU path for this image. See DEPLOY.md
+# if the target machine has no NVIDIA GPU.
+FROM nvidia/cuda:12.8.0-cudnn-runtime-ubuntu22.04
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    # Weights live on a mounted volume, never inside the image: they are
+    # multi-GB and would make every rebuild pull them again.
+    HF_HOME=/cache/huggingface
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        python3.11 python3.11-venv python3-pip git curl \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN ln -sf /usr/bin/python3.11 /usr/local/bin/python && \
+    ln -sf /usr/bin/python3.11 /usr/local/bin/python3
+
+WORKDIR /srv
+
+# Dependencies first, so editing source does not re-resolve the whole
+# torch/unsloth stack on every build.
+COPY requirements.lock.txt requirements-api.txt ./
+
+# The PyTorch CUDA index is REQUIRED, not an optimisation. requirements.lock
+# pins torch==2.11.0+cu128, and that local version simply does not exist on
+# PyPI — the install fails outright without this. (Even a version that did
+# resolve would be the CPU-only wheel, which cannot load a 4-bit checkpoint.)
+ARG TORCH_INDEX=https://download.pytorch.org/whl/cu128
+RUN python -m pip install --no-cache-dir --upgrade pip && \
+    python -m pip install --no-cache-dir --extra-index-url ${TORCH_INDEX} \
+        -r requirements.lock.txt && \
+    python -m pip install --no-cache-dir -r requirements-api.txt
+
+COPY app/ ./app/
+COPY postprocess.py prompts.py ./
+
+RUN useradd --create-home --uid 1000 engine && \
+    mkdir -p /cache/huggingface && chown -R engine:engine /srv /cache
+USER engine
+
+EXPOSE 8000
+HEALTHCHECK --interval=30s --timeout=5s --start-period=180s --retries=3 \
+    CMD curl -fsS http://127.0.0.1:8000/health || exit 1
+
+# One worker, deliberately: the process holds the model in VRAM and
+# serializes generation. A second worker would load a second copy of the
+# weights and race for the same GPU.
+CMD ["python", "-m", "uvicorn", "app.api:app", \
+     "--host", "0.0.0.0", "--port", "8000", "--workers", "1"]

@@ -9,5 +9,7 @@ checkpoints/
 reports/*_raw.jsonl
 reports/*_examples.jsonl
 
-# Local deployment config: holds ENGINE_API_KEY. Never commit.
+# Local deployment config. .env holds ENGINE_API_KEY; docker/.env holds that
+# plus NGROK_AUTHTOKEN. Never commit either — .env.example is the template.
 .env
+docker/.env

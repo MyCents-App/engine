@@ -3,8 +3,14 @@
 .venv/
 .venv-test/
 
-# Secrets. train/.env holds ENGINE_API_KEY.
+# Secrets. train/.env holds ENGINE_API_KEY; train/docker/.env also holds
+# NGROK_AUTHTOKEN. The bare pattern matches at any depth, which is intended.
 .env
+
+# Worktrees checked out inside the repo for comparing against another branch
+# (see the `toPull` folder). They carry their own .git file and must not be
+# added to this one.
+toPull/
 
 # Python
 __pycache__/
@@ -24,6 +30,11 @@ unsloth_compiled_cache/
 # The fine-tuned checkpoint: multi-GB, versioned out of band.
 train/checkpoints/
 
+# The hand-written gold labels for the review set: real shop names, real item
+# names and real totals off real receipts. Same rule as the photos themselves.
+# eval_review.py reads it from disk and does not need it in git.
+SuryaOCR/receipts.json
+
 # Receipt photos and OCR output. Real receipts are personal data — never commit
 # them. The .gitkeep files preserve the directory layout.
 SuryaOCR/data/*
@@ -38,6 +49,13 @@ SuryaOCR/data/output/*
 # the accuracy numbers quoted in RECEIPT_API.md.
 train/reports/*_raw.jsonl
 train/reports/*_examples.jsonl
+
+# ...but the review-run per-line tables carry real shop names and real item
+# names off real receipts, which is personal data and is never committed. The
+# aggregates beside them (metrics, scorecard, summary) hold only numbers and
+# are fine.
+train/reports/review_eval/per_item.csv
+train/reports/review_eval/per_receipt.csv
 
 # Editor / OS
 .claude/

@@ -1,7 +1,24 @@
 # Receipt Extraction API
 
-Send a photo of a receipt, get back structured JSON — merchant, date, line items with prices,
-tax and the total. Runs on a GPU workstation, exposed over a Cloudflare tunnel.
+Send a photo of a receipt — or two or three photos of a long one — and get back structured
+JSON: merchant, date, line items with prices, tax and the total. Runs on a GPU workstation,
+exposed over a Cloudflare tunnel.
+
+---
+
+## If you already have this working
+
+**Nothing you have breaks.** Multi-photo was added without removing anything: a one-photo
+request returns exactly the fields it always did, plus `engine.pages`. `ocrTexts` was already
+an array and still has one entry. `/ready` gained `max_pages`. Both upload styles and
+`/v1/extract-text` are unchanged.
+
+Two things to know:
+
+- **Sending 2+ images used to be a `400`. It is now a valid multi-page request.** Only matters
+  if you branch on that error.
+- **To use multi-photo you have to opt in** — let the user take several shots and append them
+  all to the same FormData. See [Long receipts](#long-receipts-several-photos-one-receipt).
 
 ---
 
@@ -28,15 +45,14 @@ header you get **401**. `/health` and `/ready` are open and need no key.
 
 ## `POST /v1/extract` — photo in, JSON out
 
-The endpoint you actually need. **One photo per request.** Send it either way — both produce
-identical results.
+The endpoint you actually need. Send the image **any** of these ways — all produce identical
+results.
 
 ### Option A: FormData (normal upload)
 
 ```js
 const fd = new FormData();
 fd.append("files", photoFile);         // any field name works: files, file, image...
-                                       // exactly one file — two is a 400
 
 const res = await fetch(BASE + "/v1/extract", {
   method: "POST",
@@ -56,11 +72,36 @@ const res = await fetch(BASE + "/v1/extract", {
 });
 ```
 
-JPEG, PNG, WEBP and iPhone HEIC all work. Max **25 MB**.
+JPEG, PNG, WEBP and iPhone HEIC all work. Max **25 MB** per image.
 
-Attaching more than one image returns **400**. That is deliberate: silently processing the
-first would lose a receipt the user believed they had sent. Long receipts must be captured in
-a single frame — if the text does not fit the model's budget you get a **413** saying so.
+### Long receipts: several photos, one receipt
+
+A long receipt doesn't fit in one frame. Append more than one file — up to **5** — and they
+are treated as pages of a single receipt.
+
+```js
+fd.append("files", page1);
+fd.append("files", page2);
+fd.append("files", page3);             // capture order is load-bearing — never shuffle
+```
+
+**Tell the user to overlap the shots.** Ending photo 2 a line or two above where photo 1
+finished is the only way to guarantee nothing falls in the gap between frames, and the
+repeated lines cost you nothing: each page is OCR'd separately, the pages are stitched into
+one text with the overlap removed, and the model is called **once** on the result. An item
+whose name sits at the bottom of one frame and whose price sits at the top of the next is
+rejoined correctly.
+
+Two rules for the client:
+
+1. **Send them in capture order, top of the receipt first.** Overlap is detected by looking
+   for the start of each page at the end of the ones before it. Shuffled photos aren't
+   de-duplicated, and the items come back out of order.
+2. **One receipt per request.** Two different receipts posted as pages produces nonsense —
+   and if they're from the same shop, they may even be merged into one.
+
+The stitch is reported back in `engine.stitch` so you can see what happened (see
+[Response](#response)).
 
 ---
 
@@ -77,8 +118,15 @@ fetch(BASE + "/v1/extract-text", {
 });
 ```
 
-Byte-identical prompting and post-processing to `/v1/extract`, so a result here is exactly
-what the photo path would produce from that text.
+For a multi-photo receipt send `pages` instead — this is the only way to exercise the
+stitching without a camera:
+
+```js
+body: JSON.stringify({ pages: ["...page 1 text...", "...page 2 text..."] })
+```
+
+Byte-identical prompting, stitching and post-processing to `/v1/extract`, so a result here is
+exactly what the photo path would produce from that text.
 
 ---
 
@@ -94,7 +142,7 @@ No key required.
 
 ```json
 {"ok": true, "model_loaded": true, "ocr_reachable": true,
- "queue_depth": 0, "auth_enabled": true}
+ "queue_depth": 0, "max_pages": 5, "auth_enabled": true}
 ```
 
 ---
@@ -120,8 +168,22 @@ forward the user-confirmed draft without renaming anything.
   "ocrTexts": ["..."],
   "reconciles": true,
   "reconcileStatus": "ok",
-  "engine": { "ocr_seconds": 2.6, "model_seconds": 3.2,
-              "prompt_tokens": 798, "token_budget": 1280, "total_seconds": 5.8 }
+  "engine": { "pages": 1, "ocr_seconds": 2.6, "model_seconds": 3.2,
+              "prompt_tokens": 798, "token_budget": 3328, "total_seconds": 5.8 }
+}
+```
+
+A **multi-photo** receipt adds two things and changes nothing else:
+
+```json
+{
+  "ocrTexts": ["...page 1 raw...", "...page 2 raw..."],
+  "stitchedText": "...the two pages joined, overlap removed...",
+  "engine": {
+    "pages": 2,
+    "stitch": { "pages": 2, "duplicate_lines_removed": 4,
+                "seams": [{ "page": 2, "overlap_lines": 4, "score": 0.94 }] }
+  }
 }
 ```
 
@@ -134,9 +196,10 @@ forward the user-confirmed draft without renaming anything.
 | `taxAmount` | VAT, lifted out of `items[]` so it isn't categorized as a purchase. `null` when the receipt has none. |
 | `basketDiscount` | A basket-wide discount when the receipt had one, else `null`. It has **already been spread across the item prices** — show it as information, don't subtract it again. |
 | `items[]` | `name` + `price`. Prices are **line totals**, not unit prices — a "2 × 39.00" line arrives once at `78.00`. |
-| `ocrTexts` | Raw OCR text, as a one-element array. Diagnostic — ignore it in the UI. |
+| `ocrTexts` | Raw OCR text, one entry **per photo**, in the order you sent them. Diagnostic — ignore it in the UI. |
+| `stitchedText` | Only on multi-photo requests: the pages joined with the overlap removed — what the model actually read. Diagnostic. |
 | `reconciles` / `reconcileStatus` | Do the numbers add up? See below. |
-| `engine` | Timings and token counts. Diagnostic. |
+| `engine` | Timings, token counts and (multi-photo only) `stitch`. Diagnostic. |
 
 All money values are **strings** formatted `"NN.DD"` — no currency symbol, no thousands
 separator, no sign. Parse them yourself if you need numbers.
@@ -169,6 +232,18 @@ it gets every item and the total exactly right **67.6%** of the time.
 | `unrecoverable_gap` | `false` | Doesn't add up and isn't tax. Probably a dropped item — flag for review. |
 | `unparseable` | `false` | Output wasn't usable JSON. Offer a retake. |
 
+### On a multi-photo receipt
+
+Overlap removal is measured at **99.8%** exact reconstruction, with **no line ever lost**
+across 480 trials — the thresholds are deliberately set so that a *missed* overlap is possible
+and a *falsely removed* one is not. See `train/reports/stitch_overlap.md`.
+
+The residual failure is therefore always the safe direction: a repeated line survives into the
+prompt, the model lists that item twice, and you get `reconcileStatus: "overcount"`. Read that
+status on a multi-photo request as "an item may be listed twice" and let the user delete the
+line. Do not de-duplicate `items[]` yourself — a receipt can legitimately print the same item
+on two lines, and you cannot tell the two cases apart from the response.
+
 ---
 
 ## Timing
@@ -176,7 +251,8 @@ it gets every item and the total exactly right **67.6%** of the time.
 Measured end to end on real receipts through this exact service:
 
 - **Typical photo request: 4 – 8s** (OCR ~2.3–3.3s + model ~1.6–3.9s)
-- One photo per request; there is no batching.
+- **Add ~2.5–3.5s per extra photo.** OCR runs once per image; the model still runs once for
+  the whole receipt, so a three-photo receipt is roughly OCR×3 + one generation.
 - `/v1/extract-text` skips the OCR half: ~3s.
 - Show a spinner. This is not an instant call.
 - **Only one receipt is processed at a time.** A second request queues rather than failing,
@@ -192,9 +268,9 @@ handled server-side, so a plain `fetch` from your origin works, preflight includ
 
 | Status | Meaning | What to do |
 |---|---|---|
-| `400` | No image attached, **more than one image**, an empty file, or a malformed JSON body | Attach exactly one photo |
+| `400` | No image attached, an empty file, or a malformed JSON body | Check the file actually attached |
 | `401` | Missing or wrong `X-API-Key` | Check the header name and the key |
-| `413` | Image over 25 MB, or receipt text longer than the model accepts | Downscale, or reshoot tighter |
+| `413` | Image over 25 MB, more than 5 photos, or receipt text longer than the model accepts | Downscale, or shoot fewer/tighter frames |
 | `422` | OCR couldn't read the image, or found no text in it | Ask for a retake |
 | `502` | OCR service unreachable on our side | Ping us; retrying won't help |
 | `503` | Model still loading, or too many requests queued | Check `/ready`; retry shortly |
@@ -218,6 +294,11 @@ curl https://SOMETHING.trycloudflare.com/ready
 curl -X POST https://SOMETHING.trycloudflare.com/v1/extract \
      -H "X-API-Key: YOUR_KEY" \
      -F "files=@receipt.jpg"
+
+# a long receipt, IN CAPTURE ORDER
+curl -X POST https://SOMETHING.trycloudflare.com/v1/extract \
+     -H "X-API-Key: YOUR_KEY" \
+     -F "files=@page1.jpg" -F "files=@page2.jpg"
 ```
 
 If `/ready` returns `{"ok": true, ...}` the path from your machine to the GPU is working and

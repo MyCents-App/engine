@@ -1,4 +1,19 @@
-"""Demo server: phone photo -> Surya OCR -> fine-tuned Qwen3.5-2B -> structured JSON.
+"""LOCAL DEVELOPMENT TOOL -- not the deployed service.
+
+Serves a phone-facing HTML page for eyeballing the pipeline over LAN. The deployed engine is
+API-only (`app/api.py`), this file is deliberately not built into either container image (see
+DEPLOY.md), and it loads a SECOND copy of the model into VRAM.
+
+It takes ONE photo per request and has no multi-photo path: the several-photos-of-one-receipt
+feature lives in app/stitch.py behind `POST /v1/extract`, and the way to look at it by hand is
+`/v1/extract-text` with a `pages` list, or review_photos.py against the real API. Duplicating
+the stitching here would mean two implementations of it, and the one under test would be the
+wrong one.
+
+Kept because it is genuinely useful for a quick manual check on the GPU box. For anything
+programmatic use `POST /v1/extract` instead.
+
+Demo server: phone photo -> Surya OCR -> fine-tuned Qwen3.5-2B -> structured JSON.
 
 Serves a mobile web page on the LAN. Open it on a phone, take a photo of a receipt, and get
 back the extracted merchant / items / prices / total.

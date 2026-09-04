@@ -1,0 +1,22 @@
+﻿Receipt,Total amount exact,Line price accuracy,Item names acceptable,Item count exact,Exact on money,Shop name acceptable,Schema-valid JSON
+photo-1,Yes,2/2 (100%),2/2 (100%),Yes,Yes,Exact,Valid
+photo-2,Yes,3/3 (100%),3/3 (100%),Yes,Yes,Exact,Valid
+photo-3,Yes,1/1 (100%),1/1 (100%),Yes,Yes,Exact,Valid
+photo-4,Yes,1/1 (100%),1/1 (100%),Yes,Yes,Yes,Valid
+photo-5,Yes,1/2 (50%),0/1 (0%),No,No,Exact,Valid
+photo-6,Yes,3/3 (100%),3/3 (100%),Yes,Yes,Exact,Valid
+photo-7,Yes,1/1 (100%),1/1 (100%),Yes,Yes,Exact,Valid
+photo-8,Yes,3/4 (75%),2/3 (67%),Yes,No,Exact,Valid
+photo-9,Yes,1/1 (100%),1/1 (100%),Yes,Yes,Yes,Valid
+photo-10,Yes,1/1 (100%),0/1 (0%),Yes,Yes,Exact,Valid
+photo-11,Yes,2/2 (100%),2/2 (100%),Yes,Yes,Exact,Valid
+photo-12,Yes,2/2 (100%),2/2 (100%),Yes,Yes,Exact,Valid
+photo-13,Yes,1/1 (100%),1/1 (100%),Yes,Yes,Exact,Valid
+photo-14,Yes,1/1 (100%),1/1 (100%),Yes,Yes,Exact,Valid
+photo-15,Yes,2/2 (100%),2/2 (100%),Yes,Yes,No,Valid
+photo-16,Yes,2/2 (100%),2/2 (100%),Yes,Yes,Yes,Valid
+photo-17,Yes,1/1 (100%),1/1 (100%),Yes,Yes,No,Valid
+photo-18,Yes,1/1 (100%),1/1 (100%),Yes,Yes,Yes,Valid
+photo-19,Yes,1/1 (100%),1/1 (100%),Yes,Yes,Exact,Valid
+photo-20,Yes,2/2 (100%),2/2 (100%),No,No,No,Valid
+All 20,20/20 (100%),32/34 (94%),29/32 (91%),18/20 (90%),17/20 (85%),17/20 (85%),20/20 (100%)

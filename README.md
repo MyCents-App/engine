@@ -24,18 +24,22 @@ train/              stage 2 — extraction. Its own project, its own venv.
     extraction.py       model load + generation, serialized on one GPU
     ocr_client.py       HTTP client for the OCR service
     date_extract.py     receipt date, incl. Buddhist era (2569 -> 2026)
+    stitch.py           joins several photos of one receipt, dropping the overlap
     config.py           all settings, environment driven
   ocr_service.py      wraps SuryaOCR as a localhost HTTP service on :8001
   postprocess.py      JSON salvage, price normalization, reconcile, discounts
   prompts.py          the frozen prompt — identical in training, eval and serving
   task.md             the model's contract and the model/code split
   reports/            eval results behind the accuracy numbers
+  eval_stitch.py      measures the overlap removal (no GPU)
+  docker/             two-container deployment; see DEPLOY.md
   demo_server.py      dev only: phone-facing HTML page, not the deployed path
-  tests/              date parsing (no GPU needed)
+  tests/              date parsing, page stitching, the API contract (no GPU needed)
   test_phase2.py      post-processing
 
 RECEIPT_API.md      the API contract — give this to whoever calls the engine
 RUN.md              how to start everything and expose it
+train/DEPLOY.md     containerized deployment on a GPU host
 ```
 
 **Two projects, two virtual environments, on purpose.** `surya-ocr==0.17.1` pins
@@ -53,11 +57,18 @@ cd ../train && uv pip install -r requirements.lock.txt -r requirements-api.txt
 Then see [`RUN.md`](RUN.md). You also need the fine-tuned checkpoint at
 `train/checkpoints/qwen3.5-2b-qlora/checkpoint-550` — it is not in git.
 
-## One photo per request
+## Long receipts: several photos, one receipt
 
-`/v1/extract` takes exactly one image; more than one is a 400. The app captures a single
-frame, so there is no multi-page path to maintain, and silently processing the first of
-several would lose a receipt the user believed they had sent.
+`/v1/extract` takes up to five images as pages of **one** receipt, in capture order. Users are
+told to overlap the shots — that is how nothing falls in the gap between frames — so the
+repeated lines are removed deterministically before prompting (`train/app/stitch.py`) and the
+model is called once on the joined text.
+
+The thresholds are set so that a *missed* overlap is possible and a *falsely removed* one is
+not: measured at 99.8% exact reconstruction with no line ever lost, and no false seam across
+190 pairs of unrelated receipts. Evidence and the tuning sweep are in
+[`train/reports/stitch_overlap.md`](train/reports/stitch_overlap.md); reproduce with
+`train/eval_stitch.py`.
 
 ## What to know about the output
 

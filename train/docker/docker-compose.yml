@@ -1,0 +1,102 @@
+# MyCents extraction engine.
+#
+#   client --HTTPS--> ngrok --> api :8000 --> ocr :8001 (private)
+#
+# Only `api` is published. `ocr` has no ports section on purpose: it is
+# reachable at http://ocr:8001 on the compose network and from nowhere else.
+# It has no authentication of its own, so exposing it would hand anyone a
+# free GPU OCR endpoint.
+
+name: mycents-engine
+
+services:
+  ocr:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.ocr
+      additional_contexts:
+        # The SuryaOCR project. On this branch it is the sibling folder
+        # ../../SuryaOCR (paths here resolve relative to THIS file), which is
+        # the default in .env.example. Override SURYA_PROJECT_PATH only if the
+        # two projects are not checked out side by side.
+        surya: ${SURYA_PROJECT_PATH:?set SURYA_PROJECT_PATH in .env}
+    image: mycents-ocr:latest
+    environment:
+      TORCH_DEVICE: ${OCR_DEVICE:-cuda}
+      OCR_HOST: 0.0.0.0
+      OCR_PORT: 8001
+    volumes:
+      # Surya downloads ~1GB of weights on first run. Without a persistent
+      # cache every container restart re-downloads them.
+      - hf-cache:/cache/huggingface
+    restart: unless-stopped
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+  api:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.api
+    image: mycents-engine-api:latest
+    depends_on:
+      ocr:
+        condition: service_healthy
+    environment:
+      OCR_URL: http://ocr:8001/ocr
+      ENGINE_CHECKPOINT: ${ENGINE_CHECKPOINT:-/models/qwen3.5-2b-qlora/checkpoint-550}
+      # REQUIRED once this is reachable through a tunnel.
+      ENGINE_API_KEY: ${ENGINE_API_KEY:?set ENGINE_API_KEY in .env}
+      ENGINE_MAX_SEQ_LENGTH: ${ENGINE_MAX_SEQ_LENGTH:-4096}
+      ENGINE_MAX_NEW_TOKENS: ${ENGINE_MAX_NEW_TOKENS:-768}
+      ENGINE_MAX_PAGES: ${ENGINE_MAX_PAGES:-5}
+      # Remove the overlap between consecutive photos of one receipt before
+      # prompting. 0 concatenates instead, which duplicates every item in the
+      # overlap — only for comparing against that behaviour.
+      ENGINE_STITCH_PAGES: ${ENGINE_STITCH_PAGES:-1}
+      ENGINE_APPLY_DISCOUNT: ${ENGINE_APPLY_DISCOUNT:-1}
+      ENGINE_ALLOW_ORIGIN: ${ENGINE_ALLOW_ORIGIN:-*}
+      ENGINE_WARMUP: ${ENGINE_WARMUP:-1}
+    ports:
+      - "${ENGINE_PORT:-8000}:8000"
+    volumes:
+      # The fine-tuned checkpoint, read-only. Kept out of the image: it is
+      # large, and it changes on a different cadence than the code.
+      - ${CHECKPOINT_PATH:?set CHECKPOINT_PATH in .env}:/models:ro
+      - hf-cache:/cache/huggingface
+    restart: unless-stopped
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+  # Optional: publish the API over HTTPS without touching the firewall.
+  #   docker compose --profile tunnel up -d
+  ngrok:
+    image: ngrok/ngrok:latest
+    profiles: [tunnel]
+    depends_on: [api]
+    command: ["http", "api:8000", "--log", "stdout"]
+    environment:
+      # NOT marked required with `:?` — compose interpolates every service in
+      # the file, profiles included, so a required variable here would block
+      # `docker compose up` for anyone not using the tunnel at all. ngrok
+      # itself reports a missing token clearly enough.
+      NGROK_AUTHTOKEN: ${NGROK_AUTHTOKEN:-}
+      # A reserved domain keeps the URL stable across restarts. Without one,
+      # every restart issues a new random URL and the Flutter app and backend
+      # must both be reconfigured.
+      NGROK_DOMAIN: ${NGROK_DOMAIN:-}
+    ports:
+      - "4040:4040"       # ngrok's local inspector
+    restart: unless-stopped
+
+volumes:
+  hf-cache:
