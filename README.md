@@ -10,6 +10,11 @@ Photo of a receipt in, structured JSON out. Both stages of the pipeline, in one 
 The app shows that JSON to the user for confirmation; the confirmed draft goes to the MyCents
 backend, which runs categorization. **Categorization is not in this repo.**
 
+Neither is translation. Names are returned in the language the receipt printed (almost always
+Thai); the app translates them on the phone and the backend serves catalog translations. The
+response carries empty `nameEn` / `shopNameEn` slots for that — see
+[`RECEIPT_API.md`](RECEIPT_API.md#translation-is-not-the-engines-job).
+
 ## Layout
 
 ```

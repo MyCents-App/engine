@@ -263,3 +263,17 @@ def test_ready_advertises_the_page_limit(engine):
     client, _ = engine
     body = client.get("/ready").json()
     assert body["max_pages"] == api.settings.max_pages
+
+
+def test_names_are_never_translated_but_the_slots_exist(engine):
+    """Translation is a display layer owned by the app and the backend
+    (MyCents server migration 0012). The engine emits the printed text and
+    an explicit null in every English slot, so the draft is the categorize
+    body key for key and a client never has to add fields before forwarding."""
+    client, _ = engine
+    body = client.post("/v1/extract", files=_files(PAGE_1)).json()
+    assert body["shopNameEn"] is None
+    assert body["items"], "fixture has items"
+    for item in body["items"]:
+        assert set(item) == {"name", "nameEn", "price"}
+        assert item["nameEn"] is None
