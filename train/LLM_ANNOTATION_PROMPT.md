@@ -15,7 +15,8 @@ Return exactly one JSON object and nothing else.
 
 Our model will only ever see the OCR text. It never sees the photo. So:
 
-- **Never write an item name that is not recoverable from the OCR text**, even when you can read it perfectly on the photo. If OCR reduced a line to `16  60.00`, the name is gone — write `"16"` as the name and set `"c"` and `"s"` to `null`. Writing `"หม่าล่า 16 ไม้"` because you can see it in the photo teaches the model to invent names, which is the worst failure mode we have.
+- **Never write an item name that is not recoverable from the OCR text**, even when you can read it perfectly on the photo. If OCR reduced a line to `16  60.00`, the name is gone — write `"16"` as the name. Writing `"หม่าล่า 16 ไม้"` because you can see it in the photo teaches the model to invent names, which is the worst failure mode we have.
+- **"Recoverable" means recoverable from the whole OCR text, not from that one line.** Do repair garbled names (`หม่าล่าปีชง2` → `หม่าล่าปิซง2`) and reconstruct missing Thai vowels and tone marks (`ชสโรลไสกรอ` → `ชีสโรลไส้กรอก`) — that is the main thing this model is being trained to do. Do recover a name that appears elsewhere on the receipt, or that OCR'd cleanly the second time the item repeats. Only a name with *no* surviving characters anywhere in the text is unrecoverable.
 - **Do use the photo** to fix OCR character errors in names that ARE present (`หม่าล่าปีชง2` → `หม่าล่าปิซง2`), to read prices the OCR garbled, and to decide categories.
 - **Do use the photo** to confirm which number is the final total, and whether a discount is basket-wide or tied to one item.
 
@@ -119,8 +120,11 @@ If the whole receipt is from a restaurant, nearly every food line is `Food & Din
 ### Prefer `null` to a guess
 
 - Unsure of the **subcategory** → `"s": null`. A wrong subcategory is worse than none.
-- The OCR text does not identify **what the item is** → `"c": null` and `"s": null`. Never infer a category from a price alone.
-- The tax row → always `null`.
+- The tax row → always `"c": null`.
+- **An item whose name OCR destroyed**: the answer depends on the shop.
+  - At a **single-category merchant** — a restaurant, a pharmacy, a cinema, a petrol station — the shop decides the category on its own, so still give `c`. An unnamed line on a hotpot receipt is `Food & Dining`. Leave `s` null unless the price or position makes it obvious.
+  - At a **general retailer** — 7-Eleven, Makro, Big C, Watsons — an unnamed item could be Groceries, Food & Dining, Health & Wellness or Shopping, and the shop tells you nothing. Use `"c": null`.
+- Never infer a category from a **price alone**. The shop is context; the price is not.
 
 A `null` is not a failure. Our pipeline routes those items to a human, which is the correct outcome. A confident wrong answer is far more expensive.
 

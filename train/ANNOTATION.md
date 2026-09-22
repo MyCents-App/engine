@@ -37,12 +37,17 @@ JSONL, UTF-8, Thai left as Thai. One record per line:
 ```
 
 Read the first item against the `input` above. OCR reduced that line to
-`16  60.00` — the price survived, the name did not. So the name stays `"16"`
-and `c` is `null`, even though the photo plainly shows what was ordered.
-Writing the real name here, because you can see it, is what teaches the model
-to invent names out of nothing. The shop name is different: `หม่าล่าปีชง2`
-*is* in the OCR text, just misread, so correcting it to `หม่าล่าปิซง2` is
-exactly the job.
+`16  60.00` — the price survived, the name did not, so the name stays `"16"`.
+Writing the real name because you can see it on the photo is what teaches the
+model to invent names out of nothing.
+
+Contrast that with the shop name: `หม่าล่าปีชง2` **is** in the OCR text, just
+misread, so correcting it to `หม่าล่าปิซง2` is exactly the job. Repairing
+garbled text is what this model is for; inventing absent text is not.
+
+`c` is `null` on that item only because this example is a general-retailer
+case. See §3, "When OCR destroyed the name" — at a single-category merchant
+the shop supplies the category even with no name.
 
 `input` is the OCR text exactly as Surya produced it — `<br>` artifacts,
 duplicated lines, character errors and all. Do not clean it. Correcting the
@@ -187,18 +192,38 @@ Real receipts lose item names outright. A line that Surya read as
 ```
 
 has no recoverable name — the price survived and the name did not. Write
-`name` as whatever is actually there, and then set **`c` and `s` to `null`**,
-because nothing can categorise `"16"` and a category assigned from a price
-alone teaches the model to guess.
+`name` as whatever is actually there.
 
-That is not a hole in the data. It is the model learning to decline, which is
-exactly what the code layer wants: a null category routes to user review, the
-same path a stage-5 decline takes today. `c` is nullable for this reason and
-for the `"vat"` row.
+**Never recover the name from the photo when the OCR does not contain it.**
+The model only ever sees `input`; a target naming something absent from the
+input trains it to hallucinate. This is the one case where the photo must not
+win.
 
-Never recover the name from the photo when the OCR does not contain it. The
-model only ever sees `input`; a target naming something absent from the input
-trains it to hallucinate.
+Be clear about what "unrecoverable" means, though — it is narrow. Repairing a
+garbled name (`หม่าล่าปีชง2` → `หม่าล่าปิซง2`) and reconstructing missing Thai
+vowels and tone marks (`ชสโรลไสกรอ` → `ชีสโรลไส้กรอก`) are the **main thing
+this model is being trained to do**, and a name that appears elsewhere in the
+text, or that OCR'd cleanly where the item repeats, is recoverable too.
+"Recoverable" is judged against the whole OCR text, not one line. Only a name
+with no surviving characters anywhere is gone.
+
+### ...but the category often survives the name
+
+`c` depends on the shop, not on the item:
+
+- **Single-category merchant** — restaurant, pharmacy, cinema, petrol station:
+  give `c` anyway. An unnamed line on a hotpot receipt is `Food & Dining` with
+  near-certainty, and nulling it throws away a reliable label. Leave `s` null.
+- **General retailer** — 7-Eleven, Makro, Big C, Watsons: an unnamed item could
+  be Groceries, Food & Dining, Health & Wellness or Shopping. `c: null`.
+
+That split mirrors the backend's stage 3, which already maps 83
+single-category brands straight to a category without looking at the item.
+
+Never infer a category from a **price alone**. The shop is context; the price
+is not. And a `null` is not a hole in the data — it is the model learning to
+decline, which routes the item to user review, the same path a stage-5 decline
+takes today. `c` is nullable for that reason and for the `"vat"` row.
 
 ### The shop is context, and it changes the answer
 
@@ -380,7 +405,8 @@ from real disagreement, and it does not average out.
 ### The loop
 
 ```
-trainun_demo.bat                                      # engine up
+train
+un_demo.bat                                      # engine up
 .venv\Scripts\python.exe review_photos.py --no-pause   # photos -> drafts, with ocrTexts
 
    for each receipt, to the LLM:
