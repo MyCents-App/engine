@@ -1,87 +1,92 @@
 # Annotating real receipt photos — the format
 
-One file per receipt. One annotation serves **both** models: the extraction
-adapter learns shop/items/prices/total from it, the categorization adapter
-learns category/subcategory from it. Do not annotate the same receipt twice
-in two formats.
+Raw Surya OCR text in, one JSON object out: shop, items with prices, and a
+category per item. **One task, one model, one call** — the extraction and
+categorization jobs are merged rather than split across two adapters.
 
 Status (22 Sep 2026): written after the first categorization run overfitted to
-synthetic baskets (real-receipt loss rose from 0.27 to 0.44 across 2 epochs
-while synthetic loss flatlined). Real annotated receipts are the fix.
+synthetic baskets — real-receipt loss rose from 0.27 to 0.44 across 2 epochs
+while pooled loss flatlined at 0.045 and looked healthy. Real annotated
+receipts, and a real-only validation set, are the fix.
 
 ---
 
-## 1. The file
+## 1. The record
 
-`data/annotations/<receipt_id>.json`, UTF-8, Thai left as Thai.
+One **joint** task: raw Surya OCR text in, one JSON object out carrying the
+shop, the items with prices, AND each item's category. This replaces the
+earlier two-adapter plan (extraction adapter + categorization adapter) with a
+single call — see §7 for what that costs.
+
+JSONL, UTF-8, Thai left as Thai. One record per line:
 
 ```json
 {
-  "receipt_id": "2026-09-22-7eleven-001",
-  "photos": ["IMG_4821.jpg", "IMG_4822.jpg"],
-
-  "shop_name": "7-Eleven",
-  "receipt_date": "2026-09-22",
-
-  "items": [
-    {
-      "name": "ชีสโรลไส้กรอก",
-      "name_en": "Cheese sausage roll",
-      "price": "26.00",
-      "category": "Food & Dining",
-      "subcategory": "Bakery & desserts"
-    },
-    {
-      "name": "H UHT นมยูเอชที ด.16",
-      "name_en": null,
-      "price": "13.00",
-      "category": "Groceries",
-      "subcategory": "Dairy & eggs"
-    }
-  ],
-
-  "basket_discount": null,
-  "tax_amount": null,
-  "tax_added_on_top": false,
-  "total_price": "39.00",
-
-  "annotator": "your-name",
-  "notes": ""
+  "id": "2026-09-22-malapizong-001",
+  "meta": { "kind": "real" },
+  "input": "ทานที่ร้าน\nA206\nหม่าล่าปีชง2\n...\nยอดสุทธิ :  69.00\n...",
+  "target": {
+    "shop_name": "หม่าล่าปิซง2",
+    "items": [
+      { "name": "หม่าล่า 16 ไม้", "price": "60.00", "c": "Food & Dining", "s": "Restaurants" },
+      { "name": "ซุปผสม",        "price": "9.00",  "c": "Food & Dining", "s": "Restaurants" }
+    ],
+    "total_price": "69.00"
+  }
 }
 ```
+
+`input` is the OCR text exactly as Surya produced it — `<br>` artifacts,
+duplicated lines, character errors and all. Do not clean it. Correcting the
+noise is what the model is being trained to do, so a cleaned input teaches it
+nothing. For a receipt shot across several photos, `input` is the **stitched**
+text (pages joined, overlap removed), because that is what the model is
+prompted with at serving time.
+
+`meta.kind` is **required**: `"real"` or `"synthetic"`. The evaluator reports
+the two separately, and that separation is the whole reason the first run's
+failure was visible — pooled validation loss sat at 0.045 and looked healthy
+while real-receipt loss climbed from 0.27 to 0.44.
 
 Every money value is a **string**, `NN.DD` — two decimals, no `฿`, no
 thousands separator, no sign. `"7"` and `"7.0"` and `"1,250.00"` are all
 wrong; write `"7.00"`, `"7.00"`, `"1250.00"`.
 
-`photos` lists the image filenames in **capture order, top of the receipt
-first**. Order is load-bearing for multi-photo receipts.
+### What is deliberately NOT in the target
+
+- **`receipt_date`** — `app/date_extract.py` parses it deterministically,
+  Buddhist years included, with its own test suite. Replacing tested code
+  with a 2B model's guess is a downgrade.
+- **`name_en`** — translation is not the engine's job (RECEIPT_API.md,
+  "Translation is not the engine's job"). The app fills it with ML Kit and the
+  backend overrides from the product catalog.
+- **`tax_amount` / `tax_added_on_top`** — when tax sits on top of the listed
+  prices, add one item named `"vat"` with `"c": null, "s": null`. `_split_tax`
+  in the API lifts it back out. The existing reconcile logic is written and
+  tested against that shape.
+- **`photos` / `annotator` / `notes`** — provenance. Keep them wherever you
+  track the work; they are not model targets. `id` rides along for
+  traceability and is not shown to the model.
 
 ---
 
 ## 2. Field rules
 
-These are not style preferences — they are the contracts the two models are
-trained against (`prompts.py` and `categorize_prompts.py`). Getting them
-wrong teaches the model the wrong thing.
+These are not style preferences — they are the contract the model is trained
+against. Getting them wrong teaches the model the wrong thing, and it will
+reproduce the mistake confidently.
+
+Everything below describes fields of `target`.
 
 ### shop_name
 As printed, OCR errors corrected, **in the receipt's own language**. Do not
 translate. `"7-Eleven"`, `"แม็คโคร"`, `"CP ALL, 7-Eleven"`.
 
-### receipt_date
-`YYYY-MM-DD`. Thai receipts print the **Buddhist year** — 2569 is 2026.
-Convert it. `null` if no date is printed.
-
 ### items[].name
-As printed, OCR errors corrected, original language kept. Never translate
-into `name`. This is the text the categorizer matches on, so an English
-translation here silently changes which category the model learns.
-
-### items[].name_en
-Optional, `null` when you don't know it. Only fill it when you're confident.
-Roughly half the synthetic training items have one; it's a hint, not a
-requirement.
+As printed, OCR errors corrected, original language kept. Never translate.
+This is the text categorization runs on, so an English name here silently
+changes what the model learns — and it must be recoverable from `input`
+(see "When OCR destroyed the name").
 
 ### items[].price — the one people get wrong
 **Line totals, not unit prices.**
@@ -93,25 +98,28 @@ requirement.
 | Buy-one-get-one on a 45.00 item | one item, `"45.00"` — do **not** add the free one |
 | `Shampoo 120.00` then `  discount -20.00` naming it | one item, `"100.00"` — the discount is folded in, no separate line |
 
-### basket_discount
+### basket-wide_discount
 A discount **not tied to any specific item** (a coupon, a member discount off
 the whole bill). Put the amount here and **leave every item price as printed**
 — do not subtract it yourself. The code layer spreads it pro-rata later.
-`null` when there isn't one.
+
+**Omit the key entirely when there is no basket discount.** Not `null`, not
+`"0.00"` — the key is simply absent, which is how the contract has always
+worked and how the model was trained.
 
 If the discount names a specific item, it is not a basket discount — fold it
 into that item's price per the table above.
 
-### tax_amount / tax_added_on_top
-- Receipt prints VAT and the item prices **exclude** it (so VAT is added to
-  reach the total) → `tax_amount: "3.01"`, `tax_added_on_top: true`
-- Receipt prints VAT but prices **already include** it (the "VAT included"
-  line, total unchanged) → `tax_amount: "3.01"`, `tax_added_on_top: false`
-- No VAT printed → `tax_amount: null`, `tax_added_on_top: false`
+### VAT — a `"vat"` item, not a field
+- Prices **exclude** VAT, so it is added to reach the total → add one item
+  `{"name": "vat", "price": "3.01", "c": null, "s": null}`
+- Prices **already include** VAT, nothing added on top → **no vat item**. The
+  total already contains it.
+- No VAT printed → no vat item.
 
-Do **not** add a `"vat"` row to `items[]`. The builder does that for the
-extraction target when `tax_added_on_top` is true. Tax is not a purchase and
-must never carry a category.
+`c` is `null` on that row because tax is not a purchase: categorized as one,
+every per-category spending total is wrong by the tax. `_split_tax` in the API
+lifts it onto `taxAmount` before the response goes out.
 
 Nearly every Thai receipt prints a `TAX ID#` boilerplate line. That is not VAT.
 
@@ -123,9 +131,9 @@ disagree, the printed one wins and you note the discrepancy.
 
 ## 3. Categories — exact spelling, copy-paste them
 
-Eight categories, 47 subcategories. `category` must be one of the eight
-**spelled exactly as below**, including the `&` and the capitalisation.
-A typo makes the row unusable.
+Eight categories, 47 subcategories. `c` must be one of the eight **spelled
+exactly as below** (or `null`), including the `&` and the capitalisation, and
+`s` must belong to that same category. A typo makes the row unusable.
 
 | Category | Subcategories |
 |---|---|
@@ -142,11 +150,33 @@ Note `Coffee & café` carries an accent. `Books & stationery` (Shopping) and
 `Books & materials` (Education) are different subcategories of different
 categories.
 
-### subcategory: prefer `null` to a guess
+### `s`: prefer `null` to a guess
 
 A wrong subcategory is worse than none — the target is 90% precision when one
 is given, versus 70% recall. If you hesitate, write `null`. The backend has a
 separate subcategory classifier that runs afterwards on the nulls.
+
+### When OCR destroyed the name, `c` is `null` too
+
+Real receipts lose item names outright. A line that Surya read as
+
+```
+16  60.00
+```
+
+has no recoverable name — the price survived and the name did not. Write
+`name` as whatever is actually there, and then set **`c` and `s` to `null`**,
+because nothing can categorise `"16"` and a category assigned from a price
+alone teaches the model to guess.
+
+That is not a hole in the data. It is the model learning to decline, which is
+exactly what the code layer wants: a null category routes to user review, the
+same path a stage-5 decline takes today. `c` is nullable for this reason and
+for the `"vat"` row.
+
+Never recover the name from the photo when the OCR does not contain it. The
+model only ever sees `input`; a target naming something absent from the input
+trains it to hallucinate.
 
 ### The shop is context, and it changes the answer
 
@@ -177,23 +207,29 @@ convenience-store basket. Prioritise those photos.
 Every annotation must satisfy this, within 3% (`postprocess.RECONCILIATION_TOLERANCE`):
 
 ```
-sum(item prices) - basket_discount + (tax_amount if tax_added_on_top) = total_price
+sum(item prices) - basket-wide_discount = total_price
 ```
+
+The vat row, when present, is one of the item prices — so it is already inside
+the sum.
 
 If it doesn't balance, something is misread — usually a unit price entered
 where a line total belongs, or a basket discount subtracted from items as
 well as recorded. Fix it or put the receipt aside with a note; do not round a
 number to force the balance.
 
-Also check: every `category` is one of the eight strings above, every
-`subcategory` belongs to its own category, every price matches `^\d+\.\d{2}$`.
+Also check: every `c` is one of the eight strings above or `null`, every `s`
+belongs to its own category or is `null`, and every price matches
+`^\d+\.\d{2}$`.
 
 ---
 
 ## 5. The workflow, and how the 200 are split
 
-Do not annotate from blank files. The extraction checkpoint is 67.6%
-money-exact, so bootstrap from its own output and correct it:
+Do not annotate from blank files. On real held-out receipts the extraction
+checkpoint scores 61.8% money-exact, 80.8% price recall and 79.4% total-exact
+(`reports/phase5_real_test_comparison.md`), so most of what you need is
+already there — bootstrap from its own output and correct it:
 
 ```
 train\run_demo.bat                                   # engine up; ngrok not needed
@@ -253,26 +289,56 @@ training receipts 2× to reach ~29%, rather than annotating another 200.
 
 ---
 
-## 6. What happens to the file
-
-Nothing in this repo reads `data/annotations/` yet. A builder has to convert
-these files into the two `messages` JSONL formats, the same way
-`server/scripts/build_categorization_sft.py` does today:
+## 6. What happens to the data
 
 ```
-annotations/*.json
-  ├─▶ extraction:     prompts.build_messages(ocr_text, target)
-  │     target = {shop_name, items[{name, price}],
-  │               basket-wide_discount?, total_price}
-  │     (the "vat" row is injected here when tax_added_on_top)
-  │     ...needs the Surya OCR text for each photo as the user turn
-  │
-  └─▶ categorization: categorize_prompts.build_messages(shop_name, items, labels)
-        items  = [{name, name_en}]
-        labels = [(category, subcategory), ...]   positional
+real.jsonl        ──┐
+                    ├──▶ builder ──▶ prompts.build_messages(input, target)
+synthetic.jsonl   ──┘                  ──▶ messages JSONL ──▶ train_qlora.py
 ```
 
-The extraction side needs the receipt's OCR text as the prompt, so run each
-photo through `/v1/extract-text`'s OCR path (or `ocr_service.py`) and store the
-text beside the annotation — the model is prompted with OCR text, never with
-the clean names you typed.
+`prompts.build_messages(ocr_text, target)` already takes exactly an OCR string
+and a target dict, so these records map onto it directly — the builder's only
+job is reading the file, splitting real into train/validation, and serialising.
+
+**The validation split is real-only.** Synthetic rows go entirely to training;
+roughly 70 real receipts are held back and never trained on. This is the
+safeguard that makes synthesising OCR text safe: if the generated noise does
+not match Surya's real error distribution, a real-only validation set shows it
+immediately, where a mixed one would hide it until production.
+
+### Synthesising the input
+
+Generate the noise from **observed** Surya output, not from imagination. The
+artifacts that actually occur are visible in any real OCR dump: `<br>` tags,
+whole lines duplicated (`เวลา : 17:54:37 เวลา : 17:54:37`), item names
+swallowed into a leading quantity (`16  60.00`), and Thai character
+confusions (ี/ิ, ช/ซ, ๐/0). Reproduce those. Invented noise trains the model
+to repair errors it will never see and leaves the real ones unlearned.
+
+Draw synthetic shop and item names from the real catalog even when the noise
+is approximated — that way the taxonomy coverage is genuine, which is the
+whole reason to keep synthetic data at all.
+
+---
+
+## 7. What merging the two tasks costs
+
+Worth knowing, because it is not free. One call instead of two, one adapter and
+one prompt module is the gain. Against that:
+
+1. **Failure coupling.** With two adapters a categorization failure lost only
+   the categories and the user still got a confirmable draft. One combined
+   JSON means a malformed generation loses everything, extraction included.
+   Mitigated in the code layer by validating the two halves independently —
+   a bad category is nulled while a good price survives — but the coupling is
+   real and that mitigation has to exist.
+2. **Longer output, and the model already miscounts.** The first run emitted
+   11 entries for a 12-item basket with a *short* output. Adding `c` and `s`
+   per item makes the output longer and a dropped item now costs the price as
+   well as the category. Long receipts (10+ items) are worth
+   over-representing in the data for exactly this reason.
+3. **Extraction quality is back in play.** `checkpoint-550` stops being
+   untouchable. Keep it on disk: if joint extraction regresses against
+   `reports/phase5_real_test_comparison.md`, falling back to two adapters must
+   stay possible.
