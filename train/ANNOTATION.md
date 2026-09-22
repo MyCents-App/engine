@@ -190,26 +190,66 @@ Also check: every `category` is one of the eight strings above, every
 
 ---
 
-## 5. How much to annotate
+## 5. The workflow, and how the 200 are split
 
-Be clear about which problem you are solving, because the answers differ by
-an order of magnitude.
+Do not annotate from blank files. The extraction checkpoint is 67.6%
+money-exact, so bootstrap from its own output and correct it:
 
-| Goal | Roughly what it takes |
-|---|---|
-| A trustworthy **validation** set | 84 receipts / ~300 items — the number CATEGORIZATION.md §2 already asks for. Two people, one afternoon. |
-| Real data in the **training** mix | 300-500 receipts / ~2,000+ items |
-| Replace the synthetic baskets entirely | several thousand receipts — not realistic by hand |
+```
+train\run_demo.bat                                   # engine up; ngrok not needed
+cd train
+.venv\Scripts\python.exe review_photos.py --no-pause # photos -> draft JSON
+.venv\Scripts\python.exe make_annotations.py         # drafts -> skeletons
+   ... fill category + subcategory, fix what is wrong ...
+.venv\Scripts\python.exe validate_annotations.py     # gate before the builder
+```
 
-**Do not plan to throw the synthetic baskets away.** They are what teaches
-the output format and the taxonomy, and the first run's structural problem
-(dropping one item from 11-12 item baskets) is something more data of *any*
-kind helps. What they cannot teach is what a real receipt looks like, which
-is exactly the gap real annotations fill.
+`make_annotations.py` never overwrites an existing annotation, so re-running
+it after shooting more photos only adds what is new. It also lists the
+receipts the engine could not reconcile — check those against the photo first,
+they are where its numbers are wrong.
 
-The realistic target is a mix: synthetic baskets for coverage of the taxonomy,
-real receipts for the distribution — and a real validation set big enough that
-the checkpoint choice means something. Fifteen receipts is not that.
+`validate_annotations.py` prints the category distribution every time. Watch
+the three starved rows: **Transport, Bills & Utilities and Entertainment have
+0 / 0 / 1 rows in the synthetic catalog**, so real receipts are the only thing
+that will ever teach them. Knowing you have none of those while there is still
+time to go photograph some is the point of printing it.
+
+### The split — 200 real, and why not all of them train
+
+| | Receipts | ~Items | Role |
+|---|---|---|---|
+| Real — train | 130 | ~800 | shifts the distribution toward real receipts |
+| **Real — validation** | **70** | **~430** | never trained on; **this picks the checkpoint** |
+| Synthetic — train | 1,000 | ~6,000 | teaches the taxonomy and the output format |
+
+Split **by receipt, not by item**, and hold the validation 70 back completely.
+Putting all 200 into training leaves the checkpoint choice resting on the 15
+real receipts already in `categorize_val.jsonl`, which is the problem that
+produced this document.
+
+Mirror CATEGORIZATION.md §2's discipline while you are at it: products and
+keywords are split 90/10 *before* baskets are built, so no validation item is
+ever seen in training. The same applies here — if the same shop and basket
+appears twice, keep both sides on the same side of the split.
+
+### On cutting the synthetic set to 1,000
+
+Lower **baskets per product**, do not drop products. The existing 2,693
+records resample the same 5,200 catalog items about 3× (`BASKETS_PER_PRODUCT`
+in `build_categorization_sft.py`), and that repetition is what the first run
+memorised. `BASKETS_PER_PRODUCT=1` gives ~1,000 records with the full catalog
+still covered. Dropping products instead would lose taxonomy coverage that
+the real receipts cannot replace.
+
+**Do not throw the synthetic baskets away entirely.** They teach the output
+format, and the first run's structural failure — emitting 11 entries for a
+12-item basket — is something more data of *any* kind helps. What they cannot
+teach is what a real receipt looks like. That is the gap the 200 fill.
+
+Real items will be roughly 17% of the training mix (~800 of ~6,800). If
+real-validation loss still climbs, the cheap next move is repeating the real
+training receipts 2× to reach ~29%, rather than annotating another 200.
 
 ---
 
