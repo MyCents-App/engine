@@ -34,6 +34,13 @@ const BASE = "https://SOMETHING.trycloudflare.com";
 **2. API key.** Sent as an `X-API-Key` header on every `/v1/*` call. Sent to you separately —
 it is deliberately not written down in this file.
 
+**The MyCents app does not hold this key.** Since 22 Sep 2026 it calls the
+backend's `/api/v1/engine/*`, which adds the key and forwards the request
+here; the key lives only in `server/.env`. A key compiled into a phone app
+is a key anyone with the APK has. Everything below still describes what the
+app receives, because the backend forwards bodies and status codes
+verbatim.
+
 ```js
 const KEY = "...";   // paste the key you were given
 ```
