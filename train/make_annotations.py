@@ -127,7 +127,91 @@ def ocr_text(draft: dict) -> str:
     return draft.get("stitchedText") or ("\n".join(pages) if pages else "")
 
 
-def merge_llm(llm_dir: Path, drafts_dir: Path, out_dir: Path,
+def _stem(value: str) -> str:
+    """'photo-7.jpg' -> 'photo-7'. Tolerates a bare stem or a full path."""
+    return Path(str(value).strip().replace("\\", "/")).stem
+
+
+def load_llm_answers(path: Path) -> dict[str, dict]:
+    """Read the labeller's answers, however they were handed over.
+
+    Accepts, in order of how likely someone is to produce it:
+
+      a folder     one <stem>.json per receipt
+      one object   {"photo-1.jpg": {...}, "photo-2.jpg": {...}}
+      one array    [{"id": "photo-1", "target": {...}}, ...]
+      one JSONL    the same, one object per line
+
+    Pairing needs a photo name somewhere, so for the array and JSONL forms
+    each entry must carry one under `id`, `photo`, `file`, `filename`, `stem`
+    or `receipt_id`. Requiring matching filenames was our storage detail
+    leaking into somebody else's workflow; any of these is fine.
+    """
+    if path.is_dir():
+        files = sorted(path.glob("*.json"))
+        if not files:
+            sys.exit(f"error: no .json answers in {path}")
+        out: dict[str, dict] = {}
+        for file in files:
+            try:
+                out[file.stem] = json.loads(file.read_text(encoding="utf-8"))
+            except json.JSONDecodeError as exc:
+                print(f"  ! {file.name}: unreadable ({exc})")
+        return out
+
+    if not path.is_file():
+        sys.exit(f"error: no such path: {path}")
+
+    raw = path.read_text(encoding="utf-8").strip()
+    if not raw:
+        sys.exit(f"error: {path} is empty")
+
+    entries: list | dict
+    try:
+        entries = json.loads(raw)
+    except json.JSONDecodeError:
+        entries = []
+        for lineno, line in enumerate(raw.splitlines(), 1):
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                entries.append(json.loads(line))
+            except json.JSONDecodeError as exc:
+                sys.exit(f"error: {path}:{lineno}: {exc}")
+
+    if isinstance(entries, dict):
+        # Ambiguous: a one-line JSONL parses as a plain object, so an answer
+        # for a single receipt looks exactly like a mapping of photo name ->
+        # answer. Tell them apart by content -- an answer carries `target` or
+        # `items`, a mapping does not -- otherwise the dict's own keys ("id",
+        # "target") get read as photo names.
+        if "target" in entries or "items" in entries:
+            entries = [entries]
+        else:
+            bad = [k for k, v in entries.items() if not isinstance(v, dict)]
+            if bad:
+                sys.exit(f"error: {path}: keys {bad[:5]} do not map to objects; "
+                         f"expected {{\"photo-1.jpg\": {{...}}, ...}}")
+            return {_stem(key): value for key, value in entries.items()}
+
+    out = {}
+    for i, entry in enumerate(entries):
+        if not isinstance(entry, dict):
+            sys.exit(f"error: {path}: entry {i} is not an object")
+        for field in ("id", "photo", "file", "filename", "stem", "receipt_id"):
+            if entry.get(field):
+                out[_stem(entry[field])] = entry
+                break
+        else:
+            sys.exit(f"error: {path}: entry {i} has no id/photo/file field, so "
+                     f"there is no way to tell which photo it belongs to. "
+                     f"Add one, or hand the answers over as an object keyed by "
+                     f"photo filename.")
+    return out
+
+
+def merge_llm(llm_path: Path, drafts_dir: Path, out_dir: Path,
               kind: str, force: bool) -> None:
     """Splice an LLM's labels onto the exact OCR text from the engine's draft.
 
@@ -141,28 +225,26 @@ def merge_llm(llm_dir: Path, drafts_dir: Path, out_dir: Path,
     So `input` is taken from the draft, byte for byte, and only `target` comes
     from the labeller.
     """
-    answers = sorted(llm_dir.glob("*.json"))
+    answers = load_llm_answers(llm_path)
     if not answers:
-        sys.exit(f"error: no .json answers in {llm_dir}")
+        sys.exit(f"error: no usable answers in {llm_path}")
 
     out_dir.mkdir(parents=True, exist_ok=True)
     written = skipped = failed = 0
     flagged: list[str] = []
+    unmatched: list[str] = []
 
-    for path in answers:
-        stem = path.stem
+    for stem, answer in sorted(answers.items()):
         draft_path = drafts_dir / f"{stem}.json"
         if not draft_path.exists():
-            print(f"  ! {path.name}: no draft at {draft_path} -- cannot recover "
-                  f"the OCR text, so this record would have no input")
+            unmatched.append(stem)
             failed += 1
             continue
 
         try:
-            answer = json.loads(path.read_text(encoding="utf-8"))
             draft = json.loads(draft_path.read_text(encoding="utf-8"))
         except json.JSONDecodeError as exc:
-            print(f"  ! {path.name}: unreadable ({exc})")
+            print(f"  ! {stem}: draft unreadable ({exc})")
             failed += 1
             continue
 
@@ -170,13 +252,13 @@ def merge_llm(llm_dir: Path, drafts_dir: Path, out_dir: Path,
         # told to emit one object sometimes emits the inner one.
         target = answer.get("target", answer)
         if not isinstance(target, dict) or "items" not in target:
-            print(f"  ! {path.name}: no usable 'target' object")
+            print(f"  ! {stem}: no usable 'target' object")
             failed += 1
             continue
 
         text = ocr_text(draft)
         if not text.strip():
-            print(f"  ! {path.name}: the draft has no OCR text")
+            print(f"  ! {stem}: the draft has no OCR text")
             failed += 1
             continue
 
@@ -202,6 +284,19 @@ def merge_llm(llm_dir: Path, drafts_dir: Path, out_dir: Path,
         print(f"{skipped} already existed and were left alone (--force to replace)")
     if failed:
         print(f"{failed} answer(s) could not be used")
+    if unmatched:
+        available = sorted(p.stem for p in drafts_dir.glob("*.json"))
+        print(f"\n{len(unmatched)} answer(s) had no matching draft, so there is "
+              f"no OCR text to pair them with:")
+        for stem in unmatched[:10]:
+            print(f"  {stem}")
+        if len(unmatched) > 10:
+            print(f"  ... and {len(unmatched) - 10} more")
+        print(f"\nThe drafts available are named: "
+              f"{', '.join(available[:6])}{' ...' if len(available) > 6 else ''}")
+        print("Each answer is matched to a draft by photo name. Name them the "
+              "same, or\nhand the answers over as one object keyed by photo "
+              "filename.")
     if flagged:
         print(f"\n{len(flagged)} record(s) the labeller flagged for review:")
         for stem in flagged:
