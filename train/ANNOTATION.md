@@ -43,10 +43,24 @@ nothing. For a receipt shot across several photos, `input` is the **stitched**
 text (pages joined, overlap removed), because that is what the model is
 prompted with at serving time.
 
-`meta.kind` is **required**: `"real"` or `"synthetic"`. The evaluator reports
-the two separately, and that separation is the whole reason the first run's
-failure was visible — pooled validation loss sat at 0.045 and looked healthy
-while real-receipt loss climbed from 0.27 to 0.44.
+`meta.kind` is the **one required field**: `"real"` or `"synthetic"`. The
+evaluator reports the two separately, and that separation is the whole reason
+the first run's failure was visible — pooled validation loss sat at 0.045 and
+looked healthy while real-receipt loss climbed from 0.27 to 0.44.
+
+`id` is **optional**. Nothing in the training path reads it; the model never
+sees it, and the tooling falls back to `file:line` labels when it is absent.
+Two reasons to set it anyway, and the photo's filename stem does the job:
+
+- **The train/validation split is derived from it.** Splitting by line index
+  means regenerating the file reshuffles the split, and a validation receipt
+  can cross into training — which inflates the numbers with nothing to flag
+  it. Hashing a stable `id` survives re-labelling, added receipts and fixed
+  rows. Hashing `input` instead gives the same property until the day anything
+  is re-OCR'd, at which point that receipt changes sides.
+- **Error analysis.** When the evaluator names the twelve worst receipts you
+  will want to open those photos, and `real.jsonl:47` does not say which image.
+  That is most of the work after a training run.
 
 Every money value is a **string**, `NN.DD` — two decimals, no `฿`, no
 thousands separator, no sign. `"7"` and `"7.0"` and `"1,250.00"` are all
