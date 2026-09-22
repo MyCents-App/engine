@@ -13,11 +13,18 @@ lookups, deterministic, and faster than any model.
 Follow this file top to bottom; §3 (training) and §4 (evaluation) are the
 parts that happen on your machine. Before you start you need three things:
 
-1. **The dataset.** `train/data/categorize_{train,val}.jsonl` is gitignored
-   (8 MB). Either have the files copied to you from the Mac that built them
-   (`~/KMUTT-CS/capstone/engine/train/data/`), or regenerate them yourself
-   from the `server` repo with a `DATABASE_URL` in `server/.env`:
-   `uv run python scripts/build_categorization_sft.py`. Same output either way.
+1. **The dataset — two files you will be sent**, `categorize_train.jsonl`
+   (8 MB) and `categorize_val.jsonl` (0.9 MB). Put them in
+   `engine/train/data/` (create the folder; it is gitignored). You do not
+   need database access. Sanity check before training:
+
+   ```bash
+   wc -l train/data/categorize_*.jsonl     # 2693 train, 294 val
+   ```
+
+   If those counts ever need to change (the catalog grew, the gold receipts
+   got labelled), ask for a fresh pair — they are built by
+   `server/scripts/build_categorization_sft.py` on the Mac that has the DB.
 2. **Your existing `train_qlora.py`** — the one that produced
    `checkpoint-550` for extraction. It is not in git. The command in §3
    assumes the same flags; if yours are named differently, the only things
@@ -102,8 +109,8 @@ cd server && uv run python scripts/build_categorization_sft.py
 # -> engine/train/data/categorize_val.jsonl       294 receipts /  1,754 items
 ```
 
-`data/` is gitignored (8 MB of repeated system prompt). Copy it to the GPU
-box with `scp`, or run the script there against the same DB.
+`data/` is gitignored (8 MB of repeated system prompt). The two files are
+sent to the GPU box by hand; the script needs the database and runs here.
 
 What is in it, and what is not:
 
