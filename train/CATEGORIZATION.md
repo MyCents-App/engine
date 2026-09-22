@@ -8,6 +8,41 @@ lookups, deterministic, and faster than any model.
 
 ---
 
+## 0. If you are the person with the GPU — start here
+
+Follow this file top to bottom; §3 (training) and §4 (evaluation) are the
+parts that happen on your machine. Before you start you need three things:
+
+1. **The dataset.** `train/data/categorize_{train,val}.jsonl` is gitignored
+   (8 MB). Either have the files copied to you from the Mac that built them
+   (`~/KMUTT-CS/capstone/engine/train/data/`), or regenerate them yourself
+   from the `server` repo with a `DATABASE_URL` in `server/.env`:
+   `uv run python scripts/build_categorization_sft.py`. Same output either way.
+2. **Your existing `train_qlora.py`** — the one that produced
+   `checkpoint-550` for extraction. It is not in git. The command in §3
+   assumes the same flags; if yours are named differently, the only things
+   that must change are the data paths and the output directory. The
+   prompt is already inside every record, so the script never needs to
+   know about it.
+3. **The unsloth virtualenv**, not the Surya one. They cannot share an
+   interpreter (`surya-ocr` pins `transformers<5`, unsloth needs 5.5).
+
+What to hand back when done:
+
+- the checkpoint directory (`checkpoints/qwen3.5-2b-categorize/checkpoint-N`,
+  the one you picked, not all of them), and
+- `train/reports/categorize_eval.md` with the §4 table. The number that
+  decides whether this ships is **category accuracy on the real receipts**,
+  reported separately from the synthetic baskets.
+
+One thing you will notice: the validation set has only 15 real receipts. The
+team is labelling the 84 gold receipts (§2, last paragraph) to fix that. If
+the labels are ready before you train, ask for a rebuilt `categorize_val.jsonl`
+and use it; if not, train now anyway — the same checkpoint can be
+re-evaluated on the bigger set later, the training data does not change.
+
+---
+
 ## 1. What a receipt goes through, after this lands
 
 ```
