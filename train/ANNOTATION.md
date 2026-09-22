@@ -24,17 +24,25 @@ JSONL, UTF-8, Thai left as Thai. One record per line:
 {
   "id": "2026-09-22-malapizong-001",
   "meta": { "kind": "real" },
-  "input": "ทานที่ร้าน\nA206\nหม่าล่าปีชง2\n...\nยอดสุทธิ :  69.00\n...",
+  "input": "ทานที่ร้าน<br>A206\nหม่าล่าปีชง2\nวันที่ : 14/11/2025 เวลา : 17:54:37 เวลา : 17:54:37\n16  60.00\n1 ซุปผสม  9.00\nยอดสุทธิ :  69.00",
   "target": {
     "shop_name": "หม่าล่าปิซง2",
     "items": [
-      { "name": "หม่าล่า 16 ไม้", "price": "60.00", "c": "Food & Dining", "s": "Restaurants" },
-      { "name": "ซุปผสม",        "price": "9.00",  "c": "Food & Dining", "s": "Restaurants" }
+      { "name": "16",     "price": "60.00", "c": null,           "s": null },
+      { "name": "ซุปผสม", "price": "9.00",  "c": "Food & Dining", "s": "Restaurants" }
     ],
     "total_price": "69.00"
   }
 }
 ```
+
+Read the first item against the `input` above. OCR reduced that line to
+`16  60.00` — the price survived, the name did not. So the name stays `"16"`
+and `c` is `null`, even though the photo plainly shows what was ordered.
+Writing the real name here, because you can see it, is what teaches the model
+to invent names out of nothing. The shop name is different: `หม่าล่าปีชง2`
+*is* in the OCR text, just misread, so correcting it to `หม่าล่าปิซง2` is
+exactly the job.
 
 `input` is the OCR text exactly as Surya produced it — `<br>` artifacts,
 duplicated lines, character errors and all. Do not clean it. Correcting the
