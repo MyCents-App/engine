@@ -40,6 +40,8 @@ TAXONOMY = "\n".join(
 
 PROMPT = f"""You are reading Thai/English point-of-sale receipts to build a supervised training set. You will be given **the photo(s) of one receipt**.
 
+You will also be told the receipt's **id** (its photo filename, e.g. `photo-7`).
+
 Read the receipt and return exactly one JSON object describing what it says. Nothing else.
 
 Your answer becomes the ground truth a model is trained towards, so read carefully and prefer accuracy over speed. You do not need to transcribe the receipt's raw text — our OCR output is attached to your labels automatically afterwards.
@@ -50,6 +52,7 @@ Your answer becomes the ground truth a model is trained towards, so read careful
 
 ```json
 {{
+  "id": "photo-7",
   "target": {{
     "shop_name": "7-Eleven",
     "items": [
@@ -63,6 +66,7 @@ Your answer becomes the ground truth a model is trained towards, so read careful
 }}
 ```
 
+- `id` is **copied verbatim from the id you were given**. Do not invent it, do not renumber, do not count receipts yourself. It is what pairs your labels with the right OCR text, and a single off-by-one silently misaligns every record after it.
 - All money values are **strings** in `NN.DD` form: two decimals, no currency symbol, no thousands separator, no sign. `"7"`, `"7.0"` and `"1,250.00"` are all wrong. Write `"7.00"` and `"1250.00"`.
 - `_flags` is a list of short strings describing anything you were unsure about — a smudged price, an item you could not read, a total that does not add up. `_needs_review` is `true` when a human should look. Both are stripped before training, so use them freely: they cost nothing, and they are how a hard receipt gets a second pair of eyes instead of a confident guess.
 
@@ -157,6 +161,7 @@ If it does not balance, something is misread — nine times out of ten it is a u
 **Do not round a number to force the balance.** If you cannot make it balance honestly, leave your best reading, add a `_flag` saying so, and set `"_needs_review": true`.
 
 Also confirm before answering:
+- `id` is exactly the id you were given
 - every `price` matches `NN.DD`
 - every `c` is one of the eight exact strings or `null`
 - every `s` belongs to the category beside it, or is `null`

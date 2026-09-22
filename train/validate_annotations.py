@@ -110,6 +110,49 @@ def category_hint(value) -> str:
     return ""
 
 
+_NUMBER_RE = re.compile(r"\d+(?:[.,]\d{1,2})?")
+
+
+def looks_misaligned(record: dict) -> bool:
+    """True when a record's labels probably belong to a different receipt.
+
+    Labels are paired to OCR text by photo id. If that id is ever wrong -- a
+    labeller renumbering receipts by its own count rather than echoing the id
+    it was given -- every record after the slip gets the wrong text. The pair
+    is still well-formed, still validates, and is entirely wrong. Nothing else
+    in this script would notice.
+
+    Prices are the tell. Names get repaired and reconstructed, but a price is
+    a number that either appears on the receipt or does not, so a target whose
+    prices are nowhere in its own OCR text is the signature of a mispair.
+    Requires at least two prices before judging: a one-item receipt whose
+    single price OCR garbled would otherwise be flagged on its own.
+    """
+    text = record.get("input")
+    target = record.get("target")
+    if not isinstance(text, str) or not isinstance(target, dict):
+        return False
+
+    wanted = []
+    for item in target.get("items") or []:
+        value = (item or {}).get("price")
+        if isinstance(value, str) and PRICE_RE.match(value):
+            wanted.append(float(value))
+    total = target.get("total_price")
+    if isinstance(total, str) and PRICE_RE.match(total):
+        wanted.append(float(total))
+    if len(wanted) < 2:
+        return False
+
+    present = set()
+    for token in _NUMBER_RE.findall(text):
+        try:
+            present.add(float(token.replace(",", ".")))
+        except ValueError:
+            continue
+    return not any(value in present for value in wanted)
+
+
 def grounding(record: dict) -> tuple[int, int]:
     """(item names literally present in the input, names checked).
 
@@ -144,6 +187,13 @@ def check(record: dict, strict: bool) -> tuple[list[str], int, Counter]:
     if not isinstance(text, str) or not text.strip():
         errors.append("input is empty -- the model is prompted with OCR text, "
                       "so a record without it teaches nothing")
+    if looks_misaligned(record):
+        errors.append(
+            "none of this receipt's prices appear anywhere in its OCR text -- "
+            "the labels are probably paired with the WRONG photo. Check that "
+            "the id matches the photo it was read from; one renumbered id "
+            "misaligns every record after it.")
+
     kind = (record.get("meta") or {}).get("kind")
     if not kind:
         errors.append("meta.kind is missing ('real' or 'synthetic'); the "

@@ -297,6 +297,17 @@ def merge_llm(llm_path: Path, drafts_dir: Path, out_dir: Path,
         print("Each answer is matched to a draft by photo name. Name them the "
               "same, or\nhand the answers over as one object keyed by photo "
               "filename.")
+    # The reverse of `unmatched`: a photo that was OCR'd but never labelled.
+    # Easy to lose one in a batch of 200, and it shows up as a quietly smaller
+    # dataset rather than as an error.
+    missing = sorted({p.stem for p in drafts_dir.glob("*.json")} - set(answers))
+    if missing:
+        print(f"\n{len(missing)} photo(s) were OCR'd but have no label:")
+        for stem in missing[:10]:
+            print(f"  {stem}")
+        if len(missing) > 10:
+            print(f"  ... and {len(missing) - 10} more")
+
     if flagged:
         print(f"\n{len(flagged)} record(s) the labeller flagged for review:")
         for stem in flagged:
