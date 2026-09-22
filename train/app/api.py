@@ -197,12 +197,20 @@ def _to_response(pred: dict | None, ocr_texts: list[str], merged: str, recon,
         # Field names match the MyCents backend's /receipts/categorize body,
         # so the app forwards the user-confirmed draft without renaming.
         "shopName": pred.get("shop_name") or None,
+        # Names are in the language the receipt PRINTED — the prompt's rule 1,
+        # and the checkpoint was trained on it. The engine never translates:
+        # the app fills nameEn / shopNameEn on the phone (ML Kit, offline)
+        # and the backend replaces them from the product catalog on a match.
+        # They are emitted here as null so the draft is the categorize body,
+        # key for key, and the app has one shape to edit.
+        "shopNameEn": None,
         "receiptDate": receipt_date.isoformat() if receipt_date else None,
         "currency": "THB",
         "totalAmount": pred.get("total_price"),
         "taxAmount": _money(tax),
         "basketDiscount": _money(discount),
-        "items": [{"name": i.get("name"), "price": i.get("price")} for i in items],
+        "items": [{"name": i.get("name"), "nameEn": None, "price": i.get("price")}
+                  for i in items],
         # One entry per photo, in the order they were sent. `stitchedText` is
         # what the model actually read — the pages joined with the overlap
         # removed — and is only present when there was more than one page to

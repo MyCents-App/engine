@@ -13,3 +13,4 @@ reports/*_examples.jsonl
 # plus NGROK_AUTHTOKEN. Never commit either — .env.example is the template.
 .env
 docker/.env
+data/

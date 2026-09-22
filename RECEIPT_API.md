@@ -38,6 +38,13 @@ const BASE = "https://SOMETHING.ngrok-free.app";
 **2. API key.** Sent as an `X-API-Key` header on every `/v1/*` call. Sent to you separately —
 it is deliberately not written down in this file.
 
+**The MyCents app does not hold this key.** Since 22 Sep 2026 it calls the
+backend's `/api/v1/engine/*`, which adds the key and forwards the request
+here; the key lives only in `server/.env`. A key compiled into a phone app
+is a key anyone with the APK has. Everything below still describes what the
+app receives, because the backend forwards bodies and status codes
+verbatim.
+
 ```js
 const KEY = "...";   // paste the key you were given
 ```
@@ -171,14 +178,15 @@ forward the user-confirmed draft without renaming anything.
 {
   "ok": true,
   "shopName": "CP ALL, 7-Eleven",
+  "shopNameEn": null,
   "receiptDate": "2026-08-28",
   "currency": "THB",
   "totalAmount": "39.00",
   "taxAmount": null,
   "basketDiscount": null,
   "items": [
-    { "name": "H UHT นมยูเอชิ ด.16", "price": "13.00" },
-    { "name": "ชีสโรลไส้กรอก",        "price": "26.00" }
+    { "name": "H UHT นมยูเอชิ ด.16", "nameEn": null, "price": "13.00" },
+    { "name": "ชีสโรลไส้กรอก",        "nameEn": null, "price": "26.00" }
   ],
   "ocrTexts": ["..."],
   "reconciles": true,
@@ -204,13 +212,14 @@ A **multi-photo** receipt adds two things and changes nothing else:
 
 | Field | Notes |
 |---|---|
-| `shopName` | OCR errors already corrected. Thai and English both appear. |
+| `shopName` | OCR errors already corrected, **in the language the receipt printed** — Thai and English both appear. |
+| `shopNameEn` | Always `null` from the engine. See [Translation](#translation-is-not-the-engines-job). |
 | `receiptDate` | `YYYY-MM-DD`, or **`null`**. Thai receipts print the Buddhist year (2569); it is already converted to 2026 for you. |
 | `currency` | Always `"THB"` today. |
 | `totalAmount` | The printed total. |
 | `taxAmount` | VAT, lifted out of `items[]` so it isn't categorized as a purchase. `null` when the receipt has none. |
 | `basketDiscount` | A basket-wide discount when the receipt had one, else `null`. It has **already been spread across the item prices** — show it as information, don't subtract it again. |
-| `items[]` | `name` + `price`. Prices are **line totals**, not unit prices — a "2 × 39.00" line arrives once at `78.00`. |
+| `items[]` | `name` + `nameEn` + `price`. `name` is the printed text; `nameEn` is always `null` from the engine. Prices are **line totals**, not unit prices — a "2 × 39.00" line arrives once at `78.00`. |
 | `ocrTexts` | Raw OCR text, one entry **per photo**, in the order you sent them. Diagnostic — ignore it in the UI. |
 | `stitchedText` | Only on multi-photo requests: the pages joined with the overlap removed — what the model actually read. Diagnostic. |
 | `reconciles` / `reconcileStatus` | Do the numbers add up? See below. |
@@ -229,6 +238,25 @@ screen forever.
 **`reconciles: false`** — `Σ items + tax − discount` differs from the printed total by more
 than 3%. Usually a dropped or misread line. Draw the user's attention to the totals on the
 confirm screen rather than hiding it.
+
+### Translation is not the engine's job
+
+Names come back exactly as printed, which for most receipts means Thai. The engine **never
+translates them** and never will: the model is fine-tuned to reproduce the printed text, and
+the backend's categorization matches on that text — a category that depended on a
+translation would change with the translator.
+
+English is a display layer added *after* extraction, and the response leaves a slot for it:
+
+1. **The app** translates `name` / `shopName` on the phone (Google ML Kit, offline, free) and
+   writes the result into `nameEn` / `shopNameEn` before forwarding the confirmed draft.
+2. **The backend** (`POST /api/v1/receipts/categorize`) overrides `nameEn` with the product
+   catalog's English name whenever the item matched a known product, and caches the app's
+   translation for items it did not know — so each translation is made once and then served
+   to everyone.
+
+So: translate on the phone if you want English on the confirm screen, put it in the slot,
+forward. Never send an English name in `name` — that is what gets categorized.
 
 ---
 

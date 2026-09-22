@@ -8,6 +8,10 @@ trained on exactly the prompt it will be evaluated and served with.
 Condensed from task.md Sections 2-4 (the model's share of the work; the code-layer
 responsibilities in Section 4-5 are NOT the model's job and are deliberately left out of this
 prompt -- see postprocess.py).
+
+Rule 1's "keep the original language of each name" is load-bearing beyond the model: the
+backend categorizes on the printed (Thai) text and translation is a separate display layer
+downstream (RECEIPT_API.md, "Translation is not the engine's job"). Do not relax it.
 """
 import json
 
