@@ -32,6 +32,8 @@ PROMPT = f"""You are labelling Thai/English point-of-sale receipts to build a su
 
 Return exactly one JSON object and nothing else.
 
+**Do not reproduce the OCR text in your answer.** It is given to you as context to read; it gets attached to your labels automatically. Reproducing it risks quietly changing it, and the text must stay byte-for-byte what the OCR engine produced.
+
 ---
 
 ## The single most important rule
@@ -52,9 +54,6 @@ If the OCR text and the photo disagree about whether an item exists at all, the 
 
 ```json
 {{
-  "id": "<the receipt id you were given>",
-  "meta": {{ "kind": "real" }},
-  "input": "<the OCR text, copied VERBATIM, not cleaned>",
   "target": {{
     "shop_name": "7-Eleven",
     "items": [
@@ -68,7 +67,6 @@ If the OCR text and the photo disagree about whether an item exists at all, the 
 }}
 ```
 
-- `input` is the OCR text **exactly as given** — keep the `<br>` artifacts, the duplicated lines, the character errors, the odd spacing. Do not tidy it. Correcting that noise is what the model is being trained to do.
 - All money values are **strings** in `NN.DD` form: two decimals, no currency symbol, no thousands separator, no sign. `"7"`, `"7.0"` and `"1,250.00"` are all wrong. Write `"7.00"` and `"1250.00"`.
 - `_flags` is a list of short strings describing anything you were unsure about. `_needs_review` is `true` when a human should look. Both are stripped before training — use them freely, they cost nothing.
 
@@ -165,7 +163,6 @@ Also confirm before answering:
 - every `c` is one of the eight exact strings or `null`
 - every `s` belongs to the category beside it, or is `null`
 - there is exactly **one entry per item line** on the receipt — you have neither merged, dropped, nor duplicated a line
-- `input` is the OCR text unmodified
 
 Output only the JSON object. No explanation, no markdown fences.
 """

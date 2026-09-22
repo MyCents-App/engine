@@ -61,6 +61,9 @@ def parse_args(argv=None) -> argparse.Namespace:
                    help="overwrite skeletons that already exist (DESTROYS edits)")
     p.add_argument("--collect", type=Path, default=None,
                    help="skip generation; concatenate --out/*.json into this JSONL")
+    p.add_argument("--merge-llm", type=Path, default=None,
+                   help="folder of LLM answers ({target, _flags}); splice each "
+                        "onto the OCR text from --drafts and write to --out")
     return p.parse_args(argv)
 
 
@@ -118,6 +121,94 @@ def skeleton(draft: dict, stem: str, kind: str) -> dict:
     return record
 
 
+def ocr_text(draft: dict) -> str:
+    """The text the model was actually prompted with, straight off the response."""
+    pages = draft.get("ocrTexts") or []
+    return draft.get("stitchedText") or ("\n".join(pages) if pages else "")
+
+
+def merge_llm(llm_dir: Path, drafts_dir: Path, out_dir: Path,
+              kind: str, force: bool) -> None:
+    """Splice an LLM's labels onto the exact OCR text from the engine's draft.
+
+    The labeller is deliberately never asked to reproduce the OCR text. Large
+    models are unreliable at echoing long noisy text verbatim -- they tidy
+    <br> artifacts, normalise spacing, drop a duplicated line -- and any drift
+    there trains the model on input the OCR engine does not produce. That
+    corruption is invisible afterwards: the pair looks well-formed, and the
+    model simply learns to expect text it will never be given.
+
+    So `input` is taken from the draft, byte for byte, and only `target` comes
+    from the labeller.
+    """
+    answers = sorted(llm_dir.glob("*.json"))
+    if not answers:
+        sys.exit(f"error: no .json answers in {llm_dir}")
+
+    out_dir.mkdir(parents=True, exist_ok=True)
+    written = skipped = failed = 0
+    flagged: list[str] = []
+
+    for path in answers:
+        stem = path.stem
+        draft_path = drafts_dir / f"{stem}.json"
+        if not draft_path.exists():
+            print(f"  ! {path.name}: no draft at {draft_path} -- cannot recover "
+                  f"the OCR text, so this record would have no input")
+            failed += 1
+            continue
+
+        try:
+            answer = json.loads(path.read_text(encoding="utf-8"))
+            draft = json.loads(draft_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as exc:
+            print(f"  ! {path.name}: unreadable ({exc})")
+            failed += 1
+            continue
+
+        # Accept either {"target": {...}} or a bare target, since a labeller
+        # told to emit one object sometimes emits the inner one.
+        target = answer.get("target", answer)
+        if not isinstance(target, dict) or "items" not in target:
+            print(f"  ! {path.name}: no usable 'target' object")
+            failed += 1
+            continue
+
+        text = ocr_text(draft)
+        if not text.strip():
+            print(f"  ! {path.name}: the draft has no OCR text")
+            failed += 1
+            continue
+
+        dest = out_dir / f"{stem}.json"
+        if dest.exists() and not force:
+            skipped += 1
+            continue
+
+        record = {"id": stem, "meta": {"kind": kind},
+                  "input": text, "target": target}
+        for field in ("_flags", "_needs_review"):
+            if answer.get(field):
+                record[field] = answer[field]
+        if answer.get("_needs_review"):
+            flagged.append(stem)
+
+        dest.write_text(json.dumps(record, ensure_ascii=False, indent=2) + "\n",
+                        encoding="utf-8")
+        written += 1
+
+    print(f"\n{written} record(s) written to {out_dir}")
+    if skipped:
+        print(f"{skipped} already existed and were left alone (--force to replace)")
+    if failed:
+        print(f"{failed} answer(s) could not be used")
+    if flagged:
+        print(f"\n{len(flagged)} record(s) the labeller flagged for review:")
+        for stem in flagged:
+            print(f"  {stem}")
+    print("\nNext: validate_annotations.py, then --collect")
+
+
 def collect(out_dir: Path, dest: Path) -> None:
     """Concatenate finished skeletons into one JSONL, dropping the underscore
     bookkeeping fields the trainer has no use for."""
@@ -149,6 +240,13 @@ def main(argv=None) -> None:
 
     if args.collect:
         collect(args.out, args.collect)
+        return
+
+    if args.merge_llm:
+        if not args.drafts.is_dir():
+            sys.exit(f"error: no draft folder at {args.drafts} -- the OCR text "
+                     f"comes from there, not from the labeller")
+        merge_llm(args.merge_llm, args.drafts, args.out, args.kind, args.force)
         return
 
     if not args.drafts.is_dir():

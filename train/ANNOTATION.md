@@ -369,6 +369,33 @@ editing it, and make sure everyone labelling uses the same text: two people
 running two slightly different prompts produces label noise indistinguishable
 from real disagreement, and it does not average out.
 
+### The loop
+
+```
+trainun_demo.bat                                      # engine up
+.venv\Scripts\python.exe review_photos.py --no-pause   # photos -> drafts, with ocrTexts
+
+   for each receipt, to the LLM:
+     LLM_ANNOTATION_PROMPT.md  +  the photo(s)  +  ocrTexts from the draft
+   save its answer as data/llm/<same stem>.json
+
+.venv\Scripts\python.exe make_annotations.py --merge-llm data/llm
+.venv\Scripts\python.exe validate_annotations.py
+.venv\Scripts\python.exe make_annotations.py --collect data/real.jsonl
+```
+
+One receipt per request. Batching several into one prompt blurs them together,
+and the cost of a separate request is nothing next to re-labelling.
+
+**The labeller never writes `input`.** It is shown the OCR text and asked for
+`target` only; `--merge-llm` splices the exact text off the draft. Large models
+are unreliable at echoing long noisy text verbatim — they tidy `<br>` artifacts,
+normalise spacing, drop a duplicated line — and any drift there trains the model
+on input the OCR engine does not produce. That corruption is invisible
+afterwards: the pair looks well-formed and the model just learns to expect text
+it will never be given. Asking for labels only removes the failure mode
+entirely, and shortens the answer.
+
 **Give the labeller the OCR text as well as the photo.** This is not optional.
 The model being trained only ever sees OCR text, so a target containing a name
 that OCR destroyed teaches it to invent names. A labeller shown only the photo
