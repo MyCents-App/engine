@@ -1,5 +1,25 @@
 """Score categorization checkpoints the way CATEGORIZATION.md section 4 asks.
 
+SUPERSEDED, kept for its metric code
+------------------------------------
+This scores the OLD two-adapter task: shop + item names in, categories out. The
+pipeline is now ONE joint task -- OCR text in, items WITH categories out (see
+ANNOTATION.md, prompts.py) -- so this script cannot read the new data and its
+numbers are not comparable to anything the joint model produces.
+
+What is still good here: the Tally class and the five metrics, the per-`kind`
+breakdown that keeps real receipts apart from synthetic (the only reason the
+first run's overfitting was visible), and diagnose(), which is what made the
+"11 entries for a 12-item basket" failure legible.
+
+What the joint evaluator has to change: read {id, meta, input, target} records,
+prompt with prompts.build_messages(input), and score BOTH halves of one output
+-- extraction (shop, item names, prices, total, against eval_metrics.py's
+measures) and categorization (c/s, with the metrics below) -- reported
+separately, because a regression in either one has to be attributable.
+
+Everything below describes the superseded task.
+
 Generates greedily (do_sample=False, as every published number in this repo
 does), runs each completion through categorize_prompts.parse_output -- the
 same validator the engine will use at serving time -- and reports the five

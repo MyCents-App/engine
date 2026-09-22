@@ -1,5 +1,66 @@
 # Categorization with the same model — the plan and the recipe
 
+> ## ⚠ SUPERSEDED IN PART — read this first (22 Sep 2026, evening)
+>
+> **The two-adapter design in §1, §3 and §5 is no longer the plan.** Extraction
+> and categorization were merged into **one task, one adapter, one call**:
+> raw Surya OCR text in, one JSON object out carrying the shop, the items with
+> prices, and a `c`/`s` category pair per item.
+>
+> **Current plan of record: [`ANNOTATION.md`](ANNOTATION.md)** — dataset
+> contract, field rules, the taxonomy, and §7 on what the merge costs.
+> The prompt lives in [`prompts.py`](prompts.py).
+>
+> ### Why it changed
+>
+> The two-adapter plan was trained and it overfitted. One run, 2 epochs,
+> 2,693 synthetic baskets: pooled validation loss fell to 0.045 and looked
+> healthy while **real-receipt loss climbed 0.2713 → 0.4443, monotonically,
+> from the very first checkpoint.** §3's own warning — "more epochs memorise
+> catalog rows and lose the real receipts" — was right, and 2 epochs was
+> already too many. The final checkpoint was the worst of seven.
+>
+> Scoring also surfaced a structural failure the loss curve hid: on 11-12
+> item baskets the model emits well-formed JSON that closes correctly and
+> contains **one entry too few**. Not truncation (138 tokens of a 1024 cap),
+> not batching (it reproduces at batch 1). It miscounts.
+>
+> Both point the same way: the synthetic baskets cannot teach what a real
+> receipt looks like, and 15 real validation receipts cannot tell you whether
+> anything has. The fix is ~200 hand-annotated real receipts plus synthesised
+> OCR/JSON pairs, and a **real-only validation set**.
+>
+> ### What is still valid here
+>
+> - **§2's honesty about the data** — the catalog has 0 Transport, 0 Bills &
+>   Utilities and 1 Entertainment row. Still true, still the biggest gap.
+> - **§4's metrics and targets** — valid ≥99%, category accuracy ≥90% on
+>   synthetic with the real number deciding, sub accuracy ≥70%, sub precision
+>   ≥90%. Unchanged; the joint evaluator must also score extraction.
+> - **§6's backend plan** — stages 1-4 stay as deterministic lookups in front
+>   of the model, and a model decline falls to user review. Unchanged, except
+>   that categories now arrive with the extraction draft instead of needing a
+>   second `/v1/categorize` call.
+>
+> ### What is superseded
+>
+> - **§1's "why a separate adapter, not one model for both tasks"** — reversed.
+> - **§3's recipe** — `train_qlora.py` now exists and is committed; train from
+>   base `Qwen/Qwen3.5-2B` on the joint data. Keep `--max-seq-length 2048` or
+>   higher: the joint system prompt alone is **904 tokens** (the two separate
+>   prompts were ~330 each), and a 14-item receipt runs ~1,637 end to end.
+> - **§5's adapter swapping** — one adapter, no `set_adapter` per call. Note
+>   that serving `ENGINE_MAX_NEW_TOKENS` (768) may need raising: the joint
+>   output is ~33 tokens per item versus ~12 before, so 768 caps at roughly
+>   23 items.
+> - **`data/categorize_*.jsonl`** — the input side is a clean item list, not
+>   OCR text, so it cannot train the joint task. Kept only as reference for
+>   synthesising.
+> - **`eval_categorize.py`** — scores the old shop+items→categories task. Its
+>   metric code is reusable; its input handling is not.
+
+---
+
 Status (22 Sep 2026): **dataset built, prompt fixed, nothing trained yet.**
 This replaces stage 5 (the char n-gram Naive Bayes) of the backend's
 pipeline with a second QLoRA adapter on the same Qwen3.5-2B base that does
