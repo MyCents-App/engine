@@ -1,7 +1,20 @@
-"""Emit the prompt for labelling receipts with a large model.
+"""Emit the prompt for labelling receipt PHOTOS with a large model.
 
     .venv\\Scripts\\python.exe make_llm_prompt.py                 # to stdout
     .venv\\Scripts\\python.exe make_llm_prompt.py -o llm_prompt.md
+
+The labeller is shown the photo only, and returns `target`. The OCR text that
+becomes `input` is produced separately by our own Surya pipeline and paired on
+by `make_annotations.py --merge-llm`, so the labeller is never asked to
+transcribe or reproduce it.
+
+That means a target name can be more complete than the OCR text it is paired
+with -- the photo shows what a garbled line really said. This is deliberate:
+the gold standard for a name is what the receipt prints, not what the OCR
+engine managed to recover, and mapping the lossy text onto the truth is the
+denoising job the model exists to do. validate_annotations.py reports how often
+a name is not literally present in the input, so the size of what the model is
+being asked to reconstruct stays visible rather than becoming a surprise.
 
 The taxonomy is injected from categorize_prompts.CATEGORIES rather than typed
 out, so the labelling prompt, the trained model's system prompt, and the
@@ -25,29 +38,11 @@ TAXONOMY = "\n".join(
     f"- {category}: {', '.join(subs)}" for category, subs in CATEGORIES.items()
 )
 
-PROMPT = f"""You are labelling Thai/English point-of-sale receipts to build a supervised training set. You will be given, for one receipt:
+PROMPT = f"""You are reading Thai/English point-of-sale receipts to build a supervised training set. You will be given **the photo(s) of one receipt**.
 
-1. **The photo(s)** of the receipt.
-2. **The OCR text** that our OCR engine (Surya) produced from those photos.
+Read the receipt and return exactly one JSON object describing what it says. Nothing else.
 
-Return exactly one JSON object and nothing else.
-
-**Do not reproduce the OCR text in your answer.** It is given to you as context to read; it gets attached to your labels automatically. Reproducing it risks quietly changing it, and the text must stay byte-for-byte what the OCR engine produced.
-
----
-
-## The single most important rule
-
-**The OCR text is the ground truth for what exists, the photo is the ground truth for what things mean.**
-
-Our model will only ever see the OCR text. It never sees the photo. So:
-
-- **Never write an item name that is not recoverable from the OCR text**, even when you can read it perfectly on the photo. If OCR reduced a line to `16  60.00`, the name is gone — write `"16"` as the name. Writing `"หม่าล่า 16 ไม้"` because you can see it in the photo teaches the model to invent names, which is the worst failure mode we have.
-- **"Recoverable" means recoverable from the whole OCR text, not from that one line.** Do repair garbled names (`หม่าล่าปีชง2` → `หม่าล่าปิซง2`) and reconstruct missing Thai vowels and tone marks (`ชสโรลไสกรอ` → `ชีสโรลไส้กรอก`) — that is the main thing this model is being trained to do. Do recover a name that appears elsewhere on the receipt, or that OCR'd cleanly the second time the item repeats. Only a name with *no* surviving characters anywhere in the text is unrecoverable.
-- **Do use the photo** to fix OCR character errors in names that ARE present (`หม่าล่าปีชง2` → `หม่าล่าปิซง2`), to read prices the OCR garbled, and to decide categories.
-- **Do use the photo** to confirm which number is the final total, and whether a discount is basket-wide or tied to one item.
-
-If the OCR text and the photo disagree about whether an item exists at all, the photo wins — add it. If they disagree about its *name*, keep what OCR can support.
+Your answer becomes the ground truth a model is trained towards, so read carefully and prefer accuracy over speed. You do not need to transcribe the receipt's raw text — our OCR output is attached to your labels automatically afterwards.
 
 ---
 
@@ -59,9 +54,9 @@ If the OCR text and the photo disagree about whether an item exists at all, the 
     "shop_name": "7-Eleven",
     "items": [
       {{ "name": "ชีสโรลไส้กรอก", "price": "26.00", "c": "Food & Dining", "s": "Bakery & desserts" }},
-      {{ "name": "16", "price": "60.00", "c": null, "s": null }}
+      {{ "name": "H UHT นมยูเอชที ด.16", "price": "13.00", "c": "Groceries", "s": "Dairy & eggs" }}
     ],
-    "total_price": "86.00"
+    "total_price": "39.00"
   }},
   "_flags": [],
   "_needs_review": false
@@ -69,17 +64,19 @@ If the OCR text and the photo disagree about whether an item exists at all, the 
 ```
 
 - All money values are **strings** in `NN.DD` form: two decimals, no currency symbol, no thousands separator, no sign. `"7"`, `"7.0"` and `"1,250.00"` are all wrong. Write `"7.00"` and `"1250.00"`.
-- `_flags` is a list of short strings describing anything you were unsure about. `_needs_review` is `true` when a human should look. Both are stripped before training — use them freely, they cost nothing.
+- `_flags` is a list of short strings describing anything you were unsure about — a smudged price, an item you could not read, a total that does not add up. `_needs_review` is `true` when a human should look. Both are stripped before training, so use them freely: they cost nothing, and they are how a hard receipt gets a second pair of eyes instead of a confident guess.
 
 ---
 
 ## Field rules
 
 ### shop_name
-The merchant, as printed, **in the receipt's own language**. Correct OCR errors. Never translate. `"7-Eleven"`, `"แม็คโคร"`, `"หม่าล่าปิซง2"`.
+The merchant, as printed, **in the receipt's own language**. Never translate. `"7-Eleven"`, `"แม็คโคร"`, `"หม่าล่าปิซง2"`.
 
 ### items[].name
-As printed, OCR errors corrected, original language kept. Never translate. Must be supported by the OCR text (see the rule above).
+The item as printed, **in the receipt's own language**. Never translate — the categorization is matched on this text downstream, so an English name here changes the meaning of the data.
+
+Transcribe what the receipt says. If a line is genuinely illegible, give your best reading, add a `_flag`, and set `"c"` to `null` rather than inventing a category for something you cannot identify.
 
 ### items[].price — read this twice
 **Line totals, not unit prices.** This is the rule most often got wrong.
@@ -92,7 +89,7 @@ As printed, OCR errors corrected, original language kept. Never translate. Must 
 | Buy-one-get-one on a 45.00 item | ONE item at `"45.00"` — do NOT add the free one |
 | `Shampoo 120.00` then a `-20.00` discount naming Shampoo | ONE item at `"100.00"` — fold it in, no separate discount line |
 
-Never split a quantity line into several items. Never add an item for a discount that names a specific product.
+Never split a quantity line into several items. Never add an item for a discount that names a specific product. One entry per printed item line.
 
 ### basket-wide_discount
 A discount **not tied to any specific item** — a coupon, a member discount, a percentage off the whole bill.
@@ -111,7 +108,7 @@ The tax row always has `"c": null`. Tax is not a purchase; categorised as one, e
 Note: nearly every Thai receipt prints a `TAX ID#` / `เลขประจำตัวผู้เสียภาษี` boilerplate line. **That is not VAT.** Ignore it.
 
 ### total_price
-The receipt's **final printed total** (`ยอดสุทธิ`, `รวมทั้งสิ้น`, `Total`, `Net`). Not your computed sum. If a receipt shows both a subtotal and a net total, use the net total. If the printed total disagrees with the items, the printed total wins and you flag it.
+The receipt's **final printed total** (`ยอดสุทธิ`, `รวมทั้งสิ้น`, `Total`, `Net`). Not your computed sum. If the receipt shows both a subtotal and a net total, use the net total. If the printed total disagrees with the items, the printed total wins and you flag it.
 
 ---
 
@@ -139,14 +136,11 @@ If the whole receipt is from a restaurant, nearly every food line is `Food & Din
 
 ### Prefer `null` to a guess
 
-- Unsure of the **subcategory** → `"s": null`. A wrong subcategory is worse than none.
+- Unsure of the **subcategory** → `"s": null`. A wrong subcategory is worse than none: we would rather have nothing than the wrong one.
 - The tax row → always `"c": null`.
-- **An item whose name OCR destroyed**: the answer depends on the shop.
-  - At a **single-category merchant** — a restaurant, a pharmacy, a cinema, a petrol station — the shop decides the category on its own, so still give `c`. An unnamed line on a hotpot receipt is `Food & Dining`. Leave `s` null unless the price or position makes it obvious.
-  - At a **general retailer** — 7-Eleven, Makro, Big C, Watsons — an unnamed item could be Groceries, Food & Dining, Health & Wellness or Shopping, and the shop tells you nothing. Use `"c": null`.
-- Never infer a category from a **price alone**. The shop is context; the price is not.
+- An item you genuinely **cannot identify** from the photo → `"c": null` and `"s": null`, plus a `_flag`. Never infer a category from a price alone.
 
-A `null` is not a failure. Our pipeline routes those items to a human, which is the correct outcome. A confident wrong answer is far more expensive.
+A `null` is not a failure. Our pipeline routes those items to a human, which is the correct outcome. A confident wrong answer is far more expensive than an honest blank.
 
 ---
 
@@ -166,7 +160,8 @@ Also confirm before answering:
 - every `price` matches `NN.DD`
 - every `c` is one of the eight exact strings or `null`
 - every `s` belongs to the category beside it, or is `null`
-- there is exactly **one entry per item line** on the receipt — you have neither merged, dropped, nor duplicated a line
+- there is exactly **one entry per printed item line** — you have neither merged, dropped, nor duplicated a line
+- names are in the receipt's own language, untranslated
 
 Output only the JSON object. No explanation, no markdown fences.
 """

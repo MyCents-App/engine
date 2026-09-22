@@ -3,9 +3,13 @@
 Catches the mistakes that are invisible by eye and expensive later: a category
 spelled `Coffee & cafe` without the accent, a price written `7.0`, a basket
 discount subtracted from the item prices as well as recorded, a subcategory
-borrowed from the wrong category, a target naming an item the OCR text does not
-contain. Every one of those either breaks the builder or, worse, silently
-teaches the model something wrong.
+borrowed from the wrong category. Every one of those either breaks the builder
+or, worse, silently teaches the model something wrong.
+
+Labels come from the receipt PHOTO, so a target name is what the receipt
+printed rather than what OCR recovered. That is not an error -- mapping the
+lossy text onto the truth is the job -- so name grounding is REPORTED and
+never enforced.
 
     .venv\\Scripts\\python.exe validate_annotations.py                  # data/annotations/*.json
     .venv\\Scripts\\python.exe validate_annotations.py data/real.jsonl  # a built JSONL
@@ -13,10 +17,13 @@ teaches the model something wrong.
 
 Exits non-zero if anything is wrong, so it can gate the builder.
 
-It also prints the category distribution across everything checked. That is
-the number worth watching while the work is in progress: three of the eight
-categories are ones real receipts are the only source for, and it is worth
-knowing you have none of them while there is still time to go photograph some.
+It prints two things worth watching while the work is in progress. The
+category distribution, because three of the eight categories are ones real
+receipts are the only source for and it is worth knowing you have none of them
+while there is still time to photograph some. And name grounding -- how often
+an item name appears verbatim in the OCR input -- because that is how much
+reconstruction the model is being asked to do, and a low number is an OCR or
+photography problem rather than something more epochs will fix.
 """
 
 from __future__ import annotations
@@ -101,6 +108,30 @@ def category_hint(value) -> str:
                         if "é" in sub else
                         f" -- {sub!r} is a subcategory of {category!r}")
     return ""
+
+
+def grounding(record: dict) -> tuple[int, int]:
+    """(item names literally present in the input, names checked).
+
+    Reported, never enforced. Labels come from the photo, so a target name is
+    what the receipt printed rather than what OCR recovered -- and mapping the
+    lossy text onto the truth is the job. But the gap is worth watching: it is
+    how much reconstruction the model is being asked to do, and if it is large
+    the honest reading is that OCR (or the photography) is the thing to fix,
+    not the number of training epochs.
+    """
+    text = record.get("input")
+    if not isinstance(text, str):
+        return 0, 0
+    grounded = checked = 0
+    for item in record.get("target", {}).get("items") or []:
+        name = str((item or {}).get("name") or "").strip()
+        if not name or name.lower() in TAX_NAMES:
+            continue
+        checked += 1
+        if name in text:
+            grounded += 1
+    return grounded, checked
 
 
 def check(record: dict, strict: bool) -> tuple[list[str], int, Counter]:
@@ -253,6 +284,7 @@ def main(argv=None) -> None:
     seen: dict[str, str] = {}
     kinds: Counter = Counter()
     bad = pending_total = item_total = 0
+    grounded_total = grounded_checked = 0
 
     for label, record in records:
         if "_unreadable" in record:
@@ -264,6 +296,9 @@ def main(argv=None) -> None:
         counts.update(file_counts)
         pending_total += pending
         item_total += len(record.get("target", {}).get("items") or [])
+        g, c = grounding(record)
+        grounded_total += g
+        grounded_checked += c
         kinds[(record.get("meta") or {}).get("kind", "?")] += 1
 
         rid = record.get("id")
@@ -284,6 +319,16 @@ def main(argv=None) -> None:
     if pending_total and item_total:
         print(f"{pending_total} item(s) have no category "
               f"({pending_total / item_total:.0%})")
+
+    if grounded_checked:
+        share = grounded_total / grounded_checked
+        print(f"\nname grounding: {grounded_total}/{grounded_checked} "
+              f"({share:.0%}) of item names appear verbatim in the OCR input")
+        if share < 0.70:
+            print("  The rest are reconstructions the model has to learn from "
+                  "context.\n  A low number here usually means the OCR or the "
+                  "photography is the thing\n  to fix, not the number of "
+                  "training epochs -- worth a look first.")
 
     if counts:
         print("\ncategory distribution:")

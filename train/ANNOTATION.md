@@ -28,8 +28,8 @@ JSONL, UTF-8, Thai left as Thai. One record per line:
   "target": {
     "shop_name": "หม่าล่าปิซง2",
     "items": [
-      { "name": "16",     "price": "60.00", "c": null,           "s": null },
-      { "name": "ซุปผสม", "price": "9.00",  "c": "Food & Dining", "s": "Restaurants" }
+      { "name": "หม่าล่า 16 ไม้", "price": "60.00", "c": "Food & Dining", "s": "Restaurants" },
+      { "name": "ซุปผสม",          "price": "9.00",  "c": "Food & Dining", "s": "Restaurants" }
     ],
     "total_price": "69.00"
   }
@@ -37,17 +37,18 @@ JSONL, UTF-8, Thai left as Thai. One record per line:
 ```
 
 Read the first item against the `input` above. OCR reduced that line to
-`16  60.00` — the price survived, the name did not, so the name stays `"16"`.
-Writing the real name because you can see it on the photo is what teaches the
-model to invent names out of nothing.
+`16  60.00` — the name is not in the text at all — yet the target says
+`หม่าล่า 16 ไม้`. **That is intended.** Labels are read off the photo, so the
+target is what the receipt actually printed, and the model's job is to map the
+lossy text onto that truth. Same with the shop name: `หม่าล่าปีชง2` in, the
+correct `หม่าล่าปิซง2` out.
 
-Contrast that with the shop name: `หม่าล่าปีชง2` **is** in the OCR text, just
-misread, so correcting it to `หม่าล่าปิซง2` is exactly the job. Repairing
-garbled text is what this model is for; inventing absent text is not.
-
-`c` is `null` on that item only because this example is a general-retailer
-case. See §3, "When OCR destroyed the name" — at a single-category merchant
-the shop supplies the category even with no name.
+The consequence is that some names cannot be derived from the input alone and
+the model has to reconstruct them from context — position, the shop, the
+surrounding lines. `validate_annotations.py` reports **name grounding**, the
+share of item names appearing verbatim in the input, so the size of that ask
+stays visible. A low number is usually a sign that the OCR or the photography
+is what needs fixing, not the number of training epochs.
 
 `input` is the OCR text exactly as Surya produced it — `<br>` artifacts,
 duplicated lines, character errors and all. Do not clean it. Correcting the
@@ -110,10 +111,12 @@ As printed, OCR errors corrected, **in the receipt's own language**. Do not
 translate. `"7-Eleven"`, `"แม็คโคร"`, `"CP ALL, 7-Eleven"`.
 
 ### items[].name
-As printed, OCR errors corrected, original language kept. Never translate.
-This is the text categorization runs on, so an English name here silently
-changes what the model learns — and it must be recoverable from `input`
-(see "When OCR destroyed the name").
+As printed on the receipt, original language kept. Never translate. This is
+the text categorization runs on, so an English name here silently changes what
+the model learns.
+
+Read it off the photo, not off the OCR text — the target is what the receipt
+says. Where the two differ, the model is being taught to close that gap.
 
 ### items[].price — the one people get wrong
 **Line totals, not unit prices.**
@@ -183,47 +186,18 @@ A wrong subcategory is worse than none — the target is 90% precision when one
 is given, versus 70% recall. If you hesitate, write `null`. The backend has a
 separate subcategory classifier that runs afterwards on the nulls.
 
-### When OCR destroyed the name, `c` is `null` too
+### `c: null` is for items you cannot identify
 
-Real receipts lose item names outright. A line that Surya read as
+Labels come from the photo, so you can nearly always read the item. Use
+`c: null` and `s: null` only when you genuinely cannot tell what something is —
+a smudged line, a merchant's private abbreviation — and add a `_flag` saying
+so. Never infer a category from a **price alone**.
 
-```
-16  60.00
-```
+The `"vat"` row always takes `c: null`: tax is not a purchase, and categorised
+as one every per-category spending total is wrong by the tax.
 
-has no recoverable name — the price survived and the name did not. Write
-`name` as whatever is actually there.
-
-**Never recover the name from the photo when the OCR does not contain it.**
-The model only ever sees `input`; a target naming something absent from the
-input trains it to hallucinate. This is the one case where the photo must not
-win.
-
-Be clear about what "unrecoverable" means, though — it is narrow. Repairing a
-garbled name (`หม่าล่าปีชง2` → `หม่าล่าปิซง2`) and reconstructing missing Thai
-vowels and tone marks (`ชสโรลไสกรอ` → `ชีสโรลไส้กรอก`) are the **main thing
-this model is being trained to do**, and a name that appears elsewhere in the
-text, or that OCR'd cleanly where the item repeats, is recoverable too.
-"Recoverable" is judged against the whole OCR text, not one line. Only a name
-with no surviving characters anywhere is gone.
-
-### ...but the category often survives the name
-
-`c` depends on the shop, not on the item:
-
-- **Single-category merchant** — restaurant, pharmacy, cinema, petrol station:
-  give `c` anyway. An unnamed line on a hotpot receipt is `Food & Dining` with
-  near-certainty, and nulling it throws away a reliable label. Leave `s` null.
-- **General retailer** — 7-Eleven, Makro, Big C, Watsons: an unnamed item could
-  be Groceries, Food & Dining, Health & Wellness or Shopping. `c: null`.
-
-That split mirrors the backend's stage 3, which already maps 83
-single-category brands straight to a category without looking at the item.
-
-Never infer a category from a **price alone**. The shop is context; the price
-is not. And a `null` is not a hole in the data — it is the model learning to
-decline, which routes the item to user review, the same path a stage-5 decline
-takes today. `c` is nullable for that reason and for the `"vat"` row.
+A `null` is not a hole in the data. It is the model learning to decline, which
+routes the item to user review — the same path a stage-5 decline takes today.
 
 ### The shop is context, and it changes the answer
 
@@ -410,7 +384,7 @@ un_demo.bat                                      # engine up
 .venv\Scripts\python.exe review_photos.py --no-pause   # photos -> drafts, with ocrTexts
 
    for each receipt, to the LLM:
-     LLM_ANNOTATION_PROMPT.md  +  the photo(s)  +  ocrTexts from the draft
+     LLM_ANNOTATION_PROMPT.md  +  the photo(s)          <- the photo ONLY
    save its answer as data/llm/<same stem>.json
 
 .venv\Scripts\python.exe make_annotations.py --merge-llm data/llm
@@ -421,20 +395,25 @@ un_demo.bat                                      # engine up
 One receipt per request. Batching several into one prompt blurs them together,
 and the cost of a separate request is nothing next to re-labelling.
 
-**The labeller never writes `input`.** It is shown the OCR text and asked for
-`target` only; `--merge-llm` splices the exact text off the draft. Large models
-are unreliable at echoing long noisy text verbatim — they tidy `<br>` artifacts,
-normalise spacing, drop a duplicated line — and any drift there trains the model
-on input the OCR engine does not produce. That corruption is invisible
-afterwards: the pair looks well-formed and the model just learns to expect text
-it will never be given. Asking for labels only removes the failure mode
-entirely, and shortens the answer.
+**The labeller sees only the photo, and returns only `target`.** The OCR text
+is produced separately by our own Surya pipeline and `--merge-llm` pairs it on,
+so the labeller is never asked to transcribe or echo it. Two reasons that split
+is the right one:
 
-**Give the labeller the OCR text as well as the photo.** This is not optional.
-The model being trained only ever sees OCR text, so a target containing a name
-that OCR destroyed teaches it to invent names. A labeller shown only the photo
-will do exactly that, confidently, on every receipt where OCR dropped a line —
-and those are common.
+- **A photo-only labeller reads the receipt better than OCR does.** It is the
+  stronger reader, so using it as the source of truth for names and prices is
+  the point of the exercise — the target is what the receipt printed, and
+  teaching the model to recover that from lossy text is the job.
+- **Large models are unreliable at echoing long noisy text verbatim.** They
+  tidy `<br>` artifacts, normalise spacing, drop a duplicated line. Any drift
+  in `input` would train the model on text the OCR engine does not produce,
+  and the corruption is invisible afterwards — the pair looks well-formed and
+  the model simply learns to expect input it will never be given.
+
+The cost is that some target names are not derivable from the input alone.
+`validate_annotations.py` reports **name grounding** so that stays measured
+rather than assumed; if it comes out low, the OCR or the photography is the
+thing to fix.
 
 ### Three rules that keep this honest
 
