@@ -2,7 +2,7 @@
 
 Send a photo of a receipt — or two or three photos of a long one — and get back structured
 JSON: merchant, date, line items with prices, tax and the total. Runs on a GPU workstation,
-exposed over a Cloudflare tunnel.
+exposed over an ngrok tunnel.
 
 ---
 
@@ -13,8 +13,12 @@ request returns exactly the fields it always did, plus `engine.pages`. `ocrTexts
 an array and still has one entry. `/ready` gained `max_pages`. Both upload styles and
 `/v1/extract-text` are unchanged.
 
-Two things to know:
+Three things to know:
 
+- **The tunnel moved from Cloudflare to ngrok. Browser code must add one header,
+  `ngrok-skip-browser-warning: 1`, to every request** — without it ngrok answers with an
+  HTML warning page instead of the API's JSON. See [The things you need](#the-things-you-need).
+  curl and server-side code are unaffected.
 - **Sending 2+ images used to be a `400`. It is now a valid multi-page request.** Only matters
   if you branch on that error.
 - **To use multi-photo you have to opt in** — let the user take several shots and append them
@@ -22,13 +26,13 @@ Two things to know:
 
 ---
 
-## The two things you need
+## The things you need
 
-**1. Base URL.** The tunnel issues a **new hostname every time the server is started**, so
-don't hardcode it. You'll get the current one before each session.
+**1. Base URL.** You'll get the current one before each session. It may change when the
+server restarts, so read it from config rather than hardcoding it.
 
 ```js
-const BASE = "https://SOMETHING.trycloudflare.com";
+const BASE = "https://SOMETHING.ngrok-free.app";
 ```
 
 **2. API key.** Sent as an `X-API-Key` header on every `/v1/*` call. Sent to you separately —
@@ -40,6 +44,17 @@ const KEY = "...";   // paste the key you were given
 
 The service is on the public internet and fronts a GPU, so `/v1/*` is closed. Without the
 header you get **401**. `/health` and `/ready` are open and need no key.
+
+**3. The ngrok header, from a browser.** The free ngrok plan intercepts browser requests with
+an HTML "You are about to visit…" page. Sending `ngrok-skip-browser-warning` (any value)
+skips it. Put it on **every** request, `/ready` included, so all calls share one set of
+headers:
+
+```js
+const HEADERS = { "X-API-Key": KEY, "ngrok-skip-browser-warning": "1" };
+```
+
+If a call returns HTML instead of JSON, this header is missing.
 
 ---
 
@@ -56,7 +71,7 @@ fd.append("files", photoFile);         // any field name works: files, file, ima
 
 const res = await fetch(BASE + "/v1/extract", {
   method: "POST",
-  headers: { "X-API-Key": KEY },       // do NOT set Content-Type yourself
+  headers: HEADERS,                    // do NOT set Content-Type yourself
   body: fd,
 });
 const data = await res.json();
@@ -67,7 +82,7 @@ const data = await res.json();
 ```js
 const res = await fetch(BASE + "/v1/extract", {
   method: "POST",
-  headers: { "X-API-Key": KEY, "Content-Type": "image/jpeg" },
+  headers: { ...HEADERS, "Content-Type": "image/jpeg" },
   body: photoFile,                     // Blob / File / ArrayBuffer
 });
 ```
@@ -113,7 +128,7 @@ it's the better thing to develop against before wiring up the camera.
 ```js
 fetch(BASE + "/v1/extract-text", {
   method: "POST",
-  headers: { "X-API-Key": KEY, "Content-Type": "application/json" },
+  headers: { ...HEADERS, "Content-Type": "application/json" },
   body: JSON.stringify({ text: "7-ELEVEN\ncoke 20.00\nTotal 20.00" }),
 });
 ```
@@ -288,15 +303,15 @@ Once you have the URL, confirm it works before touching app code:
 
 ```bash
 # no key needed — is the engine actually ready?
-curl https://SOMETHING.trycloudflare.com/ready
+curl https://SOMETHING.ngrok-free.app/ready
 
 # the real thing
-curl -X POST https://SOMETHING.trycloudflare.com/v1/extract \
+curl -X POST https://SOMETHING.ngrok-free.app/v1/extract \
      -H "X-API-Key: YOUR_KEY" \
      -F "files=@receipt.jpg"
 
 # a long receipt, IN CAPTURE ORDER
-curl -X POST https://SOMETHING.trycloudflare.com/v1/extract \
+curl -X POST https://SOMETHING.ngrok-free.app/v1/extract \
      -H "X-API-Key: YOUR_KEY" \
      -F "files=@page1.jpg" -F "files=@page2.jpg"
 ```
@@ -311,6 +326,6 @@ the photo call will go through.
 The engine runs on a workstation, not a datacenter:
 
 - **That machine has to be awake with the services running.** Nothing responds otherwise.
-- **The URL changes every time the tunnel restarts.** Don't hardcode it — read it from config
+- **The URL may change when the tunnel restarts.** Don't hardcode it — read it from config
   so a new one is a one-line change.
 - **`/ready` returns 503 for about a minute after startup** while the model loads into VRAM.

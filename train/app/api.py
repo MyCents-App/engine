@@ -79,7 +79,9 @@ app.add_middleware(
     allow_origins=[settings.allow_origin],
     allow_methods=["GET", "POST", "OPTIONS"],
     # X-API-Key must be listed explicitly: it is not a CORS-safelisted header.
-    allow_headers=["Content-Type", "X-API-Key"],
+    # ngrok-skip-browser-warning is what browser clients send to get past the free
+    # ngrok tunnel's HTML interstitial; unlisted, its preflight fails and so does the call.
+    allow_headers=["Content-Type", "X-API-Key", "ngrok-skip-browser-warning"],
     max_age=86400,
 )
 

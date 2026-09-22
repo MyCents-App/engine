@@ -3,7 +3,7 @@ REM Starts the receipt engine -- both services plus a public tunnel -- in separa
 REM
 REM   window 1: Surya OCR      (SuryaOCR venv, GPU by default)  127.0.0.1:8001, private
 REM   window 2: extraction API (this venv, GPU)                 0.0.0.0:8000
-REM   window 3: public HTTPS tunnel (Cloudflare) -> prints the URL to share
+REM   window 3: public HTTPS tunnel (ngrok) -> prints the URL to share
 REM
 REM Surya and this project pin incompatible transformers versions, so they cannot share one
 REM interpreter -- hence two venvs and two processes talking over localhost.
@@ -51,20 +51,30 @@ start "Receipt extraction API (GPU)" cmd /k "cd /d %ROOT% && set ENGINE_CHECKPOI
 REM Only port 8000 is exposed. The Surya service on 8001 stays bound to 127.0.0.1 and is
 REM never tunneled -- the outside world cannot reach it at all.
 REM
-REM The URL is newly generated on every run, so read it from this window each time. The
-REM tunnel comes up before the model finishes loading; requests in that gap return an
-REM error until window 2 logs "warm-up generation done".
+REM ngrok replaced Cloudflare quick tunnels, whose trycloudflare.com hostnames stopped
+REM getting DNS records. It needs a one-time `ngrok config add-authtoken <token>` (free
+REM account at dashboard.ngrok.com). Set NGROK_DOMAIN in .env to your free static domain
+REM (dashboard -> Domains) to get the same URL every run; without it the URL is new each
+REM run, so read it from window 3's "Forwarding" line. The tunnel comes up before the
+REM model finishes loading; requests in that gap return an error until window 2 logs
+REM "warm-up generation done".
 echo Starting public tunnel ...
-start "Public tunnel (Cloudflare)" cmd /k cloudflared tunnel --url http://localhost:8000
+if "%NGROK_DOMAIN%"=="" (
+    start "Public tunnel (ngrok)" cmd /k ngrok http 8000
+) else (
+    start "Public tunnel (ngrok)" cmd /k ngrok http 8000 --url=https://%NGROK_DOMAIN%
+)
 
 echo.
 echo All three windows are starting.
 echo   - window 2 is ready when it logs "warm-up generation done"
-echo   - window 3 prints the public https://...trycloudflare.com URL to share
+echo   - window 3 prints the public https://... URL on its "Forwarding" line
 echo.
 echo Send your frontend dev BOTH of these:
-echo   URL:     the https://...trycloudflare.com address from window 3
+echo   URL:     the https://... "Forwarding" address from window 3
 echo   API key: the ENGINE_API_KEY value in .env
+echo Browser requests on free ngrok get a warning page first; API clients should send
+echo the header  ngrok-skip-browser-warning: 1  (any value) to skip it.
 echo.
 echo Check readiness yourself first:  curl http://localhost:8000/ready
 echo Closing a window stops that service.
