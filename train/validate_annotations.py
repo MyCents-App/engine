@@ -110,7 +110,9 @@ def category_hint(value) -> str:
     return ""
 
 
-_NUMBER_RE = re.compile(r"\d+(?:[.,]\d{1,2})?")
+# Thousands-grouped amounts first: without that alternative "1,949" reads as
+# 1.94, and a receipt printing its prices that way looks mispaired.
+_NUMBER_RE = re.compile(r"\d{1,3}(?:,\d{3})+(?:\.\d{1,2})?|\d+(?:[.,]\d{1,2})?")
 
 
 def looks_misaligned(record: dict) -> bool:
@@ -147,7 +149,8 @@ def looks_misaligned(record: dict) -> bool:
     present = set()
     for token in _NUMBER_RE.findall(text):
         try:
-            present.add(float(token.replace(",", ".")))
+            grouped = re.fullmatch(r"\d{1,3}(?:,\d{3})+(?:\.\d{1,2})?", token)
+            present.add(float(token.replace(",", "" if grouped else ".")))
         except ValueError:
             continue
     return not any(value in present for value in wanted)

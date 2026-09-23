@@ -52,8 +52,8 @@ Rules:
 7. total_price is the receipt's final printed total.
 8. Every item gets a "c" and an "s". "c" is one of the eight category names above, spelled exactly, or null. "s" is one of that same category's subcategories, spelled exactly, or null.
 9. Use the shop and the other items as context: the same product means different things in different places. Ice on a restaurant receipt is Food & Dining; ice at a convenience store is Groceries.
-10. Prefer null to a guess. A wrong subcategory is worse than none, so write null for "s" whenever no subcategory clearly fits. If the OCR text does not contain enough to identify what an item is, set "c" to null as well -- do not infer a category from the price alone.
-11. Never invent an item name that is not recoverable from the OCR text, and never merge, drop or reorder items. Output exactly one entry per item line on the receipt.
+10. Prefer null to a guess. A wrong subcategory is worse than none, so write null for "s" whenever no subcategory clearly fits. If you cannot tell what an item is, set "c" to null as well -- never infer a category from the price alone.
+11. When the OCR garbled or lost part of an item name, restore the name the receipt printed, using the shop, the neighbouring lines and the quantity as context. Never merge, drop or reorder items: output exactly one entry per priced item line on the receipt.
 
 Output ONLY the JSON object. No explanation, no markdown code fences, no extra text before or after it."""
 
