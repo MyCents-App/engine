@@ -21,6 +21,15 @@ regression in either one has to be attributable (ANNOTATION.md section 7):
 trained on (prompts_legacy.py). Its extraction numbers are the bar the joint
 model must clear -- section 7 keeps two adapters as the fallback if it cannot.
 
+But checkpoint-550 was trained on an earlier labelling of many of these same
+photos (38 of the 73 validation receipts: it scores 95% money-exact on those
+and 63% on the rest). Pass --legacy-train with that training file,
+
+    --legacy-train D:/Documents/train/data/real_train.jsonl
+
+and the report adds every row again on only the receipts the legacy
+checkpoint never saw. That second table is the fair comparison.
+
 Completions are cached per checkpoint under --cache-dir, keyed by a hash of
 each prompt. Fixing a validation LABEL after the hand-check changes no prompt,
 so a re-run rescores the saved completions without touching the GPU; changing
@@ -75,6 +84,11 @@ def parse_args(argv=None) -> argparse.Namespace:
     p.add_argument("--limit", type=int, default=None, help="first N records only")
     p.add_argument("--regenerate", action="store_true",
                    help="ignore cached completions")
+    p.add_argument("--legacy-train", type=Path, default=None,
+                   help="the real-receipt JSONL the --legacy checkpoint was trained "
+                        "on. Receipts found in it are split out, and every row is "
+                        "also reported on the rest: a checkpoint scored on its own "
+                        "training receipts is not a bar anything else can be held to")
     p.add_argument("--normalize", action="store_true",
                    help="apply postprocess.normalize_prediction before scoring -- "
                         "the deployed pipeline's view rather than the raw model's")
@@ -158,6 +172,7 @@ class CategoryTally:
         self.cat_hits = 0
         self.gold_sub = self.sub_hits = self.declines = 0
         self.pred_sub = self.pred_sub_hits = 0
+        self.pred_sub_labelled = self.pred_sub_labelled_hits = 0
         self.pred_items = self.invalid = 0
         self.tax_rows = self.tax_clean = 0
         self.confusion: Counter = Counter()
@@ -206,6 +221,9 @@ class CategoryTally:
             if ps is not None:
                 self.pred_sub += 1
                 self.pred_sub_hits += (ps == gs and pc == gc_)
+                if gs is not None:
+                    self.pred_sub_labelled += 1
+                    self.pred_sub_labelled_hits += (ps == gs and pc == gc_)
 
     @staticmethod
     def _rate(num, den):
@@ -218,6 +236,11 @@ class CategoryTally:
             "cat_acc": r(self.cat_hits, self.paired),
             "sub_acc_given": r(self.sub_hits, self.gold_sub),
             "sub_precision": r(self.pred_sub_hits, self.pred_sub),
+            # Precision where the gold label HAS a subcategory. The plain figure
+            # also counts every subcategory offered where the label left it
+            # null -- partly model guessing, partly labels left incomplete --
+            # so the gap between the two is how much the labels decide it.
+            "sub_precision_labelled": r(self.pred_sub_labelled_hits, self.pred_sub_labelled),
             "decline_rate": r(self.declines, self.gold_sub),
             "taxonomy_valid": r(self.pred_items - self.invalid, self.pred_items),
             "tax_row_clean": r(self.tax_clean, self.tax_rows),
@@ -377,7 +400,7 @@ def evaluate(checkpoint: str, legacy: bool, records: list[dict], args) -> dict:
     scores: list[eval_metrics.ExampleScore] = []
     by_kind: dict[str, list] = defaultdict(list)
     cats_all, cats_by_kind = CategoryTally(), defaultdict(CategoryTally)
-    misses, examples = [], []
+    misses, examples, per_record = [], [], []
     truncated = 0
     for record in records:
         row = cache[keys[record["id"]]]
@@ -385,6 +408,7 @@ def evaluate(checkpoint: str, legacy: bool, records: list[dict], args) -> dict:
         kind = record.get("meta", {}).get("kind", "-")
         scores.append(score)
         by_kind[kind].append(score)
+        per_record.append((record["id"], score, items, record["target"]["items"]))
         truncated += bool(row.get("truncated"))
         if not legacy:
             cats_all.add(record["target"]["items"], items)
@@ -407,7 +431,7 @@ def evaluate(checkpoint: str, legacy: bool, records: list[dict], args) -> dict:
             "extraction_by_kind": {k: eval_metrics.aggregate(v) for k, v in by_kind.items()},
             "categories": None if legacy else cats_all,
             "categories_by_kind": None if legacy else dict(cats_by_kind),
-            "truncated": truncated, "misses": misses,
+            "truncated": truncated, "misses": misses, "per_record": per_record,
             "seconds": sum(seconds) / len(seconds) if seconds else None}
 
 
@@ -421,7 +445,7 @@ def pct(value) -> str:
 
 COLUMNS = ("| checkpoint | MONEY EXACT | count exact | total exact | price recall "
            "| shop exact | name ok | JSON valid | truncated | **cat acc** | sub acc "
-           "| sub prec | taxonomy valid | items paired | s/receipt |")
+           "| sub prec | sub prec (labelled) | taxonomy valid | items paired | s/receipt |")
 
 
 def row(result: dict, ext: dict, cats) -> str:
@@ -436,7 +460,8 @@ def row(result: dict, ext: dict, cats) -> str:
             f"| {pct(ext.get('json_validity_rate'))} "
             f"| {result['truncated']} "
             f"| **{pct(c.get('cat_acc'))}** | {pct(c.get('sub_acc_given'))} "
-            f"| {pct(c.get('sub_precision'))} | {pct(c.get('taxonomy_valid'))} "
+            f"| {pct(c.get('sub_precision'))} | {pct(c.get('sub_precision_labelled'))} "
+            f"| {pct(c.get('taxonomy_valid'))} "
             f"| {pct(c.get('paired_share'))} "
             f"| {seconds} |")
 
@@ -467,6 +492,23 @@ def render(results: list[dict], records: list[dict], args) -> str:
         best_cat = max(joint, key=lambda r: r["categories"].summary().get("cat_acc") or 0)
         lines += ["", f"Best money exact: **{best_money['label']}**. "
                       f"Best category accuracy: **{best_cat['label']}**."]
+
+    seen = getattr(args, "seen", None)
+    if seen:
+        unseen = {r["id"] for r in records} - seen
+        lines += ["", f"## On the {len(unseen)} receipts the legacy checkpoint never "
+                      f"trained on", "",
+                  f"{len(seen)} of these {len(records)} receipts are in "
+                  f"`{args.legacy_train.name}`, which the --legacy checkpoint was "
+                  f"trained on (matched by total and price multiset). Its row above "
+                  f"is inflated by them; **this table is the fair comparison.**",
+                  "", COLUMNS, sep]
+        for result in results:
+            ext, cats = subset(result, unseen)
+            lines.append(row(result, ext, cats))
+        if joint:
+            fair = max(joint, key=lambda r: subset(r, unseen)[0].get("money_exact_rate") or 0)
+            lines += ["", f"Best money exact here: **{fair['label']}**."]
 
     for result in results:
         lines += ["", f"## {result['label']}", ""]
@@ -501,6 +543,30 @@ def render(results: list[dict], records: list[dict], args) -> str:
     return "\n".join(lines) + "\n"
 
 
+def money_key(target: dict) -> tuple:
+    """Total plus every non-tax price. Survives re-OCR and relabelled names,
+    which is what the old project's copies of these receipts differ by."""
+    return (target.get("total_price"),
+            tuple(sorted(str(i.get("price")) for i in target.get("items") or []
+                         if isinstance(i, dict) and not is_tax(i))))
+
+
+def seen_ids(records: list[dict], path: Path) -> set[str]:
+    trained = {money_key(json.loads(line)["target"])
+               for line in path.open(encoding="utf-8") if line.strip()}
+    return {r["id"] for r in records if money_key(r["target"]) in trained}
+
+
+def subset(result: dict, keep: set[str]) -> tuple[dict, CategoryTally | None]:
+    rows = [r for r in result["per_record"] if r[0] in keep]
+    tally = None
+    if not result["legacy"]:
+        tally = CategoryTally()
+        for _, _, items, gold in rows:
+            tally.add(gold, items)
+    return eval_metrics.aggregate([r[1] for r in rows]), tally
+
+
 def expand(patterns: list[str]) -> list[str]:
     found = []
     for pattern in patterns:
@@ -523,6 +589,10 @@ def main(argv=None) -> None:
     if args.limit:
         records = records[:args.limit]
     print(f"{len(records)} receipts, {len(joint)} joint + {len(legacy)} legacy checkpoint(s)")
+
+    args.seen = seen_ids(records, args.legacy_train) if args.legacy_train else None
+    if args.seen is not None:
+        print(f"{len(args.seen)} of them are in {args.legacy_train.name}")
 
     args.cache_dir.mkdir(parents=True, exist_ok=True)
     results = [evaluate(c, True, records, args) for c in legacy]

@@ -135,3 +135,25 @@ def test_rescoring_from_cache_needs_no_model(tmp_path, monkeypatch):
                      "--cache-dir", str(cache), "--out", str(out)])
     report = out.read_text(encoding="utf-8")
     assert "joint/checkpoint-25" in report and "**100.0%**" in report
+
+
+def test_subcategory_offered_where_the_label_has_none_is_split_out():
+    gold = [dict(GOLD["items"][1])]                       # s: None in the label
+    pred = [{**gold[0], "s": "Household supplies"}]
+    tally = CategoryTally()
+    tally.add(gold, pred)
+    s = tally.summary()
+    assert s["sub_precision"] == 0.0                      # counted wrong overall
+    assert s["sub_precision_labelled"] is None            # but no labelled case exists
+
+
+def test_receipts_the_legacy_model_trained_on_are_found_by_money(tmp_path):
+    seen = {**GOLD, "shop_name": "CP ALL, 7-Eleven",      # relabelled, re-OCR'd copy
+            "items": [{"name": i["name"] if eval_joint.is_tax(i) else i["name"] + "x",
+                       "price": i["price"]} for i in GOLD["items"]]}
+    path = tmp_path / "real_train.jsonl"
+    path.write_text(json.dumps({"input": "old ocr", "target": seen}, ensure_ascii=False) + "\n",
+                    encoding="utf-8")
+    other = {**RECORD, "id": "photo-y",
+             "target": {**GOLD, "total_price": "99.00"}}
+    assert eval_joint.seen_ids([RECORD, other], path) == {"photo-x"}
