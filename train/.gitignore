@@ -14,3 +14,7 @@ reports/*_examples.jsonl
 .env
 docker/.env
 data/
+
+# eval_joint.py's cached completions and per-receipt diagnostics. The report
+# (reports/joint_eval.md) is the artifact; these regenerate from the checkpoints.
+reports/joint_eval/
