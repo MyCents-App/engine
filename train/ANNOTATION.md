@@ -210,7 +210,7 @@ than once per item.
 | น้ำแข็ง (ice) | Suki Teenoi (restaurant) | `Food & Dining` |
 | น้ำแข็ง (ice) | 7-Eleven | `Groceries` |
 | Bottled water | Restaurant | `Food & Dining` / Drinks & beverages |
-| Bottled water | Makro | `Groceries` / Drinks & beverages |
+| Bottled water | Makro | `Groceries` / null — Drinks & beverages exists only under Food & Dining |
 
 Annotate what the **spend** was, not what the object is.
 

@@ -77,7 +77,7 @@ not: measured at 99.8% exact reconstruction with no line ever lost, and no false
 
 ## What to know about the output
 
-**Accuracy is 67.6%** — every item and the total exactly right, on held-out real receipts.
+**Accuracy is 61.8%** — every item and the total exactly right, on held-out real receipts.
 Design the confirm screen so the extraction is editable, not presented as a finished record.
 
 **`reconciles: false`** means `Σ items + tax − discount` is more than 3% from the printed

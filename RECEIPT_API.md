@@ -263,7 +263,7 @@ forward. Never send an English name in `name` — that is what gets categorized.
 ## Trusting the result
 
 This is a 2B-parameter model running locally, not a frontier API. On held-out real receipts
-it gets every item and the total exactly right **67.6%** of the time.
+it gets every item and the total exactly right **61.8%** of the time.
 
 **Design the screen so the extraction is editable, not presented as a finished record.**
 
