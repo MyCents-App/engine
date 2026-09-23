@@ -8,7 +8,10 @@ Photo of a receipt in, structured JSON out. Both stages of the pipeline, in one 
 ```
 
 The app shows that JSON to the user for confirmation; the confirmed draft goes to the MyCents
-backend, which runs categorization. **Categorization is not in this repo.**
+backend, which runs categorization. The same model call also returns a `category` per item, as
+a **fallback** for that backend: its own catalog, brand and keyword lookups run first, and the
+engine's answer is used only for items they leave unresolved — see
+[`RECEIPT_API.md`](RECEIPT_API.md#categories-a-fallback-not-the-answer).
 
 Neither is translation. Names are returned in the language the receipt printed (almost always
 Thai); the app translates them on the phone and the backend serves catalog translations. The
@@ -60,7 +63,9 @@ cd ../train && uv pip install -r requirements.lock.txt -r requirements-api.txt
 ```
 
 Then see [`RUN.md`](RUN.md). You also need the fine-tuned checkpoint at
-`train/checkpoints/qwen3.5-2b-qlora/checkpoint-550` — it is not in git.
+`train/checkpoints/qwen3.5-2b-joint/checkpoint-125` — it is not in git. How it was built:
+`train/ANNOTATION.md` (the data), `train/build_dataset.py`, `train/train_qlora.py`, and
+`train/eval_joint.py` (the pick, in `train/reports/joint_eval.md`).
 
 ## Long receipts: several photos, one receipt
 
@@ -77,8 +82,10 @@ not: measured at 99.8% exact reconstruction with no line ever lost, and no false
 
 ## What to know about the output
 
-**Accuracy is 61.8%** — every item and the total exactly right, on held-out real receipts.
-Design the confirm screen so the extraction is editable, not presented as a finished record.
+**Accuracy is 67.1%** — every item and the total exactly right, on 73 real receipts the model
+never trained on — and **91.6%** of items get the right category. Provisional until those 73
+labels are hand-checked. Design the confirm screen so the extraction is editable, not presented
+as a finished record.
 
 **`reconciles: false`** means `Σ items + tax − discount` is more than 3% from the printed
 total — usually a dropped or misread line. Surface it.

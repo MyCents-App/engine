@@ -48,11 +48,14 @@ services:
         condition: service_healthy
     environment:
       OCR_URL: http://ocr:8001/ocr
-      ENGINE_CHECKPOINT: ${ENGINE_CHECKPOINT:-/models/qwen3.5-2b-qlora/checkpoint-550}
+      ENGINE_CHECKPOINT: ${ENGINE_CHECKPOINT:-/models/qwen3.5-2b-joint/checkpoint-125}
       # REQUIRED once this is reachable through a tunnel.
       ENGINE_API_KEY: ${ENGINE_API_KEY:?set ENGINE_API_KEY in .env}
       ENGINE_MAX_SEQ_LENGTH: ${ENGINE_MAX_SEQ_LENGTH:-4096}
-      ENGINE_MAX_NEW_TOKENS: ${ENGINE_MAX_NEW_TOKENS:-768}
+      ENGINE_MAX_NEW_TOKENS: ${ENGINE_MAX_NEW_TOKENS:-1024}
+      # Model subcategories are withheld (null) until a checkpoint reaches
+      # 90% precision; see app/config.py emit_subcategory.
+      ENGINE_EMIT_SUBCATEGORY: ${ENGINE_EMIT_SUBCATEGORY:-0}
       ENGINE_MAX_PAGES: ${ENGINE_MAX_PAGES:-5}
       # Remove the overlap between consecutive photos of one receipt before
       # prompting. 0 concatenates instead, which duplicates every item in the

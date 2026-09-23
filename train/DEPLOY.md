@@ -63,10 +63,10 @@ different cadence than the code. Mounted read-only at `/models`. Set
 `CHECKPOINT_PATH` to the directory *containing* the checkpoint folder:
 
 ```
-/opt/mycents/models/qwen3.5-2b-qlora/checkpoint-550
+/opt/mycents/models/qwen3.5-2b-joint/checkpoint-125
 └────────┬────────┘
     CHECKPOINT_PATH=/opt/mycents/models
-    ENGINE_CHECKPOINT=/models/qwen3.5-2b-qlora/checkpoint-550
+    ENGINE_CHECKPOINT=/models/qwen3.5-2b-joint/checkpoint-125
 ```
 
 ## 3. Configure
@@ -171,7 +171,7 @@ user-confirmed draft with no field renaming:
   "reconciles": true,
   "reconcileStatus": "ok",
   "engine": {"pages": 1, "ocr_seconds": 3.4, "model_seconds": 2.1,
-             "prompt_tokens": 412, "token_budget": 3328}
+             "prompt_tokens": 412, "token_budget": 3072}
 }
 ```
 
@@ -201,7 +201,7 @@ Measured behaviour and the threshold tuning: `reports/stitch_overlap.md`.
 
 ### 413 on a long receipt
 
-The prompt budget is `ENGINE_MAX_SEQ_LENGTH − ENGINE_MAX_NEW_TOKENS` (3328
+The prompt budget is `ENGINE_MAX_SEQ_LENGTH − ENGINE_MAX_NEW_TOKENS` (3072
 tokens at the defaults). Over that, the request is **rejected** rather than
 truncated — truncation silently drops the end of the receipt, and the model
 still returns confident, well-formed JSON missing its last items. The error

@@ -69,10 +69,13 @@ def engine(monkeypatch):
         seen["prompts"].append(text)
         return (
             {"shop_name": "Mini Mart",
-             "items": [{"name": "water", "price": "10.00"},
-                       {"name": "bread", "price": "25.00"},
-                       {"name": "milk", "price": "18.00"},
-                       {"name": "eggs", "price": "40.00"}],
+             "items": [{"name": "water", "price": "10.00", "c": "Groceries", "s": None},
+                       {"name": "bread", "price": "25.00",
+                        "c": "Food & Dining", "s": "Bakery & desserts"},
+                       {"name": "milk", "price": "18.00",
+                        "c": "Groceries", "s": "Drinks & beverages"},   # wrong category's sub
+                       {"name": "eggs", "price": "40.00",
+                        "c": "Coffee & cafe", "s": None}],             # not in the taxonomy
              "total_price": "93.00"},
             "raw",
             0.1,
@@ -275,5 +278,40 @@ def test_names_are_never_translated_but_the_slots_exist(engine):
     assert body["shopNameEn"] is None
     assert body["items"], "fixture has items"
     for item in body["items"]:
-        assert set(item) == {"name", "nameEn", "price"}
+        assert set(item) == {"name", "nameEn", "price", "category", "subcategory"}
         assert item["nameEn"] is None
+
+
+# --------------------------------------------------------------------------
+# Categories: a fallback for the backend's own pipeline
+# --------------------------------------------------------------------------
+
+def test_each_item_carries_the_models_category(engine):
+    client, _ = engine
+    items = client.post("/v1/extract", files=_files(PAGE_1)).json()["items"]
+    assert [i["category"] for i in items[:3]] == ["Groceries", "Food & Dining", "Groceries"]
+
+
+def test_a_category_outside_the_taxonomy_is_nulled_not_repaired(engine):
+    """'Coffee & cafe' is not promoted to 'Coffee & café'. The null routes the
+    item to the backend's classifier and user review -- and the item's name and
+    price still arrive, which is the point of validating per item."""
+    client, _ = engine
+    eggs = client.post("/v1/extract", files=_files(PAGE_1)).json()["items"][3]
+    assert eggs["category"] is None and eggs["subcategory"] is None
+    assert (eggs["name"], eggs["price"]) == ("eggs", "40.00")
+
+
+def test_subcategories_are_withheld_by_default(engine):
+    client, _ = engine
+    items = client.post("/v1/extract", files=_files(PAGE_1)).json()["items"]
+    assert all(i["subcategory"] is None for i in items)
+
+
+def test_subcategories_when_enabled_must_belong_to_their_category(engine, monkeypatch):
+    configure(monkeypatch, emit_subcategory=True, warmup=False, api_key="")
+    client, _ = engine
+    items = client.post("/v1/extract", files=_files(PAGE_1)).json()["items"]
+    assert items[1]["subcategory"] == "Bakery & desserts"
+    assert items[2]["category"] == "Groceries"          # the category survives...
+    assert items[2]["subcategory"] is None              # ...its misplaced sub does not

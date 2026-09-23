@@ -13,8 +13,12 @@ request returns exactly the fields it always did, plus `engine.pages`. `ocrTexts
 an array and still has one entry. `/ready` gained `max_pages`. Both upload styles and
 `/v1/extract-text` are unchanged.
 
-Three things to know:
+Four things to know:
 
+- **Every item now carries `category` and `subcategory`.** Two new keys per item, nothing
+  removed or renamed — a client that ignores unknown fields is unaffected. The category is
+  meant as a **fallback** for the backend's own categorization, not a replacement for it; see
+  [Categories](#categories-a-fallback-not-the-answer). `subcategory` is always `null` for now.
 - **The tunnel moved from Cloudflare to ngrok. Browser code must add one header,
   `ngrok-skip-browser-warning: 1`, to every request** — without it ngrok answers with an
   HTML warning page instead of the API's JSON. See [The things you need](#the-things-you-need).
@@ -185,14 +189,16 @@ forward the user-confirmed draft without renaming anything.
   "taxAmount": null,
   "basketDiscount": null,
   "items": [
-    { "name": "H UHT นมยูเอชิ ด.16", "nameEn": null, "price": "13.00" },
-    { "name": "ชีสโรลไส้กรอก",        "nameEn": null, "price": "26.00" }
+    { "name": "H UHT นมยูเอชิ ด.16", "nameEn": null, "price": "13.00",
+      "category": "Groceries", "subcategory": null },
+    { "name": "ชีสโรลไส้กรอก",        "nameEn": null, "price": "26.00",
+      "category": "Food & Dining", "subcategory": null }
   ],
   "ocrTexts": ["..."],
   "reconciles": true,
   "reconcileStatus": "ok",
   "engine": { "pages": 1, "ocr_seconds": 2.6, "model_seconds": 3.2,
-              "prompt_tokens": 798, "token_budget": 3328, "total_seconds": 5.8 }
+              "prompt_tokens": 798, "token_budget": 3072, "total_seconds": 5.8 }
 }
 ```
 
@@ -219,7 +225,9 @@ A **multi-photo** receipt adds two things and changes nothing else:
 | `totalAmount` | The printed total. |
 | `taxAmount` | VAT, lifted out of `items[]` so it isn't categorized as a purchase. `null` when the receipt has none. |
 | `basketDiscount` | A basket-wide discount when the receipt had one, else `null`. It has **already been spread across the item prices** — show it as information, don't subtract it again. |
-| `items[]` | `name` + `nameEn` + `price`. `name` is the printed text; `nameEn` is always `null` from the engine. Prices are **line totals**, not unit prices — a "2 × 39.00" line arrives once at `78.00`. |
+| `items[]` | `name` + `nameEn` + `price` + `category` + `subcategory`. `name` is the printed text; `nameEn` is always `null` from the engine. Prices are **line totals**, not unit prices — a "2 × 39.00" line arrives once at `78.00`. |
+| `items[].category` | One of the eight MyCents categories, spelled exactly, or `null` when the model could not tell what the item is. A **fallback** — see [Categories](#categories-a-fallback-not-the-answer). |
+| `items[].subcategory` | Always `null` today. Will carry the model's subcategory once it is accurate enough; see below. |
 | `ocrTexts` | Raw OCR text, one entry **per photo**, in the order you sent them. Diagnostic — ignore it in the UI. |
 | `stitchedText` | Only on multi-photo requests: the pages joined with the overlap removed — what the model actually read. Diagnostic. |
 | `reconciles` / `reconcileStatus` | Do the numbers add up? See below. |
@@ -238,6 +246,30 @@ screen forever.
 **`reconciles: false`** — `Σ items + tax − discount` differs from the printed total by more
 than 3%. Usually a dropped or misread line. Draw the user's attention to the totals on the
 confirm screen rather than hiding it.
+
+### Categories: a fallback, not the answer
+
+The same model call that reads the receipt also assigns each item one of the eight MyCents
+categories. It is there for the **backend's** categorization pipeline, which keeps running
+first:
+
+1. catalog exact → 2. catalog fuzzy → 3. brand / merchant → 4. keyword
+5. **the engine's `category`** — only for items stages 1-4 left unresolved
+6. user review — when `category` is `null` too
+
+Those lookups are deterministic and know this user's history; the model is a 2B network that
+has seen a few thousand receipts. So the model's answer is used where they have none, never
+over theirs. Two rules follow:
+
+- **`null` is an answer.** It means the model declined — an item it could not identify, or a
+  category that failed validation (the engine nulls anything outside the eight, never
+  "repairs" it). Route it to user review exactly as a stage-5 decline is today.
+- **`subcategory` is `null` on purpose.** A subcategory the model offers is right about 3 times
+  in 4 against a 90% target, and the backend's own subcategory classifier only runs on nulls —
+  a wrong value here would never be corrected, while a null gets the classifier. It switches on
+  (`ENGINE_EMIT_SUBCATEGORY=1`) when a checkpoint clears 90%, with no change to this contract.
+
+The tax row is never categorized: it is lifted out of `items[]` into `taxAmount`.
 
 ### Translation is not the engine's job
 
@@ -262,8 +294,11 @@ forward. Never send an English name in `name` — that is what gets categorized.
 
 ## Trusting the result
 
-This is a 2B-parameter model running locally, not a frontier API. On held-out real receipts
-it gets every item and the total exactly right **61.8%** of the time.
+This is a 2B-parameter model running locally, not a frontier API. On 73 real receipts it never
+trained on, it gets every item and the total exactly right **67.1%** of the time, and gives the
+right category for **91.6%** of the items it reads. Both figures are provisional until those 73
+labels have been hand-checked (`train/reports/joint_eval.md`). The previous, extraction-only
+model scored 62.9% on the ones among them it had not been trained on, and categorized nothing.
 
 **Design the screen so the extraction is editable, not presented as a finished record.**
 
@@ -291,12 +326,14 @@ on two lines, and you cannot tell the two cases apart from the response.
 
 ## Timing
 
-Measured end to end on real receipts through this exact service:
+Measured on real receipts through this exact service. The model's time now grows with the
+number of items — it writes a category for each one — at roughly **1s + 1.2s per item**:
 
-- **Typical photo request: 4 – 8s** (OCR ~2.3–3.3s + model ~1.6–3.9s)
+- **Typical photo request (1–5 items): 5 – 10s** (OCR ~2.5–3.5s + model ~1.6–7s)
+- **A long receipt is slower:** ~15s at 8 items, ~30s at 20+ (a full Makro basket).
 - **Add ~2.5–3.5s per extra photo.** OCR runs once per image; the model still runs once for
   the whole receipt, so a three-photo receipt is roughly OCR×3 + one generation.
-- `/v1/extract-text` skips the OCR half: ~3s.
+- `/v1/extract-text` skips the OCR half: median ~3s on a typical receipt.
 - Show a spinner. This is not an instant call.
 - **Only one receipt is processed at a time.** A second request queues rather than failing,
   so two phones shooting together means the later one waits.

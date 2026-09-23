@@ -8,6 +8,10 @@ Machine-facing only: no HTML, no browser page. The Flutter app posts photos
 here and gets back a draft it shows the user for confirmation; the confirmed
 draft then goes to the MyCents backend for categorization.
 
+Each item carries the model's `category` as a FALLBACK for that backend: its
+own catalog / brand / keyword stages run first, and it uses the engine's
+answer only for items those leave unresolved (CATEGORIZATION.md section 6).
+
 The response is deliberately shaped to match that backend's
 POST /api/v1/receipts/categorize body, so the app can pass it through with
 the user's edits applied and no field renaming in between.
@@ -29,6 +33,7 @@ from starlette.datastructures import UploadFile
 
 import postprocess
 from app import extraction, ocr_client, stitch
+from categorize_prompts import CATEGORIES
 from app.config import settings
 from app.date_extract import extract_receipt_date
 
@@ -160,6 +165,29 @@ def _split_tax(pred: dict) -> tuple[list[dict], Decimal | None]:
     return items, (tax if tax > 0 else None)
 
 
+def _categories(item: dict) -> dict:
+    """The item's `category` / `subcategory`, null where they fail the taxonomy.
+
+    Validated per item and independently of the extraction, so a bad category
+    costs only that category: the name and price beside it still reach the
+    user (ANNOTATION.md section 7 -- the price of one joint generation is that
+    a malformed category must not take the extraction down with it). Never
+    repaired: "Coffee & cafe" is not quietly promoted to "Coffee & café", it
+    is nulled, and a null routes to the backend's own classifier and then to
+    user review, which is the decline path that already exists.
+
+    The subcategory is withheld unless ENGINE_EMIT_SUBCATEGORY is on -- see
+    config.emit_subcategory for why.
+    """
+    category = item.get("c")
+    if category not in CATEGORIES:
+        return {"category": None, "subcategory": None}
+    sub = item.get("s")
+    if not settings.emit_subcategory or sub not in CATEGORIES[category]:
+        sub = None
+    return {"category": category, "subcategory": sub}
+
+
 def _money(value) -> str | None:
     """Format a monetary value as NN.DD — the contract every price field uses.
 
@@ -209,7 +237,8 @@ def _to_response(pred: dict | None, ocr_texts: list[str], merged: str, recon,
         "totalAmount": pred.get("total_price"),
         "taxAmount": _money(tax),
         "basketDiscount": _money(discount),
-        "items": [{"name": i.get("name"), "nameEn": None, "price": i.get("price")}
+        "items": [{"name": i.get("name"), "nameEn": None, "price": i.get("price"),
+                   **_categories(i)}
                   for i in items],
         # One entry per photo, in the order they were sent. `stitchedText` is
         # what the model actually read — the pages joined with the overlap

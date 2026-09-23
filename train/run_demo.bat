@@ -46,7 +46,7 @@ timeout /t 12 /nobreak >nul
 REM All configuration is environment driven -- no host paths inside the code -- so the
 REM same app/ runs here and anywhere else it is ever deployed.
 echo Starting extraction API on GPU ...
-start "Receipt extraction API (GPU)" cmd /k "cd /d %ROOT% && set ENGINE_CHECKPOINT=%ROOT%checkpoints\qwen3.5-2b-qlora\checkpoint-550&& set OCR_URL=http://127.0.0.1:8001/ocr&& set ENGINE_API_KEY=%ENGINE_API_KEY%&& .venv\Scripts\python.exe -m uvicorn app.api:app --host 0.0.0.0 --port 8000"
+start "Receipt extraction API (GPU)" cmd /k "cd /d %ROOT% && set ENGINE_CHECKPOINT=%ROOT%checkpoints\qwen3.5-2b-joint\checkpoint-125&& set OCR_URL=http://127.0.0.1:8001/ocr&& set ENGINE_API_KEY=%ENGINE_API_KEY%&& .venv\Scripts\python.exe -m uvicorn app.api:app --host 0.0.0.0 --port 8000"
 
 REM Only port 8000 is exposed. The Surya service on 8001 stays bound to 127.0.0.1 and is
 REM never tunneled -- the outside world cannot reach it at all.

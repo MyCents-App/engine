@@ -36,7 +36,7 @@ RUN python -m pip install --no-cache-dir --upgrade pip && \
     python -m pip install --no-cache-dir -r requirements-api.txt
 
 COPY app/ ./app/
-COPY postprocess.py prompts.py ./
+COPY postprocess.py prompts.py categorize_prompts.py ./
 
 RUN useradd --create-home --uid 1000 engine && \
     mkdir -p /cache/huggingface && chown -R engine:engine /srv /cache

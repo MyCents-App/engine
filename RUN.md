@@ -123,11 +123,12 @@ Everything else is environment driven, set by `run_demo.bat` — no host paths i
 |---|---|---|
 | `ENGINE_API_KEY` | *(required)* | Empty disables auth entirely. Never do that behind a tunnel. |
 | `NGROK_DOMAIN` | *(unset)* | Set in `train/.env`. Your static ngrok domain, without `https://`. Unset = random URL per run |
-| `ENGINE_CHECKPOINT` | `train/checkpoints/qwen3.5-2b-qlora/checkpoint-550` | |
+| `ENGINE_CHECKPOINT` | `train/checkpoints/qwen3.5-2b-joint/checkpoint-125` | The joint adapter: extraction + a category per item. Picked in `train/reports/joint_eval.md` |
 | `OCR_URL` | `http://127.0.0.1:8001/ocr` | |
 | `OCR_DEVICE` | `cuda` | `cpu` frees ~3.6 GB VRAM, costs ~16s/page |
 | `ENGINE_MAX_SEQ_LENGTH` | 4096 | Prompt budget is this minus `MAX_NEW_TOKENS`. Raised from 2048 so a multi-photo receipt fits — see below |
-| `ENGINE_MAX_NEW_TOKENS` | 768 | |
+| `ENGINE_MAX_NEW_TOKENS` | 1024 | The joint answer runs ~33 tokens per item; 768 cut off receipts past ~23 items |
+| `ENGINE_EMIT_SUBCATEGORY` | 0 | `1` sends the model's subcategory instead of `null`. Leave off until a checkpoint reaches 90% subcategory precision |
 | `ENGINE_MAX_PAGES` | 5 | Photos accepted as pages of one receipt |
 | `ENGINE_STITCH_PAGES` | 1 | Remove the overlap between consecutive photos. `0` concatenates instead — only for comparison |
 | `ENGINE_STITCH_WINDOW` | 60 | Longest overlap searched, in lines |

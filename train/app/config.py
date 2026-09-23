@@ -21,8 +21,13 @@ def _float(name: str, default: float) -> float:
 @dataclass(frozen=True)
 class Settings:
     # --- model ---
+    # The joint adapter: extraction AND a category per item, one generation
+    # (ANNOTATION.md). checkpoint-125 was picked on real-receipt money-exact
+    # in reports/joint_eval.md. It must be served with prompts.py's joint
+    # prompt; the old extraction-only checkpoint-550 needs prompts_legacy.py
+    # and cannot be swapped in here by path alone.
     checkpoint: str = os.environ.get(
-        "ENGINE_CHECKPOINT", "/models/qwen3.5-2b-qlora/checkpoint-550"
+        "ENGINE_CHECKPOINT", "/models/qwen3.5-2b-joint/checkpoint-125"
     )
     # 4096, not the 2048 the QLoRA fine-tune was trained at. Training length
     # caps what the model LEARNED from, not what it can be served with, and
@@ -35,7 +40,10 @@ class Settings:
     # the point of the multi-photo path; rejecting it with a 413 would not
     # be serving it. Costs a little KV-cache VRAM, nothing else.
     max_seq_length: int = _int("ENGINE_MAX_SEQ_LENGTH", 4096)
-    max_new_tokens: int = _int("ENGINE_MAX_NEW_TOKENS", 768)
+    # 1024: the joint answer spends ~33 tokens per item against ~12 before,
+    # and the longest labelled receipt needs ~860. At 768 a 23-item receipt
+    # is cut off mid-JSON and comes back unparseable.
+    max_new_tokens: int = _int("ENGINE_MAX_NEW_TOKENS", 1024)
     load_in_4bit: bool = os.environ.get("ENGINE_LOAD_IN_4BIT", "1") == "1"
 
     # --- OCR sidecar ---
@@ -76,6 +84,13 @@ class Settings:
     # Spread a basket-wide discount across item prices before returning.
     # On by default so exactly one component owns that arithmetic.
     apply_discount: bool = os.environ.get("ENGINE_APPLY_DISCOUNT", "1") == "1"
+
+    # Send the model's subcategory, or null. Off: at checkpoint-125 a
+    # subcategory it offers is right ~75% of the time against a 90% target,
+    # and the backend's own subcategory classifier only runs on nulls -- so a
+    # wrong one here is never corrected, while a null gets the classifier.
+    # Turn on once a checkpoint clears 90% in reports/joint_eval.md.
+    emit_subcategory: bool = os.environ.get("ENGINE_EMIT_SUBCATEGORY", "0") == "1"
 
     # One throwaway generation at startup. The first generate() on a freshly
     # loaded model pays ~5s of CUDA kernel selection on top of the usual ~3s;

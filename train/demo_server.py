@@ -64,10 +64,10 @@ import postprocess
 from prompts import build_messages
 
 ROOT = Path(__file__).resolve().parent
-DEFAULT_CKPT = ROOT / "checkpoints" / "qwen3.5-2b-qlora" / "checkpoint-550"
+DEFAULT_CKPT = ROOT / "checkpoints" / "qwen3.5-2b-joint" / "checkpoint-125"
 OCR_URL = os.environ.get("OCR_URL", "http://127.0.0.1:8001/ocr")
-MAX_SEQ_LENGTH = 2048
-MAX_NEW_TOKENS = 768
+MAX_SEQ_LENGTH = 4096
+MAX_NEW_TOKENS = 1024
 MAX_BYTES = 25 * 1024 * 1024
 
 # --- CORS -------------------------------------------------------------------------------
