@@ -32,7 +32,8 @@ from fastapi.responses import JSONResponse
 from starlette.datastructures import UploadFile
 
 import postprocess
-from app import extraction, ocr_client, stitch
+from app import extraction
+from app import receipt_gate, ocr_client, stitch
 from categorize_prompts import CATEGORIES
 from app.config import settings
 from app.date_extract import extract_receipt_date
@@ -277,6 +278,26 @@ async def _run(ocr_texts: list[str], timings: dict) -> dict:
         raise HTTPException(
             status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
             detail="No text was found in the uploaded image(s).",
+        )
+
+    # Is this even a receipt? The model will read anything: given a menu with
+    # no prices printed on it, it invented 280.00 for three dishes and
+    # returned a confident 940.00 total with ok:true and reconciles:true.
+    # Nothing downstream could tell that from a real receipt, so the user
+    # would have banked an expense they never made. Checked on the OCR text,
+    # before the model is called, because the tell is the absence of printed
+    # prices — and every number in that answer was invented.
+    gate = receipt_gate.check(combined)
+    timings["receipt_gate"] = gate.as_dict()
+    if not gate.is_receipt:
+        logger.info("rejected as not-a-receipt: %s", gate.as_dict())
+        # Structured detail, not a bare string: the backend proxies the body
+        # and status but not headers, and the app needs to tell "this is not
+        # a receipt, retake it" from every other 422.
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
+            detail={"reason": "not_a_receipt", "message": gate.reason,
+                    **gate.as_dict()},
         )
 
     # Reject over-long input rather than letting the tokenizer truncate it.

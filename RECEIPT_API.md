@@ -341,6 +341,37 @@ number of items — it writes a category for each one — at roughly **1s + 1.2s
 
 ---
 
+## Not a receipt
+
+The model will read anything. Given a paragraph of prose it answered
+`shopName: "The Rain in Spain", totalAmount: "10.00"`; given a menu with no
+prices printed on it, it invented 280.00 for three dishes and 180.00 for a
+fourth and returned a confident **940.00** total — `ok: true`,
+`reconciles: true`. Nothing downstream can tell those from a real receipt, so
+a user who photographed a menu would bank an expense they never made.
+
+So the OCR text is checked **before** the model is called, and an image with
+no printed amounts is refused:
+
+```json
+HTTP 422
+{ "detail": { "reason": "not_a_receipt",
+              "message": "No prices were found in this image. ...",
+              "prices": 0, "total_word": false, "document_words": 0 } }
+```
+
+`detail` is an object, not a string — the MyCents backend proxies the body
+and status but not headers, so the reason has to travel in the body. Branch
+on `detail.reason`, and offer a new photo rather than a retry: the same image
+will be refused again.
+
+The rule is deterministic — two printed amounts, or one plus a till word
+(`total`, `รวม`, `VAT`…), or two words that only appear on a transaction
+record (`receipt`, `ใบเสร็จ`, `CUSTOMER COPY`…). It is tuned to reject rather
+than accept: a blurry real receipt costs a retake, an accepted menu costs
+money in someone's budget. **Validated on the 84 real Surya OCR outputs in
+the gold corpus: 0 rejected.**
+
 ## Errors
 
 Every failure returns JSON with a `detail` string, so you can always read the reason. CORS is
@@ -352,6 +383,7 @@ handled server-side, so a plain `fetch` from your origin works, preflight includ
 | `401` | Missing or wrong `X-API-Key` | Check the header name and the key |
 | `413` | Image over 25 MB, more than 5 photos, or receipt text longer than the model accepts | Downscale, or shoot fewer/tighter frames |
 | `422` | OCR couldn't read the image, or found no text in it | Ask for a retake |
+| `422` + `detail.reason == "not_a_receipt"` | The image was read and is not a receipt | Ask for a **new photo** — retrying this one fails identically. See below |
 | `502` | OCR service unreachable on our side | Ping us; retrying won't help |
 | `503` | Model still loading, or too many requests queued | Check `/ready`; retry shortly |
 | `504` | Generation took too long | Retry once, then ping us |
